@@ -49,9 +49,7 @@ namespace Pamac {
 		[GtkChild]
 		Gtk.Switch enable_aur_button;
 		[GtkChild]
-		Gtk.Label aur_build_dir_label;
-		[GtkChild]
-		Gtk.FileChooserButton aur_build_dir_file_chooser;
+		Gtk.CheckButton search_aur_checkbutton;
 		[GtkChild]
 		Gtk.CheckButton check_aur_updates_checkbutton;
 		[GtkChild]
@@ -64,16 +62,14 @@ namespace Pamac {
 		Gtk.ListStore ignorepkgs_liststore;
 		Transaction transaction;
 		uint64 previous_refresh_period;
+		string[] countries;
 
 		public PreferencesDialog (Transaction transaction) {
-			int use_header_bar;
-			Gtk.Settings.get_default ().get ("gtk-dialogs-use-header", out use_header_bar);
-			Object (transient_for: transaction.application_window, use_header_bar: use_header_bar);
+			Object (transient_for: transaction.application_window, use_header_bar: 1);
 
 			this.transaction = transaction;
 			refresh_period_label.set_markup (dgettext (null, "How often to check for updates, value in hours") +":");
 			cache_keep_nb_label.set_markup (dgettext (null, "Number of versions of each package to keep in the cache") +":");
-			aur_build_dir_label.set_markup (dgettext (null, "Build directory") +":");
 			remove_unrequired_deps_button.active = transaction.recurse;
 			check_space_button.active = transaction.get_checkspace ();
 			if (transaction.refresh_period == 0) {
@@ -91,8 +87,6 @@ namespace Pamac {
 				previous_refresh_period = transaction.refresh_period;
 			}
 			no_update_hide_icon_checkbutton.active = transaction.no_update_hide_icon;
-			cache_keep_nb_spin_button.value = transaction.keep_num_pkgs;
-			cache_only_uninstalled_checkbutton.active = transaction.rm_only_uninstalled;
 
 			// populate ignorepkgs_liststore
 			ignorepkgs_liststore = new Gtk.ListStore (1, typeof (string));
@@ -106,8 +100,6 @@ namespace Pamac {
 			check_updates_button.state_set.connect (on_check_updates_button_state_set);
 			refresh_period_spin_button.value_changed.connect (on_refresh_period_spin_button_value_changed);
 			no_update_hide_icon_checkbutton.toggled.connect (on_no_update_hide_icon_checkbutton_toggled);
-			cache_keep_nb_spin_button.value_changed.connect (on_cache_keep_nb_spin_button_value_changed);
-			cache_only_uninstalled_checkbutton.toggled.connect (on_cache_only_uninstalled_checkbutton_toggled);
 			transaction.write_pamac_config_finished.connect (on_write_pamac_config_finished);
 
 			AlpmPackage pkg = transaction.find_installed_satisfier ("pacman-mirrors");
@@ -117,11 +109,9 @@ namespace Pamac {
 				var mirrors_config = new MirrorsConfig ("/etc/pacman-mirrors.conf");
 				mirrors_country_comboboxtext.append_text (dgettext (null, "Worldwide"));
 				mirrors_country_comboboxtext.active = 0;
-				if (transaction.preferences_available_countries.length == 0) {
-					transaction.preferences_available_countries = transaction.get_mirrors_countries ();
-				}
+				countries = transaction.get_mirrors_countries ();
 				int index = 1;
-				foreach (unowned string country in transaction.preferences_available_countries) {
+				foreach (unowned string country in countries) {
 					mirrors_country_comboboxtext.append_text (country);
 					if (country == mirrors_config.choosen_country) {
 						mirrors_country_comboboxtext.active = index;
@@ -141,19 +131,12 @@ namespace Pamac {
 			}
 
 			enable_aur_button.active = transaction.enable_aur;
-			aur_build_dir_label.sensitive = transaction.enable_aur;
-			aur_build_dir_file_chooser.sensitive = transaction.enable_aur;
-			aur_build_dir_file_chooser.set_filename (transaction.aur_build_dir);
-			// add /tmp choice always visible
-			try {
-				aur_build_dir_file_chooser.add_shortcut_folder ("/tmp");
-			} catch (GLib.Error e) {
-				stderr.printf ("%s\n", e.message);
-			}
+			search_aur_checkbutton.active = transaction.search_aur;
+			search_aur_checkbutton.sensitive = transaction.enable_aur;
 			check_aur_updates_checkbutton.active = transaction.check_aur_updates;
 			check_aur_updates_checkbutton.sensitive = transaction.enable_aur;
 			enable_aur_button.state_set.connect (on_enable_aur_button_state_set);
-			aur_build_dir_file_chooser.file_set.connect (on_aur_build_dir_set);
+			search_aur_checkbutton.toggled.connect (on_search_aur_checkbutton_toggled);
 			check_aur_updates_checkbutton.toggled.connect (on_check_aur_updates_checkbutton_toggled);
 		}
 
@@ -185,18 +168,6 @@ namespace Pamac {
 			transaction.start_write_pamac_config (new_pamac_conf);
 		}
 
-		void on_cache_keep_nb_spin_button_value_changed () {
-			var new_pamac_conf = new HashTable<string,Variant> (str_hash, str_equal);
-			new_pamac_conf.insert ("KeepNumPackages", new Variant.uint64 (cache_keep_nb_spin_button.get_value_as_int ()));
-			transaction.start_write_pamac_config (new_pamac_conf);
-		}
-
-		void on_cache_only_uninstalled_checkbutton_toggled () {
-			var new_pamac_conf = new HashTable<string,Variant> (str_hash, str_equal);
-			new_pamac_conf.insert ("OnlyRmUninstalled", new Variant.boolean (cache_only_uninstalled_checkbutton.active));
-			transaction.start_write_pamac_config (new_pamac_conf);
-		}
-
 		void on_no_update_hide_icon_checkbutton_toggled () {
 			var new_pamac_conf = new HashTable<string,Variant> (str_hash, str_equal);
 			new_pamac_conf.insert ("NoUpdateHideIcon", new Variant.boolean (no_update_hide_icon_checkbutton.active));
@@ -210,9 +181,9 @@ namespace Pamac {
 			return true;
 		}
 
-		void on_aur_build_dir_set () {
+		void on_search_aur_checkbutton_toggled () {
 			var new_pamac_conf = new HashTable<string,Variant> (str_hash, str_equal);
-			new_pamac_conf.insert ("BuildDirectory", new Variant.string (aur_build_dir_file_chooser.get_filename ()));
+			new_pamac_conf.insert ("SearchInAURByDefault", new Variant.boolean (search_aur_checkbutton.active));
 			transaction.start_write_pamac_config (new_pamac_conf);
 		}
 
@@ -223,7 +194,7 @@ namespace Pamac {
 		}
 
 		void on_write_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon,
-											bool enable_aur, string aur_build_dir, bool check_aur_updates) {
+											bool enable_aur, bool search_aur, bool check_aur_updates) {
 			remove_unrequired_deps_button.state = recurse;
 			if (refresh_period == 0) {
 				check_updates_button.state = false;
@@ -242,8 +213,8 @@ namespace Pamac {
 			}
 			no_update_hide_icon_checkbutton.active = no_update_hide_icon;
 			enable_aur_button.state = enable_aur;
-			aur_build_dir_label.sensitive = enable_aur;
-			aur_build_dir_file_chooser.sensitive = enable_aur;
+			search_aur_checkbutton.active = search_aur;
+			search_aur_checkbutton.sensitive = enable_aur;
 			check_aur_updates_checkbutton.active = check_aur_updates;
 			check_aur_updates_checkbutton.sensitive = enable_aur;
 		}
@@ -318,6 +289,7 @@ namespace Pamac {
 				var new_alpm_conf = new HashTable<string,Variant> (str_hash, str_equal);
 				new_alpm_conf.insert ("IgnorePkg", new Variant.string (ignorepkg_string.str));
 				transaction.start_write_alpm_config (new_alpm_conf);
+
 			}
 		}
 
@@ -381,7 +353,8 @@ namespace Pamac {
 
 		[GtkCallback]
 		void on_cache_clean_button_clicked () {
-			transaction.clean_cache (transaction.keep_num_pkgs, transaction.rm_only_uninstalled);
+			transaction.clean_cache ((uint) cache_keep_nb_spin_button.get_value_as_int (),
+									cache_only_uninstalled_checkbutton.active);
 		}
 	}
 }

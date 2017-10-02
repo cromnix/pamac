@@ -130,5 +130,6 @@ Icon=system-software-update
 Exec=pamac-updater
 Terminal=false
 Type=Application
-Categories=GNOME;GTK;System;Settings;X-XFCE-SettingsDialog;X-XFCE-SystemSettings;
+Categories=GNOME;GTK;System;
+#NotShowIn=KDE
 StartupNotify=true

@@ -39,17 +39,10 @@ MANAGER_GRESOURCE_FILE = ../resources/pamac.manager.gresource.xml
 
 INSTALLER_GRESOURCE_FILE = ../resources/pamac.installer.gresource.xml
 
-binaries: pamac-clean-cache pamac-user-daemon pamac-system-daemon pamac-tray pamac-manager pamac-install
+binaries: pamac-user-daemon pamac-system-daemon pamac-tray pamac-manager pamac-install
 
 clean:
 	rm -f *.c pamac.h pamac.vapi libpamac.so pamac-user-daemon pamac-system-daemon pamac-tray pamac-tray-appindicator pamac-manager pamac-install
-
-pamac-clean-cache: pamac_config.vala clean_cache.vala
-	valac 	-o pamac-clean-cache \
-			$(COMMON_VALA_FLAGS) \
-			--pkg=gio-2.0 \
-			pamac_config.vala \
-			clean_cache.vala
 
 pamac-tray: $(COMMON_SOURCES) alpm_config.vala tray.vala tray-gtk.vala
 	valac 	-o pamac-tray \
@@ -76,7 +69,6 @@ pamac-user-daemon: ../vapi/libalpm.vapi alpm_config.vala common.vala package.val
 			$(ALPM_VALA_FLAGS) \
 			--pkg=json-glib-1.0 \
 			--pkg=libsoup-2.4 \
-			--pkg=appstream-glib \
 			--thread \
 			alpm_config.vala \
 			common.vala \
@@ -120,7 +112,6 @@ pamac-manager: libpamac.so ../resources/manager_resources.c history_dialog.vala 
 			$(PAMAC_LIB_FLAGS) \
 			--pkg=gtk+-3.0 \
 			--pkg=gdk-3.0 \
-			--pkg=libsoup-2.4 \
 			--gresources=$(MANAGER_GRESOURCE_FILE) \
 			../resources/manager_resources.c \
 			history_dialog.vala \

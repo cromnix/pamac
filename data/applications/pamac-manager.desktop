@@ -134,5 +134,6 @@ Icon=system-software-install
 Exec=pamac-manager
 Terminal=false
 Type=Application
-Categories=GNOME;GTK;System;Settings;X-XFCE-SettingsDialog;X-XFCE-SystemSettings;
+Categories=GNOME;GTK;System;
+#NotShowIn=KDE;
 StartupNotify=true

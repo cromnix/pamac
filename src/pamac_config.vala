@@ -26,10 +26,8 @@ namespace Pamac {
 		public uint64 refresh_period { get; private set; }
 		public bool no_update_hide_icon { get; private set; }
 		public bool enable_aur { get; private set; }
-		public string aur_build_dir { get; private set; }
+		public bool search_aur { get; private set; }
 		public bool check_aur_updates { get; private set; }
-		public uint64 keep_num_pkgs { get; private set; }
-		public bool rm_only_uninstalled { get; private set; }
 		public unowned HashTable<string,string> environment_variables {
 			get {
 				return _environment_variables;
@@ -72,10 +70,8 @@ namespace Pamac {
 			recurse = false;
 			no_update_hide_icon = false;
 			enable_aur = false;
-			aur_build_dir = "/tmp";
+			search_aur = false;
 			check_aur_updates = false;
-			keep_num_pkgs = 3;
-			rm_only_uninstalled = false;
 			parse_file (conf_path);
 		}
 
@@ -107,21 +103,12 @@ namespace Pamac {
 								unowned string val = splitted[1]._strip ();
 								refresh_period = uint64.parse (val);
 							}
-						} else if (key == "KeepNumPackages") {
-							if (splitted.length == 2) {
-								unowned string val = splitted[1]._strip ();
-								keep_num_pkgs = uint64.parse (val);
-							}
-						} else if (key == "OnlyRmUninstalled") {
-							rm_only_uninstalled = true;
 						} else if (key == "NoUpdateHideIcon") {
 							no_update_hide_icon = true;
 						} else if (key == "EnableAUR") {
 							enable_aur = true;
-						} else if (key == "BuildDirectory") {
-							if (splitted.length == 2) {
-								aur_build_dir = splitted[1]._strip ();
-							}
+						} else if (key == "SearchInAURByDefault") {
+							search_aur = true;
 						} else if (key == "CheckAURUpdates") {
 							check_aur_updates = true;
 						}
@@ -168,24 +155,6 @@ namespace Pamac {
 							} else {
 								data.append (line + "\n");
 							}
-						} else if (line.contains ("KeepNumPackages")) {
-							if (new_conf.lookup_extended ("KeepNumPackages", null, out variant)) {
-								data.append ("KeepNumPackages = %llu\n".printf (variant.get_uint64 ()));
-								new_conf.remove ("KeepNumPackages");
-							} else {
-								data.append (line + "\n");
-							}
-						} else if (line.contains ("OnlyRmUninstalled")) {
-							if (new_conf.lookup_extended ("OnlyRmUninstalled", null, out variant)) {
-								if (variant.get_boolean ()) {
-									data.append ("OnlyRmUninstalled\n");
-								} else {
-									data.append ("#OnlyRmUninstalled\n");
-								}
-								new_conf.remove ("OnlyRmUninstalled");
-							} else {
-								data.append (line + "\n");
-							}
 						} else if (line.contains ("NoUpdateHideIcon")) {
 							if (new_conf.lookup_extended ("NoUpdateHideIcon", null, out variant)) {
 								if (variant.get_boolean ()) {
@@ -208,10 +177,14 @@ namespace Pamac {
 							} else {
 								data.append (line + "\n");
 							}
-						} else if (line.contains ("BuildDirectory")) {
-							if (new_conf.lookup_extended ("BuildDirectory", null, out variant)) {
-								data.append ("BuildDirectory = %s\n".printf (variant.get_string ()));
-								new_conf.remove ("BuildDirectory");
+						} else if (line.contains ("SearchInAURByDefault")) {
+							if (new_conf.lookup_extended ("SearchInAURByDefault", null, out variant)) {
+								if (variant.get_boolean ()) {
+									data.append ("SearchInAURByDefault\n");
+								} else {
+									data.append ("#SearchInAURByDefault\n");
+								}
+								new_conf.remove ("SearchInAURByDefault");
 							} else {
 								data.append (line + "\n");
 							}
@@ -253,14 +226,6 @@ namespace Pamac {
 						}
 					} else if (key == "RefreshPeriod") {
 						data.append ("RefreshPeriod = %llu\n".printf (val.get_uint64 ()));
-					} else if (key == "KeepNumPackages") {
-						data.append ("KeepNumPackages = %llu\n".printf (val.get_uint64 ()));
-					} else if (key == "OnlyRmUninstalled") {
-						if (val.get_boolean ()) {
-							data.append ("OnlyRmUninstalled\n");
-						} else {
-							data.append ("#OnlyRmUninstalled\n");
-						}
 					} else if (key =="NoUpdateHideIcon") {
 						if (val.get_boolean ()) {
 							data.append ("NoUpdateHideIcon\n");
@@ -273,8 +238,12 @@ namespace Pamac {
 						} else {
 							data.append ("#EnableAUR\n");
 						}
-					} else if (key == "BuildDirectory") {
-						data.append ("BuildDirectory = %s\n".printf (val.get_string ()));
+					} else if (key == "SearchInAURByDefault") {
+						if (val.get_boolean ()) {
+							data.append ("SearchInAURByDefault\n");
+						} else {
+							data.append ("#SearchInAURByDefault\n");
+						}
 					} else if (key == "CheckAURUpdates") {
 						if (val.get_boolean ()) {
 							data.append ("CheckAURUpdates\n");

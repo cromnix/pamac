@@ -21,7 +21,6 @@ namespace Pamac {
 	[DBus (name = "org.manjaro.pamac.user")]
 	interface UserDaemon : Object {
 		public abstract void refresh_handle () throws IOError;
-		public abstract string get_lockfile () throws IOError;
 		public abstract AlpmPackage get_installed_pkg (string pkgname) throws IOError;
 		public abstract bool get_checkspace () throws IOError;
 		public abstract string[] get_ignorepkgs () throws IOError;
@@ -37,12 +36,11 @@ namespace Pamac {
 		public abstract AlpmPackage find_sync_satisfier (string depstring) throws IOError;
 		public abstract async AlpmPackage[] search_pkgs (string search_string) throws IOError;
 		public abstract async AURPackage[] search_in_aur (string search_string) throws IOError;
-		public abstract async AlpmPackage[] get_category_pkgs (string category) throws IOError;
 		public abstract string[] get_repos_names () throws IOError;
 		public abstract async AlpmPackage[] get_repo_pkgs (string repo) throws IOError;
 		public abstract string[] get_groups_names () throws IOError;
 		public abstract async AlpmPackage[] get_group_pkgs (string groupname) throws IOError;
-		public abstract AlpmPackageDetails get_pkg_details (string pkgname, string app_name) throws IOError;
+		public abstract AlpmPackageDetails get_pkg_details (string pkgname) throws IOError;
 		public abstract string[] get_pkg_files (string pkgname) throws IOError;
 		public abstract async AURPackageDetails get_aur_details (string pkgname) throws IOError;
 		public abstract string[] get_pkg_uninstalled_optdeps (string pkgname) throws IOError;
@@ -63,7 +61,7 @@ namespace Pamac {
 		public abstract void start_write_alpm_config (HashTable<string,Variant> new_alpm_conf) throws IOError;
 		public abstract void start_write_mirrors_config (HashTable<string,Variant> new_mirrors_conf) throws IOError;
 		public abstract void start_generate_mirrors_list () throws IOError;
-		public abstract void clean_cache (uint64 keep_nb, bool only_uninstalled) throws IOError;
+		public abstract void clean_cache (uint keep_nb, bool only_uninstalled) throws IOError;
 		public abstract void start_set_pkgreason (string pkgname, uint reason) throws IOError;
 		public abstract void start_refresh (bool force) throws IOError;
 		public abstract void start_sysupgrade_prepare (bool enable_downgrade, string[] temporary_ignorepkgs) throws IOError;
@@ -89,7 +87,7 @@ namespace Pamac {
 		public signal void trans_commit_finished (bool success);
 		public signal void get_authorization_finished (bool authorized);
 		public signal void write_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon,
-														bool enable_aur, string aur_build_dir, bool check_aur_updates);
+														bool enable_aur, bool search_aur, bool check_aur_updates);
 		public signal void write_alpm_config_finished (bool checkspace);
 		public signal void write_mirrors_config_finished (string choosen_country, string choosen_generation_method);
 		public signal void generate_mirrors_list_data (string line);
@@ -120,9 +118,7 @@ namespace Pamac {
 		public bool no_update_hide_icon { get { return pamac_config.no_update_hide_icon; } }
 		public bool recurse { get { return pamac_config.recurse; } }
 		public uint64 refresh_period { get { return pamac_config.refresh_period; } }
-		public string aur_build_dir { get { return pamac_config.aur_build_dir; } }
-		public uint64 keep_num_pkgs { get { return pamac_config.keep_num_pkgs; } }
-		public bool rm_only_uninstalled { get { return pamac_config.rm_only_uninstalled; } }
+		public bool search_aur { get { return pamac_config.search_aur; } }
 
 		//Alpm.TransFlag
 		int flags;
@@ -138,7 +134,6 @@ namespace Pamac {
 		GenericSet<string?> previous_to_remove;
 		public GenericSet<string?> transaction_summary;
 		public GenericSet<string?> temporary_ignorepkgs;
-		public GLib.File lockfile;
 
 		uint64 total_download;
 		uint64 already_downloaded;
@@ -159,7 +154,6 @@ namespace Pamac {
 		StringBuilder warning_textbuffer;
 
 		//dialogs
-		public string[] preferences_available_countries;
 		TransactionSumDialog transaction_sum_dialog;
 		public ProgressBox progress_box;
 		Vte.Terminal term;
@@ -177,7 +171,7 @@ namespace Pamac {
 		public signal void finished (bool success);
 		public signal void set_pkgreason_finished ();
 		public signal void write_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon,
-														bool enable_aur, string aur_build_dir, bool check_aur_updates);
+														bool enable_aur, bool search_aur, bool check_aur_updates);
 		public signal void write_alpm_config_finished (bool checkspace);
 		public signal void write_mirrors_config_finished (string choosen_country, string choosen_generation_method);
 		public signal void generate_mirrors_list ();
@@ -202,10 +196,8 @@ namespace Pamac {
 			transaction_summary = new GenericSet<string?> (str_hash, str_equal);
 			temporary_ignorepkgs = new GenericSet<string?> (str_hash, str_equal);
 			connecting_user_daemon ();
-			get_lockfile ();
 			//creating dialogs
 			this.application_window = application_window;
-			preferences_available_countries = {};
 			transaction_sum_dialog = new TransactionSumDialog (application_window);
 			progress_box = new ProgressBox ();
 			progress_box.progressbar.text = "";
@@ -450,7 +442,7 @@ namespace Pamac {
 			}
 		}
 
-		public void clean_cache (uint64 keep_nb, bool only_uninstalled) {
+		public void clean_cache (uint keep_nb, bool only_uninstalled) {
 			try {
 				system_daemon.clean_cache (keep_nb, only_uninstalled);
 			} catch (IOError e) {
@@ -495,19 +487,8 @@ namespace Pamac {
 		public void refresh_handle () {
 			try {
 				user_daemon.refresh_handle ();
-				get_lockfile ();
 			} catch (IOError e) {
 				stderr.printf ("IOError: %s\n", e.message);
-			}
-		}
-
-		void get_lockfile () {
-			try {
-				lockfile = GLib.File.new_for_path (user_daemon.get_lockfile ());
-			} catch (IOError e) {
-				stderr.printf ("IOError: %s\n", e.message);
-				//try standard lock file
-				lockfile = GLib.File.new_for_path ("var/lib/pacman/db.lck");
 			}
 		}
 
@@ -677,16 +658,6 @@ namespace Pamac {
 			return pkgs;
 		}
 
-		public async AlpmPackage[] get_category_pkgs (string category) {
-			AlpmPackage[] pkgs = {};
-			try {
-				pkgs = yield user_daemon.get_category_pkgs (category);
-			} catch (IOError e) {
-				stderr.printf ("IOError: %s\n", e.message);
-			}
-			return pkgs;
-		}
-
 		public string[] get_repos_names () {
 			string[] repos_names = {};
 			try {
@@ -737,9 +708,9 @@ namespace Pamac {
 			return optdeps;
 		}
 
-		public AlpmPackageDetails get_pkg_details (string pkgname, string app_name) {
+		public AlpmPackageDetails get_pkg_details (string pkgname) {
 			try {
-				return user_daemon.get_pkg_details (pkgname, app_name);
+				return user_daemon.get_pkg_details (pkgname);
 			} catch (IOError e) {
 				stderr.printf ("IOError: %s\n", e.message);
 				return AlpmPackageDetails () {
@@ -1108,12 +1079,7 @@ namespace Pamac {
 			to_build.remove_all ();
 			string [] built_pkgs = {};
 			int status = 1;
-			string builddir;
-			if (aur_build_dir == "/tmp") {
-				builddir = "/tmp/pamac-build-%s".printf (Environment.get_user_name ());
-			} else {
-				builddir = aur_build_dir;
-			}
+			string builddir = "/tmp/pamac-build-%s".printf (Environment.get_user_name ());
 			status = yield spawn_in_term ({"mkdir", "-p", builddir});
 			if (status == 0) {
 				status = yield spawn_in_term ({"rm", "-rf", pkgname}, builddir);
@@ -1782,7 +1748,7 @@ namespace Pamac {
 		}
 
 		void on_write_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon,
-												bool enable_aur, string aur_build_dir, bool check_aur_updates) {
+												bool enable_aur, bool search_aur, bool check_aur_updates) {
 			system_daemon.write_pamac_config_finished.disconnect (on_write_pamac_config_finished);
 			pamac_config.reload ();
 			flags = (1 << 4); //Alpm.TransFlag.CASCADE
@@ -1790,11 +1756,10 @@ namespace Pamac {
 				flags |= (1 << 5); //Alpm.TransFlag.RECURSE
 			}
 			write_pamac_config_finished (recurse, refresh_period, no_update_hide_icon,
-											enable_aur, aur_build_dir, check_aur_updates);
+											enable_aur, search_aur, check_aur_updates);
 		}
 
 		void on_write_alpm_config_finished (bool checkspace) {
-			refresh_handle ();
 			system_daemon.write_alpm_config_finished.disconnect (on_write_alpm_config_finished);
 			write_alpm_config_finished (checkspace);
 		}
