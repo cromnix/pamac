@@ -1760,6 +1760,7 @@ namespace Pamac {
 		}
 
 		void on_write_alpm_config_finished (bool checkspace) {
+			refresh_handle ();
 			system_daemon.write_alpm_config_finished.disconnect (on_write_alpm_config_finished);
 			write_alpm_config_finished (checkspace);
 		}
