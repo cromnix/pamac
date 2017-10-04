@@ -17,7 +17,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-const string VERSION = "5.1.2";
+const string VERSION = "5.2.0";
 
 namespace Pamac {
 
@@ -199,7 +199,7 @@ namespace Pamac {
 			repos_list = new Gtk.ListStore (1, typeof (string));
 			repos_treeview.set_model (repos_list);
 
-			packages_list = new Gtk.ListStore (7, 
+			packages_list = new Gtk.ListStore (7,
 											typeof (uint), //origin
 											typeof (string), //name
 											typeof (string), //name+desc
@@ -241,7 +241,7 @@ namespace Pamac {
 			});
 			packages_state_renderer.activated.connect (on_packages_state_icon_activated);
 
-			aur_list = new Gtk.ListStore (6, 
+			aur_list = new Gtk.ListStore (6,
 											typeof (uint), //origin
 											typeof (string), //name
 											typeof (string), //name+desc
@@ -556,7 +556,7 @@ namespace Pamac {
 						install_dep_button.toggled.connect (on_install_dep_button_toggled);
 						box2.pack_end (install_dep_button, false);
 						string dep_name = find_install_button_dep_name (install_dep_button);
-						install_dep_button.active = (dep_name in transaction.to_install); 
+						install_dep_button.active = (dep_name in transaction.to_install);
 					}
 					box.pack_start (box2);
 				} else {
