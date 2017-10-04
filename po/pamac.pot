@@ -550,6 +550,10 @@ msgid "Number of versions of each package to keep in the cache"
 msgstr ""
 
 #: ../src/preferences_dialog.vala
+msgid "Build directory"
+msgstr ""
+
+#: ../src/preferences_dialog.vala
 msgid "Worldwide"
 msgstr ""
 
