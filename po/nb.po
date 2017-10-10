@@ -2,7 +2,7 @@
 # Copyright (C) 2013-2016 Manjaro Developers <manjaro-dev@manjaro.org>
 # This file is distributed under the same license as the Pamac package.
 # Guillaume Benoit <guillaume@manjaro.org>, 2013-2016.
-# 
+#
 # Translators:
 # Morten Rene <arath.inc@gmail.com>, 2014
 # Bård Spein <baard.spein@gmail.com>, 2013
@@ -23,18 +23,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
-"Report-Msgid-Bugs-To: guillaume@manjaro.org\n"
+"Report-Msgid-Bugs-To: cromer@cromnix.org\n"
 "POT-Creation-Date: 2016-04-24 08:44+0200\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/manjarolinux/manjaro-pamac/language/nb/)\n"
+"Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: nb\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: data/polkit/org.manjaro.pamac.policy
+#: data/polkit/org.pamac.policy
 msgid "Authentication is required"
 msgstr "Autentisering kreves"
 
@@ -140,7 +140,9 @@ msgstr "%s ser ut til å bli avkortet: %jd/%jd bytes\n"
 #: ../src/system_daemon.vala
 #, c-format
 msgid "failed retrieving file '%s' from %s : %s\n"
-msgstr "klarte ikke å hente filen '%s'  fra %s : %s\n\n"
+msgstr ""
+"klarte ikke å hente filen '%s'  fra %s : %s\n"
+"\n"
 
 #: ../src/transaction.vala
 msgid "Copy"
@@ -567,6 +569,10 @@ msgid "Number of versions of each package to keep in the cache"
 msgstr "Antall versjoner av hver pakke som skal beholdes i hurtiglageret"
 
 #: ../src/preferences_dialog.vala
+msgid "Build directory"
+msgstr ""
+
+#: ../src/preferences_dialog.vala
 msgid "Worldwide"
 msgstr "Verdensomspennende"
 
@@ -676,9 +682,7 @@ msgid "Remove unrequired dependencies"
 msgstr "Fjern avhengige pakker som er unødvendige"
 
 #: ../resources/preferences_dialog.ui
-msgid ""
-"When removing a package, also remove its dependencies that are not required "
-"by other packages"
+msgid "When removing a package, also remove its dependencies that are not required by other packages"
 msgstr "Når du fjerner en pakke, fjern også dets avhengigheter som ikke kreves av andre pakker"
 
 #: ../resources/preferences_dialog.ui
@@ -721,7 +725,9 @@ msgstr "Offisielle pakkebrønner "
 msgid ""
 "AUR is a community maintained repository so it presents potential risks and problems.\n"
 "All AUR users should be familiar with the build process."
-msgstr "AUR er en pakkebrønn som vedlikeholdes av fellesskapet og kan derfor introdusere risikoer og problemer.\nAlle AUR-brukere bør kjenne fremgangsmåten for å bygge pakker. "
+msgstr ""
+"AUR er en pakkebrønn som vedlikeholdes av fellesskapet og kan derfor introdusere risikoer og problemer.\n"
+"Alle AUR-brukere bør kjenne fremgangsmåten for å bygge pakker. "
 
 #: ../resources/preferences_dialog.ui
 msgid "Enable AUR support"

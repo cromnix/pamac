@@ -2,7 +2,7 @@
 # Copyright (C) 2013-2016 Manjaro Developers <manjaro-dev@manjaro.org>
 # This file is distributed under the same license as the Pamac package.
 # Guillaume Benoit <guillaume@manjaro.org>, 2013-2016.
-# 
+#
 # Translators:
 # Bankman <inactive+dirktux@transifex.com>, 2016
 # Bankman <inactive+dirktux@transifex.com>, 2016
@@ -25,18 +25,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
-"Report-Msgid-Bugs-To: guillaume@manjaro.org\n"
+"Report-Msgid-Bugs-To: cromer@cromnix.org\n"
 "POT-Creation-Date: 2016-04-24 08:44+0200\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
 "Language-Team: German (http://www.transifex.com/manjarolinux/manjaro-pamac/language/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: data/polkit/org.manjaro.pamac.policy
+#: data/polkit/org.pamac.policy
 msgid "Authentication is required"
 msgstr "Authentifizierung erforderlich"
 
@@ -569,6 +569,10 @@ msgid "Number of versions of each package to keep in the cache"
 msgstr "Anzahl der im Cache verbleibenden Paketversionen"
 
 #: ../src/preferences_dialog.vala
+msgid "Build directory"
+msgstr ""
+
+#: ../src/preferences_dialog.vala
 msgid "Worldwide"
 msgstr "Weltweit"
 
@@ -678,9 +682,7 @@ msgid "Remove unrequired dependencies"
 msgstr "Entferne nicht benötigte Abhängigkeiten"
 
 #: ../resources/preferences_dialog.ui
-msgid ""
-"When removing a package, also remove its dependencies that are not required "
-"by other packages"
+msgid "When removing a package, also remove its dependencies that are not required by other packages"
 msgstr "Wenn ein Paket entfernt wird, werden auch seine Abhängigkeiten entfernt, soweit sie nicht von einem anderen Paket benötigt werden"
 
 #: ../resources/preferences_dialog.ui
@@ -723,7 +725,9 @@ msgstr "Offizielle Repositorien"
 msgid ""
 "AUR is a community maintained repository so it presents potential risks and problems.\n"
 "All AUR users should be familiar with the build process."
-msgstr "Das AUR ist ein von der Gemeinschaft gepflegtes Repositorium, das Risiken birgt und Probleme verursachen kann.\nAlle Benutzer des AUR sollten mit dem Erstellen von Paketen vertraut sein."
+msgstr ""
+"Das AUR ist ein von der Gemeinschaft gepflegtes Repositorium, das Risiken birgt und Probleme verursachen kann.\n"
+"Alle Benutzer des AUR sollten mit dem Erstellen von Paketen vertraut sein."
 
 #: ../resources/preferences_dialog.ui
 msgid "Enable AUR support"

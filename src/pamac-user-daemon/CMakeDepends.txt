@@ -1,0 +1,1 @@
+add_dependencies(pamac-user-daemon Pamac AUR)

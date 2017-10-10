@@ -1,6 +1,7 @@
 /*
  *  pamac-vala
  *
+ *  Copyright (C) 2017 Chris Cromer <cromer@cromnix.org>
  *  Copyright (C) 2014-2015  Guillaume Benoit <guillaume@manjaro.org>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -33,14 +34,20 @@ namespace Pamac {
 		public UpdateInfos[] to_reinstall;
 		public UpdateInfos[] to_remove;
 		public UpdateInfos[] to_build;
+#if DISABLE_AUR
+#else
 		public UpdateInfos[] aur_conflicts_to_remove;
 		public string[] aur_pkgbases_to_build;
+#endif
 	}
 
 	public struct Updates {
 		public bool is_syncfirst;
 		public AlpmPackage[] repos_updates;
+#if DISABLE_AUR
+#else
 		public AURPackage[] aur_updates;
+#endif
 	}
 
 	public struct ErrorInfos {

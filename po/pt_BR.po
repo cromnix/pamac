@@ -2,7 +2,7 @@
 # Copyright (C) 2013-2016 Manjaro Developers <manjaro-dev@manjaro.org>
 # This file is distributed under the same license as the Pamac package.
 # Guillaume Benoit <guillaume@manjaro.org>, 2013-2016.
-# 
+#
 # Translators:
 # Adriano Martins <ampontes93@gmail.com>, 2016
 # Aldo Oliveira <america103@gmail.com>, 2014-2015,2017
@@ -25,18 +25,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
-"Report-Msgid-Bugs-To: guillaume@manjaro.org\n"
+"Report-Msgid-Bugs-To: cromer@cromnix.org\n"
 "POT-Creation-Date: 2016-04-24 08:44+0200\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/manjarolinux/manjaro-pamac/language/pt_BR/)\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: data/polkit/org.manjaro.pamac.policy
+#: data/polkit/org.pamac.policy
 msgid "Authentication is required"
 msgstr "Autenticação necessária"
 
@@ -569,6 +569,10 @@ msgid "Number of versions of each package to keep in the cache"
 msgstr "Número de versões de cada pacote a manter na cache"
 
 #: ../src/preferences_dialog.vala
+msgid "Build directory"
+msgstr ""
+
+#: ../src/preferences_dialog.vala
 msgid "Worldwide"
 msgstr "Mundial"
 
@@ -678,9 +682,7 @@ msgid "Remove unrequired dependencies"
 msgstr "Remover dependências desnecessárias"
 
 #: ../resources/preferences_dialog.ui
-msgid ""
-"When removing a package, also remove its dependencies that are not required "
-"by other packages"
+msgid "When removing a package, also remove its dependencies that are not required by other packages"
 msgstr "Ao remover um pacote, também remover as dependências que não são exigidas por outros pacotes"
 
 #: ../resources/preferences_dialog.ui
@@ -723,7 +725,9 @@ msgstr "Repositórios oficiais"
 msgid ""
 "AUR is a community maintained repository so it presents potential risks and problems.\n"
 "All AUR users should be familiar with the build process."
-msgstr "AUR é um repositório mantido pela comunidade de modo que apresenta riscos e problemas potenciais.\nTodos os usuários do AUR devem estar familiarizados com o processo de compilação."
+msgstr ""
+"AUR é um repositório mantido pela comunidade de modo que apresenta riscos e problemas potenciais.\n"
+"Todos os usuários do AUR devem estar familiarizados com o processo de compilação."
 
 #: ../resources/preferences_dialog.ui
 msgid "Enable AUR support"

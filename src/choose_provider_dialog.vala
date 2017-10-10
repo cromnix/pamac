@@ -1,6 +1,7 @@
 /*
  *  pamac-vala
  *
+ *  Copyright (C) 2017 Chris Cromer <cromer@cromnix.org>
  *  Copyright (C) 2014-2017 Guillaume Benoit <guillaume@manjaro.org>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -17,9 +18,11 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+//using GIO
+
 namespace Pamac {
 
-	[GtkTemplate (ui = "/org/manjaro/pamac/transaction/choose_provider_dialog.ui")]
+	[GtkTemplate (ui = "/org/pamac/transaction/interface/choose_provider_dialog.ui")]
 	class ChooseProviderDialog : Gtk.Dialog {
 
 		public ChooseProviderDialog (Gtk.ApplicationWindow? window) {

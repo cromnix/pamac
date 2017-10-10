@@ -1,6 +1,7 @@
 /*
  *  pamac-vala
  *
+ *  Copyright (C) 2017 Chris Cromer <cromer@cromnix.org>
  *  Copyright (C) 2014-2017 Guillaume Benoit <guillaume@manjaro.org>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -53,6 +54,8 @@ namespace Pamac {
 		public string[] backups;
 	}
 
+#if DISABLE_AUR
+#else
 	public struct AURPackage {
 		public string name;
 		public string version;
@@ -82,4 +85,5 @@ namespace Pamac {
 		public string[] replaces;
 		public string[] conflicts;
 	}
+#endif
 }

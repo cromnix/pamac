@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/org/pamac/installer">
+    <file preprocess="xml-stripblanks">interface/progress_dialog.ui</file>
+  </gresource>
+</gresources>

@@ -2,7 +2,7 @@
 # Copyright (C) 2013-2016 Manjaro Developers <manjaro-dev@manjaro.org>
 # This file is distributed under the same license as the Pamac package.
 # Guillaume Benoit <guillaume@manjaro.org>, 2013-2016.
-# 
+#
 # Translators:
 # Douwe Bootsma <d_bootsma@hotmail.com>, 2013
 # Guillaume Benoit <guillaume@manjaro.org>, 2013
@@ -12,18 +12,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
-"Report-Msgid-Bugs-To: guillaume@manjaro.org\n"
+"Report-Msgid-Bugs-To: cromer@cromnix.org\n"
 "POT-Creation-Date: 2016-04-24 08:44+0200\n"
 "PO-Revision-Date: 2017-07-30 09:19+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/manjarolinux/manjaro-pamac/language/nl_NL/)\n"
+"Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: nl_NL\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: data/polkit/org.manjaro.pamac.policy
+#: data/polkit/org.pamac.policy
 msgid "Authentication is required"
 msgstr "Authenticatie vereist"
 
@@ -556,6 +556,10 @@ msgid "Number of versions of each package to keep in the cache"
 msgstr "Aantal in de cache te houden versies van elk pakket"
 
 #: ../src/preferences_dialog.vala
+msgid "Build directory"
+msgstr ""
+
+#: ../src/preferences_dialog.vala
 msgid "Worldwide"
 msgstr "Wereldwijd"
 
@@ -665,9 +669,7 @@ msgid "Remove unrequired dependencies"
 msgstr "Niet-benodigde afhankelijkheden verwijderen"
 
 #: ../resources/preferences_dialog.ui
-msgid ""
-"When removing a package, also remove its dependencies that are not required "
-"by other packages"
+msgid "When removing a package, also remove its dependencies that are not required by other packages"
 msgstr "Verwijder, bij het verwijderen van een pakket, ook de afhankelijkheden die niet vereist zijn door andere pakketten"
 
 #: ../resources/preferences_dialog.ui
@@ -710,7 +712,9 @@ msgstr "Officiële pakketbronnen"
 msgid ""
 "AUR is a community maintained repository so it presents potential risks and problems.\n"
 "All AUR users should be familiar with the build process."
-msgstr "AUR is een pakketbron die beheerd wordt door de gemeenschap. Dit kan leiden tot risico's en problemen.\nAlle AUR-gebruikers dienen bekend te zijn met het bouwproces."
+msgstr ""
+"AUR is een pakketbron die beheerd wordt door de gemeenschap. Dit kan leiden tot risico's en problemen.\n"
+"Alle AUR-gebruikers dienen bekend te zijn met het bouwproces."
 
 #: ../resources/preferences_dialog.ui
 msgid "Enable AUR support"

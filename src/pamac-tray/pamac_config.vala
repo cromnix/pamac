@@ -1,0 +1,1 @@
+../pamac_config.vala

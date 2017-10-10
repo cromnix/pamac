@@ -2,7 +2,7 @@
 # Copyright (C) 2013-2016 Manjaro Developers <manjaro-dev@manjaro.org>
 # This file is distributed under the same license as the Pamac package.
 # Guillaume Benoit <guillaume@manjaro.org>, 2013-2016.
-# 
+#
 # Translators:
 # Hamine Anisse <anisdu25@gmail.com>, 2016
 # hamza rydhwan <rydhwan21@gmail.com>, 2016
@@ -14,18 +14,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
-"Report-Msgid-Bugs-To: guillaume@manjaro.org\n"
+"Report-Msgid-Bugs-To: cromer@cromnix.org\n"
 "POT-Creation-Date: 2016-04-24 08:44+0200\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/manjarolinux/manjaro-pamac/language/ar/)\n"
+"Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ar\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
-#: data/polkit/org.manjaro.pamac.policy
+#: data/polkit/org.pamac.policy
 msgid "Authentication is required"
 msgstr "صلاحيات مطلوبة"
 
@@ -570,6 +570,10 @@ msgid "Number of versions of each package to keep in the cache"
 msgstr ""
 
 #: ../src/preferences_dialog.vala
+msgid "Build directory"
+msgstr ""
+
+#: ../src/preferences_dialog.vala
 msgid "Worldwide"
 msgstr " حول العالم"
 
@@ -679,9 +683,7 @@ msgid "Remove unrequired dependencies"
 msgstr "حذف الاعتماديات الغير مطلوبة"
 
 #: ../resources/preferences_dialog.ui
-msgid ""
-"When removing a package, also remove its dependencies that are not required "
-"by other packages"
+msgid "When removing a package, also remove its dependencies that are not required by other packages"
 msgstr "عند إزالة الحزمة، أيضا إزالة تبعياته التي ليست مطلوبة من قبل حزم أخرى"
 
 #: ../resources/preferences_dialog.ui
@@ -724,7 +726,9 @@ msgstr "مستودعات رسمية"
 msgid ""
 "AUR is a community maintained repository so it presents potential risks and problems.\n"
 "All AUR users should be familiar with the build process."
-msgstr "مستودعات الأعضاء  يعرض لمخاطر ولمشاكل محتملة\nيجب أن يكون المستخدمون على دراية بعملية الإنشاء."
+msgstr ""
+"مستودعات الأعضاء  يعرض لمخاطر ولمشاكل محتملة\n"
+"يجب أن يكون المستخدمون على دراية بعملية الإنشاء."
 
 #: ../resources/preferences_dialog.ui
 msgid "Enable AUR support"

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/org/pamac/manager">
+    <file preprocess="xml-stripblanks">interface/manager_window.ui</file>
+    <file preprocess="xml-stripblanks">interface/history_dialog.ui</file>
+    <file preprocess="to-pixdata">pixmaps/package-available.png</file>
+    <file preprocess="to-pixdata">pixmaps/package-available-locked.png</file>
+    <file preprocess="to-pixdata">pixmaps/package-install.png</file>
+    <file preprocess="to-pixdata">pixmaps/package-installed-locked.png</file>
+    <file preprocess="to-pixdata">pixmaps/package-installed-updated.png</file>
+    <file preprocess="to-pixdata">pixmaps/package-reinstall.png</file>
+    <file preprocess="to-pixdata">pixmaps/package-remove.png</file>
+    <file preprocess="to-pixdata">pixmaps/package-upgrade.png</file>
+  </gresource>
+</gresources>

@@ -1,6 +1,7 @@
 /*
  *  pamac-vala
  *
+ *  Copyright (C) 2017 Chris Cromer <cromer@cromnix.org>
  *  Copyright (C) 2014-2017 Guillaume Benoit <guillaume@manjaro.org>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -18,7 +19,7 @@
  */
 
 namespace Pamac {
-	[DBus (name = "org.manjaro.pamac.user")]
+	[DBus (name = "org.pamac.user")]
 	interface UserDaemon : Object {
 		public abstract void refresh_handle () throws IOError;
 		public abstract AlpmPackage get_installed_pkg (string pkgname) throws IOError;
@@ -35,21 +36,31 @@ namespace Pamac {
 		public abstract AlpmPackage get_sync_pkg (string pkgname) throws IOError;
 		public abstract AlpmPackage find_sync_satisfier (string depstring) throws IOError;
 		public abstract async AlpmPackage[] search_pkgs (string search_string) throws IOError;
+#if DISABLE_AUR
+#else
 		public abstract async AURPackage[] search_in_aur (string search_string) throws IOError;
+#endif
 		public abstract string[] get_repos_names () throws IOError;
 		public abstract async AlpmPackage[] get_repo_pkgs (string repo) throws IOError;
 		public abstract string[] get_groups_names () throws IOError;
 		public abstract async AlpmPackage[] get_group_pkgs (string groupname) throws IOError;
 		public abstract AlpmPackageDetails get_pkg_details (string pkgname) throws IOError;
 		public abstract string[] get_pkg_files (string pkgname) throws IOError;
+#if DISABLE_AUR
+#else
 		public abstract async AURPackageDetails get_aur_details (string pkgname) throws IOError;
+#endif
 		public abstract string[] get_pkg_uninstalled_optdeps (string pkgname) throws IOError;
+#if DISABLE_AUR
+		public abstract void start_get_updates () throws IOError;
+#else
 		public abstract void start_get_updates (bool check_aur_updates) throws IOError;
+#endif
 		[DBus (no_reply = true)]
 		public abstract void quit () throws IOError;
 		public signal void get_updates_finished (Updates updates);
 	}
-	[DBus (name = "org.manjaro.pamac.system")]
+	[DBus (name = "org.pamac.system")]
 	interface SystemDaemon : Object {
 		public abstract void set_environment_variables (HashTable<string,string> variables) throws IOError;
 		public abstract string[] get_mirrors_countries () throws IOError;
@@ -65,13 +76,21 @@ namespace Pamac {
 		public abstract void start_set_pkgreason (string pkgname, uint reason) throws IOError;
 		public abstract void start_refresh (bool force) throws IOError;
 		public abstract void start_sysupgrade_prepare (bool enable_downgrade, string[] temporary_ignorepkgs) throws IOError;
+#if DISABLE_AUR
+		public abstract void start_trans_prepare (int transflags, string[] to_install, string[] to_remove, string[] to_load) throws IOError;
+#else
 		public abstract void start_trans_prepare (int transflags, string[] to_install, string[] to_remove, string[] to_load, string[] to_build) throws IOError;
+#endif
 		public abstract void choose_provider (int provider) throws IOError;
 		public abstract TransactionSummary get_transaction_summary () throws IOError;
 		public abstract void start_trans_commit () throws IOError;
 		public abstract void trans_release () throws IOError;
 		public abstract void trans_cancel () throws IOError;
+#if DISABLE_AUR
+		public abstract void start_get_updates () throws IOError;
+#else
 		public abstract void start_get_updates (bool check_aur_updates) throws IOError;
+#endif
 		[DBus (no_reply = true)]
 		public abstract void quit () throws IOError;
 		public signal void get_updates_finished (Updates updates);
@@ -86,8 +105,12 @@ namespace Pamac {
 		public signal void trans_prepare_finished (bool success);
 		public signal void trans_commit_finished (bool success);
 		public signal void get_authorization_finished (bool authorized);
+#if DISABLE_AUR
+		public signal void write_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon);
+#else
 		public signal void write_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon,
 														bool enable_aur, bool search_aur, string aur_build_dir, bool check_aur_updates);
+#endif
 		public signal void write_alpm_config_finished (bool checkspace);
 		public signal void write_mirrors_config_finished (string choosen_country, string choosen_generation_method);
 		public signal void generate_mirrors_list_data (string line);
@@ -112,14 +135,17 @@ namespace Pamac {
 
 		public Mode mode;
 		Pamac.Config pamac_config;
+#if DISABLE_AUR
+#else
 		public bool check_aur_updates { get { return pamac_config.check_aur_updates; } }
 		public bool enable_aur { get { return pamac_config.enable_aur; }  }
+		public bool search_aur { get { return pamac_config.search_aur; } }
+		public string aur_build_dir { get { return pamac_config.aur_build_dir; } }
+#endif
 		public unowned GLib.HashTable<string,string> environment_variables { get {return pamac_config.environment_variables; } }
 		public bool no_update_hide_icon { get { return pamac_config.no_update_hide_icon; } }
 		public bool recurse { get { return pamac_config.recurse; } }
 		public uint64 refresh_period { get { return pamac_config.refresh_period; } }
-		public bool search_aur { get { return pamac_config.search_aur; } }
-		public string aur_build_dir { get { return pamac_config.aur_build_dir; } }
 
 		//Alpm.TransFlag
 		int flags;
@@ -127,10 +153,16 @@ namespace Pamac {
 		public GenericSet<string?> to_install;
 		public GenericSet<string?> to_remove;
 		public GenericSet<string?> to_load;
+#if DISABLE_AUR
+#else
 		public GenericSet<string?> to_build;
+#endif
 		public GenericSet<string?> to_update;
+#if DISABLE_AUR
+#else
 		Queue<string> to_build_queue;
 		string[] aur_pkgs_to_install;
+#endif
 		GenericSet<string?> previous_to_install;
 		GenericSet<string?> previous_to_remove;
 		public GenericSet<string?> transaction_summary;
@@ -145,8 +177,11 @@ namespace Pamac {
 		bool sysupgrade_after_trans;
 		bool enable_downgrade;
 		bool no_confirm_commit;
+#if DISABLE_AUR
+#else
 		bool build_after_sysupgrade;
 		bool building;
+#endif
 		uint64 previous_xfered;
 		uint64 download_rate;
 		uint64 rates_nb;
@@ -159,20 +194,30 @@ namespace Pamac {
 		public ProgressBox progress_box;
 		Vte.Terminal term;
 		Vte.Pty pty;
+#if DISABLE_AUR
+#else
 		Cancellable build_cancellable;
+#endif
 		public Gtk.ScrolledWindow term_window;
 		//parent window
 		public Gtk.ApplicationWindow? application_window { get; private set; }
 
 		public signal void start_downloading ();
 		public signal void stop_downloading ();
+#if DISABLE_AUR
+#else
 		public signal void start_building ();
 		public signal void stop_building ();
+#endif
 		public signal void important_details_outpout (bool must_show);
 		public signal void finished (bool success);
 		public signal void set_pkgreason_finished ();
+#if DISABLE_AUR
+		public signal void write_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon);
+#else
 		public signal void write_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon,
 														bool enable_aur, bool search_aur, string aur_build_dir, bool check_aur_updates);
+#endif
 		public signal void write_alpm_config_finished (bool checkspace);
 		public signal void write_mirrors_config_finished (string choosen_country, string choosen_generation_method);
 		public signal void generate_mirrors_list ();
@@ -189,9 +234,15 @@ namespace Pamac {
 			to_install = new GenericSet<string?> (str_hash, str_equal);
 			to_remove = new GenericSet<string?> (str_hash, str_equal);
 			to_load = new GenericSet<string?> (str_hash, str_equal);
+#if DISABLE_AUR
+#else
 			to_build = new GenericSet<string?> (str_hash, str_equal);
+#endif
 			to_update = new GenericSet<string?> (str_hash, str_equal);
+#if DISABLE_AUR
+#else
 			to_build_queue = new Queue<string> ();
+#endif
 			previous_to_install = new GenericSet<string?> (str_hash, str_equal);
 			previous_to_remove = new GenericSet<string?> (str_hash, str_equal);
 			transaction_summary = new GenericSet<string?> (str_hash, str_equal);
@@ -224,14 +275,20 @@ namespace Pamac {
 			term_window.visible = true;
 			term_window.propagate_natural_height = true;
 			term_window.add (term);
+#if DISABLE_AUR
+#else
 			build_cancellable = new Cancellable ();
+#endif
 			// progress data
 			previous_textbar = "";
 			previous_filename = "";
 			sysupgrade_after_trans = false;
 			no_confirm_commit = false;
+#if DISABLE_AUR
+#else
 			build_after_sysupgrade = false;
 			building = false;
+#endif
 			timer = new Timer ();
 			success = false;
 			warning_textbuffer = new StringBuilder ();
@@ -374,6 +431,8 @@ namespace Pamac {
 			}
 		}
 
+#if DISABLE_AUR
+#else
 		async int spawn_in_term (string[] args, string? working_directory = null) {
 			SourceFunc callback = spawn_in_term.callback;
 			int status = 1;
@@ -403,6 +462,7 @@ namespace Pamac {
 			}
 			return status;
 		}
+#endif
 
 		void reset_progress_box (string action) {
 			show_in_term (action);
@@ -649,6 +709,8 @@ namespace Pamac {
 			return pkgs;
 		}
 
+#if DISABLE_AUR
+#else
 		public async AURPackage[] search_in_aur (string search_string) {
 			AURPackage[] pkgs = {};
 			try {
@@ -658,6 +720,7 @@ namespace Pamac {
 			}
 			return pkgs;
 		}
+#endif
 
 		public string[] get_repos_names () {
 			string[] repos_names = {};
@@ -738,6 +801,8 @@ namespace Pamac {
 			}
 		}
 
+#if DISABLE_AUR
+#else
 		public async AURPackageDetails get_aur_details (string pkgname) {
 			var pkg = AURPackageDetails () {
 				name = "",
@@ -754,11 +819,16 @@ namespace Pamac {
 			}
 			return pkg;
 		}
+#endif
 
 		public void start_get_updates () {
 			user_daemon.get_updates_finished.connect (on_get_updates_finished);
 			try {
+#if DISABLE_AUR
+				user_daemon.start_get_updates ();
+#else
 				user_daemon.start_get_updates (pamac_config.enable_aur && pamac_config.check_aur_updates);
+#endif
 			} catch (IOError e) {
 				stderr.printf ("IOError: %s\n", e.message);
 				success = false;
@@ -769,7 +839,11 @@ namespace Pamac {
 		void start_get_updates_for_sysupgrade () {
 			system_daemon.get_updates_finished.connect (on_get_updates_for_sysupgrade_finished);
 			try {
+#if DISABLE_AUR
+				system_daemon.start_get_updates ();
+#else
 				system_daemon.start_get_updates (pamac_config.enable_aur && pamac_config.check_aur_updates);
+#endif
 			} catch (IOError e) {
 				stderr.printf ("IOError: %s\n", e.message);
 				success = false;
@@ -820,6 +894,14 @@ namespace Pamac {
 				// run as a standard transaction
 				run ();
 			} else {
+#if DISABLE_AUR
+				if (updates.repos_updates.length != 0) {
+					sysupgrade_simple (enable_downgrade);
+				} else {
+					finish_transaction ();
+					stop_progressbar_pulse ();
+				}
+#else
 				if (updates.aur_updates.length != 0) {
 					clear_lists ();
 					foreach (unowned AURPackage infos in updates.aur_updates) {
@@ -843,13 +925,17 @@ namespace Pamac {
 						stop_progressbar_pulse ();
 					}
 				}
+#endif
 			}
 		}
 
 		public void clear_lists () {
 			to_install.remove_all ();
 			to_remove.remove_all ();
+#if DISABLE_AUR
+#else
 			to_build.remove_all ();
+#endif
 			to_load.remove_all ();
 		}
 
@@ -858,9 +944,15 @@ namespace Pamac {
 			previous_to_remove.remove_all ();
 		}
 
+#if DISABLE_AUR
+		void start_trans_prepare (int transflags, string[] to_install, string[] to_remove, string[] to_load) {
+			try {
+				system_daemon.start_trans_prepare (transflags, to_install, to_remove, to_load);
+#else
 		void start_trans_prepare (int transflags, string[] to_install, string[] to_remove, string[] to_load, string[] to_build) {
 			try {
 				system_daemon.start_trans_prepare (transflags, to_install, to_remove, to_load, to_build);
+#endif
 			} catch (IOError e) {
 				stderr.printf ("IOError: %s\n", e.message);
 				stop_progressbar_pulse ();
@@ -876,7 +968,10 @@ namespace Pamac {
 			string[] to_install_ = {};
 			string[] to_remove_ = {};
 			string[] to_load_ = {};
+#if DISABLE_AUR
+#else
 			string[] to_build_ = {};
+#endif
 			foreach (unowned string name in to_install) {
 				to_install_ += name;
 			}
@@ -886,12 +981,19 @@ namespace Pamac {
 			foreach (unowned string path in to_load) {
 				to_load_ += path;
 			}
+#if DISABLE_AUR
+#else
 			foreach (unowned string name in to_build) {
 				to_build_ += name;
 			}
+#endif
 			connecting_system_daemon ();
 			connecting_dbus_signals ();
+#if DISABLE_AUR
+			start_trans_prepare (flags, to_install_, to_remove_, to_load_);
+#else
 			start_trans_prepare (flags, to_install_, to_remove_, to_load_, to_build_);
+#endif
 		}
 
 		void choose_provider (string depend, string[] providers) {
@@ -959,6 +1061,8 @@ namespace Pamac {
 				transaction_sum_dialog.sum_list.get_iter (out iter, new Gtk.TreePath.from_indices (pos));
 				transaction_sum_dialog.sum_list.set (iter, 0, "<b>%s</b>".printf (dgettext (null, "To remove") + ":"));
 			}
+#if DISABLE_AUR
+#else
 			if (summary.aur_conflicts_to_remove.length > 0) {
 				// do not add type enum because it is just infos
 				foreach (unowned UpdateInfos infos in summary.aur_conflicts_to_remove) {
@@ -972,6 +1076,7 @@ namespace Pamac {
 				transaction_sum_dialog.sum_list.get_iter (out iter, new Gtk.TreePath.from_indices (pos));
 				transaction_sum_dialog.sum_list.set (iter, 0, "<b>%s</b>".printf (dgettext (null, "To remove") + ":"));
 			}
+#endif
 			if (summary.to_downgrade.length > 0) {
 				type |= Type.STANDARD;
 				foreach (unowned UpdateInfos infos in summary.to_downgrade) {
@@ -987,6 +1092,8 @@ namespace Pamac {
 				transaction_sum_dialog.sum_list.get_iter (out iter, new Gtk.TreePath.from_indices (pos));
 				transaction_sum_dialog.sum_list.set (iter, 0, "<b>%s</b>".printf (dgettext (null, "To downgrade") + ":"));
 			}
+#if DISABLE_AUR
+#else
 			if (summary.to_build.length > 0) {
 				type |= Type.BUILD;
 				// populate build queue
@@ -1006,6 +1113,7 @@ namespace Pamac {
 				transaction_sum_dialog.sum_list.get_iter (out iter, new Gtk.TreePath.from_indices (pos));
 				transaction_sum_dialog.sum_list.set (iter, 0, "<b>%s</b>".printf (dgettext (null, "To build") + ":"));
 			}
+#endif
 			if (summary.to_install.length > 0) {
 				type |= Type.STANDARD;
 				foreach (unowned UpdateInfos infos in summary.to_install) {
@@ -1070,6 +1178,8 @@ namespace Pamac {
 			}
 		}
 
+#if DISABLE_AUR
+#else
 		async void build_aur_packages () {
 			string pkgname = to_build_queue.pop_head ();
 			string action = dgettext (null, "Building %s").printf (pkgname) + "...";
@@ -1143,17 +1253,24 @@ namespace Pamac {
 				finish_transaction ();
 			}
 		}
+#endif
 
 		public void cancel () {
+#if DISABLE_AUR
+#else
 			if (building) {
 				build_cancellable.cancel ();
 			} else {
+#endif
 				try {
 					system_daemon.trans_cancel ();
 				} catch (IOError e) {
 					stderr.printf ("IOError: %s\n", e.message);
 				}
+#if DISABLE_AUR
+#else
 			}
+#endif
 			show_in_term ("\n" + dgettext (null, "Transaction cancelled") + ".\n");
 			progress_box.action_label.label = "";
 			warning_textbuffer = new StringBuilder ();
@@ -1639,11 +1756,14 @@ namespace Pamac {
 						while (Gtk.events_pending ()) {
 							Gtk.main_iteration ();
 						}
+#if DISABLE_AUR
+#else
 						if (type == Type.BUILD) {
 							// there only AUR packages to build
 							release ();
 							on_trans_commit_finished (true);
 						} else {
+#endif
 							// backup to_install and to_remove
 							foreach (unowned string name in to_install) {
 								previous_to_install.add (name);
@@ -1654,7 +1774,10 @@ namespace Pamac {
 							to_install.remove_all ();
 							to_remove.remove_all ();
 							start_commit ();
+#if DISABLE_AUR
+#else
 						}
+#endif
 					} else {
 						transaction_sum_dialog.hide ();
 						unowned string action = dgettext (null, "Transaction cancelled");
@@ -1662,15 +1785,21 @@ namespace Pamac {
 						progress_box.action_label.label = action;
 						release ();
 						transaction_summary.remove_all ();
+#if DISABLE_AUR
+#else
 						to_build_queue.clear ();
+#endif
 						sysupgrade_after_trans = false;
 						success = false;
 						finish_transaction ();
 					}
+#if DISABLE_AUR
+#else
 				} else if (build_after_sysupgrade) {
 					// there only AUR packages to build
 					release ();
 					on_trans_commit_finished (true);
+#endif
 				} else {
 					//var err = ErrorInfos ();
 					//err.message = dgettext (null, "Nothing to do") + "\n";
@@ -1694,6 +1823,8 @@ namespace Pamac {
 			if (success) {
 				show_warnings ();
 				to_load.remove_all ();
+#if DISABLE_AUR
+#else
 				if (to_build_queue.get_length () != 0) {
 					show_in_term ("");
 					clear_previous_lists ();
@@ -1707,22 +1838,29 @@ namespace Pamac {
 						}
 					});
 				} else {
+#endif
 					clear_previous_lists ();
 					if (sysupgrade_after_trans) {
 						sysupgrade_after_trans = false;
 						sysupgrade (false);
+#if DISABLE_AUR
+#else
 					} else if (build_after_sysupgrade) {
 						build_after_sysupgrade = false;
 						disconnecting_dbus_signals ();
 						// build aur updates in to_build
 						run ();
+#endif
 					} else {
 						unowned string action = dgettext (null, "Transaction successfully finished");
 						show_in_term (action + ".\n");
 						progress_box.action_label.label = action;
 						finish_transaction ();
 					}
+#if DISABLE_AUR
+#else
 				}
+#endif
 			} else {
 				// if it is an authentication or a download error, database was not modified
 				var err = get_current_error ();
@@ -1739,7 +1877,10 @@ namespace Pamac {
 					to_load.remove_all ();
 				}
 				clear_previous_lists ();
+#if DISABLE_AUR
+#else
 				to_build_queue.clear ();
+#endif
 				warning_textbuffer = new StringBuilder ();
 				handle_error (err);
 			}
@@ -1753,16 +1894,24 @@ namespace Pamac {
 			set_pkgreason_finished ();
 		}
 
+#if DISABLE_AUR
+		void on_write_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon) {
+#else
 		void on_write_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon,
 												bool enable_aur, bool search_aur, string aur_build_dir, bool check_aur_updates) {
+#endif
 			system_daemon.write_pamac_config_finished.disconnect (on_write_pamac_config_finished);
 			pamac_config.reload ();
 			flags = (1 << 4); //Alpm.TransFlag.CASCADE
 			if (pamac_config.recurse) {
 				flags |= (1 << 5); //Alpm.TransFlag.RECURSE
 			}
+#if DISABLE_AUR
+			write_pamac_config_finished (recurse, refresh_period, no_update_hide_icon);
+#else
 			write_pamac_config_finished (recurse, refresh_period, no_update_hide_icon,
 											enable_aur, search_aur, aur_build_dir, check_aur_updates);
+#endif
 		}
 
 		void on_write_alpm_config_finished (bool checkspace) {
@@ -1789,7 +1938,7 @@ namespace Pamac {
 
 		void connecting_user_daemon () {
 			try {
-				user_daemon = Bus.get_proxy_sync (BusType.SESSION, "org.manjaro.pamac.user", "/org/manjaro/pamac/user");
+				user_daemon = Bus.get_proxy_sync (BusType.SESSION, "org.pamac.user", "/org/pamac/user");
 			} catch (IOError e) {
 				stderr.printf ("IOError: %s\n", e.message);
 			}
@@ -1797,7 +1946,7 @@ namespace Pamac {
 
 		void connecting_system_daemon () {
 			try {
-				system_daemon = Bus.get_proxy_sync (BusType.SYSTEM, "org.manjaro.pamac.system", "/org/manjaro/pamac/system");
+				system_daemon = Bus.get_proxy_sync (BusType.SYSTEM, "org.pamac.system", "/org/pamac/system");
 				// Set environment variables
 				system_daemon.set_environment_variables (pamac_config.environment_variables);
 			} catch (IOError e) {

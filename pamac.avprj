@@ -1,0 +1,249 @@
+### AutoVala Project ###
+autovala_version: 24
+project_name: pamac
+*vala_version: 0.38
+
+custom: data/dbus/org.pamac.system.conf ${CMAKE_INSTALL_SYSCONFDIR}/dbus-1/system.d
+custom: data/dbus/org.pamac.user.service ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATAROOTDIR}/dbus-1/services
+custom: data/dbus/org.pamac.system.service ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATAROOTDIR}/dbus-1/system-services
+custom: data/systemd/pamac-system.service ${CMAKE_INSTALL_LIBDIR}/systemd/system
+custom: data/systemd/pamac-cleancache.service ${CMAKE_INSTALL_LIBDIR}/systemd/system
+custom: data/systemd/pamac-cleancache.timer ${CMAKE_INSTALL_LIBDIR}/systemd/system
+custom: data/systemd/pamac-mirrorlist.service ${CMAKE_INSTALL_LIBDIR}/systemd/system
+custom: data/systemd/pamac-mirrorlist.timer ${CMAKE_INSTALL_LIBDIR}/systemd/system
+custom: data/polkit/org.pamac.policy ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATAROOTDIR}/polkit-1/actions
+custom: data/mime/x-alpm-package.xml ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATAROOTDIR}/mime/packages
+if DISABLE_AUR
+custom: data/config/noaur/pamac.conf ${CMAKE_INSTALL_SYSCONFDIR}
+else
+custom: data/config/pamac.conf ${CMAKE_INSTALL_SYSCONFDIR}
+end
+
+define: KDE_TRAY
+*define: DISABLE_AUR
+
+*gresource: pamac_installer_gresource_xml data/pamac.installer.gresource.xml
+if DISABLE_AUR
+gresource: pamac_manager_gresource_xml data/pamac.manager_no_aur.gresource.xml
+gresource: pamac_transaction_gresource_xml data/pamac.transaction_no_aur.gresource.xml
+else
+gresource: pamac_manager_gresource_xml data/pamac.manager.gresource.xml
+gresource: pamac_transaction_gresource_xml data/pamac.transaction.gresource.xml
+end
+
+vapidir: src/vapis
+
+vala_binary: src/pamac-install/pamac-install
+version: 6.0.0
+use_gresource: pamac_installer_gresource_xml
+vala_local_package: Pamac
+vala_check_package: gtk+-3.0
+*vala_check_package: gio-2.0
+*vala_check_package: glib-2.0
+*vala_check_package: gobject-2.0
+*vala_source: installer.vala
+*vala_source: progress_dialog.vala
+
+vala_binary: src/pamac-manager/pamac-manager
+version: 6.0.0
+use_gresource: pamac_manager_gresource_xml
+vala_local_package: Pamac
+vala_check_package: gtk+-3.0
+*vala_check_package: gio-2.0
+*vala_check_package: glib-2.0
+*vala_check_package: gobject-2.0
+*vala_source: history_dialog.vala
+*vala_source: manager.vala
+*vala_source: manager_window.vala
+
+vala_binary: src/pamac-system-daemon/pamac-system-daemon
+version: 6.0.0
+vala_local_package: Pamac
+if NOT DISABLE_AUR
+vala_local_package: AUR
+end
+vala_package: posix
+vala_check_package: gtk+-3.0
+vala_check_package: json-glib-1.0
+vala_check_package: libalpm
+vala_check_package: libcurl
+vala_check_package: libsoup-2.4
+vala_check_package: polkit-gobject-1
+*vala_check_package: gio-2.0
+*vala_check_package: glib-2.0
+*vala_check_package: gobject-2.0
+*vala_source: alpm_config.vala
+*vala_source: mirrors_config.vala
+*vala_source: pamac_config.vala
+*vala_source: system_daemon.vala
+
+vala_binary: src/pamac-tray/pamac-tray
+version: 6.0.0
+vala_local_package: Pamac
+if NOT DISABLE_AUR
+vala_local_package: AUR
+end
+vala_package: posix
+vala_check_package: json-glib-1.0
+vala_check_package: libnotify
+if KDE_TRAY
+vala_check_package: appindicator3-0.1
+else
+vala_check_package: gtk+-3.0
+end
+*vala_check_package: gio-2.0
+*vala_check_package: glib-2.0
+*vala_check_package: gobject-2.0
+if KDE_TRAY
+vala_source: tray-appindicator.vala
+else
+vala_source: tray-gtk.vala
+end
+*vala_source: pamac_config.vala
+*vala_source: tray.vala
+*vala_source: user_daemon.vala
+
+vala_binary: src/pamac-user-daemon/pamac-user-daemon
+version: 6.0.0
+vala_local_package: AUR
+vala_local_package: Pamac
+vala_package: posix
+vala_check_package: gtk+-3.0
+vala_check_package: json-glib-1.0
+vala_check_package: libalpm
+vala_check_package: libsoup-2.4
+*vala_check_package: gio-2.0
+*vala_check_package: glib-2.0
+*vala_check_package: gobject-2.0
+*vala_source: alpm_config.vala
+*vala_source: user_daemon.vala
+
+
+vala_library: src/pamac
+version: 6.0.0
+*namespace: Pamac
+use_gresource: pamac_transaction_gresource_xml
+vala_package: posix
+vala_check_package: gdk-3.0
+vala_check_package: gtk+-3.0
+vala_check_package: libalpm
+vala_check_package: libnotify
+vala_check_package: vte-2.91
+*vala_check_package: gio-2.0
+*vala_check_package: glib-2.0
+*vala_check_package: gobject-2.0
+*vala_source: alpm_config.vala
+*vala_source: choose_ignorepkgs_dialog.vala
+*vala_source: choose_provider_dialog.vala
+*vala_source: common.vala
+*vala_source: mirrors_config.vala
+*vala_source: package.vala
+*vala_source: pamac_config.vala
+*vala_source: preferences_dialog.vala
+*vala_source: progress_box.vala
+*vala_source: transaction.vala
+*vala_source: transaction_sum_dialog.vala
+
+vala_library: src/aur/aur
+version: 6.0.0
+*namespace: AUR
+vala_check_package: json-glib-1.0
+vala_check_package: libsoup-2.4
+*vala_check_package: glib-2.0
+*vala_source: aur.vala
+
+
+*po: po
+
+*translate: glade data/interface/choose_ignorepkgs_dialog.ui
+*translate: glade data/interface/choose_provider_dialog.ui
+*translate: glade data/interface/history_dialog.ui
+*translate: glade data/interface/progress_box.ui
+*translate: glade data/interface/progress_dialog.ui
+*translate: glade data/interface/transaction_sum_dialog.ui
+*translate: vala src/alpm_config.vala
+*translate: vala src/aur/aur.vala
+*translate: vala src/choose_ignorepkgs_dialog.vala
+*translate: vala src/choose_provider_dialog.vala
+*translate: vala src/common.vala
+*translate: vala src/mirrors_config.vala
+*translate: vala src/package.vala
+*translate: vala src/pamac-install/installer.vala
+*translate: vala src/pamac-install/progress_dialog.vala
+*translate: vala src/pamac-manager/history_dialog.vala
+*translate: vala src/pamac-manager/manager.vala
+*translate: vala src/pamac-manager/manager_window.vala
+*translate: vala src/pamac-system-daemon/alpm_config.vala
+*translate: vala src/pamac-system-daemon/mirrors_config.vala
+*translate: vala src/pamac-system-daemon/pamac_config.vala
+*translate: vala src/pamac-system-daemon/system_daemon.vala
+*translate: vala src/pamac-tray/pamac_config.vala
+*translate: vala src/pamac-tray/tray.vala
+*translate: vala src/pamac-tray/user_daemon.vala
+*translate: vala src/pamac-user-daemon/alpm_config.vala
+*translate: vala src/pamac-user-daemon/user_daemon.vala
+*translate: vala src/pamac_config.vala
+*translate: vala src/preferences_dialog.vala
+*translate: vala src/progress_box.vala
+*translate: vala src/transaction.vala
+*translate: vala src/transaction_sum_dialog.vala
+if DISABLE_AUR
+translate: glade data/interface/manager_window_no_aur.ui
+translate: glade data/interface/preferences_dialog_no_aur.ui
+else
+translate: glade data/interface/manager_window.ui
+translate: glade data/interface/preferences_dialog.ui
+end
+if KDE_TRAY
+translate: vala src/pamac-tray/tray-appindicator.vala
+else
+translate: vala src/pamac-tray/tray-gtk.vala
+end
+
+*doc: doc
+
+*desktop: data/pamac-install.desktop
+*desktop: data/pamac-manager.desktop
+*desktop: data/pamac-updater.desktop
+
+if KDE_TRAY
+autostart: data/pamac-tray-appindicator.desktop
+else
+autostart: data/pamac-tray.desktop
+end
+
+*glade: data/interface/choose_ignorepkgs_dialog.ui
+*glade: data/interface/choose_provider_dialog.ui
+*glade: data/interface/history_dialog.ui
+*glade: data/interface/progress_box.ui
+*glade: data/interface/transaction_sum_dialog.ui
+if DISABLE_AUR
+glade: data/interface/manager_window_no_aur.ui
+glade: data/interface/preferences_dialog_no_aur.ui
+else
+glade: data/interface/manager_window.ui
+glade: data/interface/preferences_dialog.ui
+end
+
+*full_icon: Hicolor Applications data/icons/16x16/apps/system-software-install.png
+*full_icon: Hicolor Applications data/icons/24x24/status/pamac-tray-no-update.png
+*full_icon: Hicolor Applications data/icons/24x24/status/pamac-tray-update.png
+*full_icon: Hicolor Applications data/icons/32x32/apps/system-software-install.png
+
+*pixmap: data/pixmaps/package-available-locked.png
+*pixmap: data/pixmaps/package-available.png
+*pixmap: data/pixmaps/package-generic.png
+*pixmap: data/pixmaps/package-install.png
+*pixmap: data/pixmaps/package-installed-locked.png
+*pixmap: data/pixmaps/package-installed-updated.png
+*pixmap: data/pixmaps/package-reinstall.png
+*pixmap: data/pixmaps/package-remove.png
+*pixmap: data/pixmaps/package-upgrade.png
+
+# These depends are needed to enable parallel builds
+include: src/pamac-install/CMakeDepends.txt
+include: src/pamac-manager/CMakeDepends.txt
+include: src/pamac-system-daemon/CMakeDepends.txt
+include: src/pamac-tray/CMakeDepends.txt
+include: src/pamac-user-daemon/CMakeDepends.txt
+

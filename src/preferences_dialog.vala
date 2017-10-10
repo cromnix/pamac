@@ -1,6 +1,7 @@
 /*
  *  pamac-vala
  *
+ *  Copyright (C) 2017 Chris Cromer <cromer@cromnix.org>
  *  Copyright (C) 2015-2017 Guillaume Benoit <guillaume@manjaro.org>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -19,7 +20,11 @@
 
 namespace Pamac {
 
-	[GtkTemplate (ui = "/org/manjaro/pamac/preferences/preferences_dialog.ui")]
+#if DISABLE_AUR
+	[GtkTemplate (ui = "/org/pamac/preferences/interface/preferences_dialog_no_aur.ui")]
+#else
+	[GtkTemplate (ui = "/org/pamac/preferences/interface/preferences_dialog.ui")]
+#endif
 	class PreferencesDialog : Gtk.Dialog {
 
 		[GtkChild]
@@ -46,6 +51,8 @@ namespace Pamac {
 		Gtk.ComboBoxText mirrors_list_generation_method_comboboxtext;
 		[GtkChild]
 		Gtk.Button generate_mirrors_list_button;
+#if DISABLE_AUR
+#else
 		[GtkChild]
 		Gtk.Switch enable_aur_button;
 		[GtkChild]
@@ -56,6 +63,7 @@ namespace Pamac {
 		Gtk.FileChooserButton aur_build_dir_file_chooser;
 		[GtkChild]
 		Gtk.CheckButton check_aur_updates_checkbutton;
+#endif
 		[GtkChild]
 		Gtk.Label cache_keep_nb_label;
 		[GtkChild]
@@ -74,7 +82,10 @@ namespace Pamac {
 			this.transaction = transaction;
 			refresh_period_label.set_markup (dgettext (null, "How often to check for updates, value in hours") +":");
 			cache_keep_nb_label.set_markup (dgettext (null, "Number of versions of each package to keep in the cache") +":");
+#if DISABLE_AUR
+#else
 			aur_build_dir_label.set_markup (dgettext (null, "Build directory") +":");
+#endif
 			remove_unrequired_deps_button.active = transaction.recurse;
 			check_space_button.active = transaction.get_checkspace ();
 			if (transaction.refresh_period == 0) {
@@ -135,6 +146,8 @@ namespace Pamac {
 				transaction.write_mirrors_config_finished.connect (on_write_mirrors_config_finished);
 			}
 
+#if DISABLE_AUR
+#else
 			enable_aur_button.active = transaction.enable_aur;
 			search_aur_checkbutton.active = transaction.search_aur;
 			search_aur_checkbutton.sensitive = transaction.enable_aur;
@@ -153,6 +166,7 @@ namespace Pamac {
 			search_aur_checkbutton.toggled.connect (on_search_aur_checkbutton_toggled);
 			aur_build_dir_file_chooser.file_set.connect (on_aur_build_dir_set);
 			check_aur_updates_checkbutton.toggled.connect (on_check_aur_updates_checkbutton_toggled);
+#endif
 		}
 
 		bool on_remove_unrequired_deps_button_state_set (bool new_state) {
@@ -189,6 +203,8 @@ namespace Pamac {
 			transaction.start_write_pamac_config (new_pamac_conf);
 		}
 
+#if DISABLE_AUR
+#else
 		bool on_enable_aur_button_state_set (bool new_state) {
 			var new_pamac_conf = new HashTable<string,Variant> (str_hash, str_equal);
 			new_pamac_conf.insert ("EnableAUR", new Variant.boolean (new_state));
@@ -213,9 +229,14 @@ namespace Pamac {
 			new_pamac_conf.insert ("CheckAURUpdates", new Variant.boolean (check_aur_updates_checkbutton.active));
 			transaction.start_write_pamac_config (new_pamac_conf);
 		}
+#endif
 
+#if DISABLE_AUR
+		void on_write_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon) {
+#else
 		void on_write_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon,
 											bool enable_aur, bool search_aur, string aur_build_dir, bool check_aur_updates) {
+#endif
 			remove_unrequired_deps_button.state = recurse;
 			if (refresh_period == 0) {
 				check_updates_button.state = false;
@@ -233,6 +254,8 @@ namespace Pamac {
 				ignorepkgs_box.sensitive = true;
 			}
 			no_update_hide_icon_checkbutton.active = no_update_hide_icon;
+#if DISABLE_AUR
+#else
 			enable_aur_button.state = enable_aur;
 			search_aur_checkbutton.active = search_aur;
 			search_aur_checkbutton.sensitive = enable_aur;
@@ -240,6 +263,7 @@ namespace Pamac {
 			aur_build_dir_file_chooser.sensitive = enable_aur;
 			check_aur_updates_checkbutton.active = check_aur_updates;
 			check_aur_updates_checkbutton.sensitive = enable_aur;
+#endif
 		}
 
 		bool on_check_space_button_state_set (bool new_state) {
