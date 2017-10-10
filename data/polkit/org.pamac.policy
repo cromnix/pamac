@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE policyconfig PUBLIC "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN" "http://www.freedesktop.org/standards/PolicyKit/1.0/policyconfig.dtd">
+<policyconfig>
+  <vendor>Pamac</vendor>
+  <vendor_url>https://github.com/cromnix/pamac-classic/</vendor_url>
+  <icon_name>package-x-generic</icon_name>
+  <action id="org.pamac.commit">
+    <message>Authentication is required</message>
+    <message xml:lang="ar">صلاحيات مطلوبة</message>
+    <message xml:lang="ast">Ríquese l'autenticación</message>
+    <message xml:lang="az-AZ">Kimlik tələb olunur</message>
+    <message xml:lang="bg">Изисква се идентификация</message>
+    <message xml:lang="ca">Cal autenticació</message>
+    <message xml:lang="ca-ES">Cal autenticació</message>
+    <message xml:lang="cs">Je vyžadováno ověření</message>
+    <message xml:lang="da">Godkendelse er påkrævet</message>
+    <message xml:lang="de">Authentifizierung erforderlich</message>
+    <message xml:lang="el">Απαιτείται πιστοποίηση</message>
+    <message xml:lang="el-GR">Απαιτείται πιστοποίηση</message>
+    <message xml:lang="es">Se necesita autenticación</message>
+    <message xml:lang="es-419">Se requiere autenticación</message>
+    <message xml:lang="es-MX">Se requiere autenticación</message>
+    <message xml:lang="eu">Autentifikazioa behar da</message>
+    <message xml:lang="fa-IR">تائید هویت شکست خورد</message>
+    <message xml:lang="fr">Authentification nécessaire</message>
+    <message xml:lang="gl">A autenticación é necesaria</message>
+    <message xml:lang="he">נדרש אישור</message>
+    <message xml:lang="hi">प्रमाणीकरण की आवश्यकता है</message>
+    <message xml:lang="hr">Potrebna je autorizacija</message>
+    <message xml:lang="hu">Hitelesítés szükséges</message>
+    <message xml:lang="id">Membutuhkan Otentifikasi</message>
+    <message xml:lang="is">Auðkenningar er krafist</message>
+    <message xml:lang="it">Autenticazione richiesta</message>
+    <message xml:lang="ja">認証が必要です</message>
+    <message xml:lang="ko">인증이 필요합니다</message>
+    <message xml:lang="lt">Reikalingas tapatybės nustatymas</message>
+    <message xml:lang="nb">Autentisering kreves</message>
+    <message xml:lang="nl">Verificatie vereist</message>
+    <message xml:lang="nl-NL">Authenticatie vereist</message>
+    <message xml:lang="pl">Wymagane jest uwierzytelnienie</message>
+    <message xml:lang="pt">Autenticação necessária</message>
+    <message xml:lang="pt-BR">Autenticação necessária</message>
+    <message xml:lang="pt-PT">Autenticação necessária</message>
+    <message xml:lang="ru">Запрошена авторизация</message>
+    <message xml:lang="sk">Vyžaduje sa overenie totožnosti</message>
+    <message xml:lang="sl">Zahtevana je overitev</message>
+    <message xml:lang="sr-Latn">Autentifikacija je neophodna</message>
+    <message xml:lang="sv">Autentisering krävs</message>
+    <message xml:lang="tr">Kimlik doğrulaması gerekli</message>
+    <message xml:lang="uk">Потрібна авторизація</message>
+    <message xml:lang="zh-CN">需要验证</message>
+    <message xml:lang="zh-TW">需要授權</message>
+    <defaults>
+      <allow_any>no</allow_any>
+      <allow_inactive>auth_admin_keep</allow_inactive>
+      <allow_active>auth_admin_keep</allow_active>
+    </defaults>
+  </action>
+</policyconfig>

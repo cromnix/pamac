@@ -4,5 +4,4 @@ po/locale
 PKGBUILD
 *.pkg.tar.xz
 *.pkg.tar.xz.sig
-data/polkit/org.pamac.policy
 /build
