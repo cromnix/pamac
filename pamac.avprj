@@ -34,7 +34,7 @@ end
 vapidir: src/vapis
 
 vala_binary: src/pamac-install/pamac-install
-version: 6.0.0
+version: 6.0.1
 use_gresource: pamac_installer_gresource_xml
 vala_local_package: Pamac
 vala_check_package: gtk+-3.0
@@ -45,7 +45,7 @@ vala_check_package: gtk+-3.0
 *vala_source: progress_dialog.vala
 
 vala_binary: src/pamac-manager/pamac-manager
-version: 6.0.0
+version: 6.0.1
 use_gresource: pamac_manager_gresource_xml
 vala_local_package: Pamac
 vala_check_package: gtk+-3.0
@@ -57,7 +57,7 @@ vala_check_package: gtk+-3.0
 *vala_source: manager_window.vala
 
 vala_binary: src/pamac-system-daemon/pamac-system-daemon
-version: 6.0.0
+version: 6.0.1
 vala_local_package: Pamac
 if NOT DISABLE_AUR
 vala_local_package: AUR
@@ -78,7 +78,7 @@ vala_check_package: polkit-gobject-1
 *vala_source: system_daemon.vala
 
 vala_binary: src/pamac-tray/pamac-tray
-version: 6.0.0
+version: 6.0.1
 vala_local_package: Pamac
 if NOT DISABLE_AUR
 vala_local_package: AUR
@@ -104,7 +104,7 @@ end
 *vala_source: user_daemon.vala
 
 vala_binary: src/pamac-user-daemon/pamac-user-daemon
-version: 6.0.0
+version: 6.0.1
 vala_local_package: AUR
 vala_local_package: Pamac
 vala_package: posix
@@ -120,7 +120,7 @@ vala_check_package: libsoup-2.4
 
 
 vala_library: src/pamac
-version: 6.0.0
+version: 6.0.1
 *namespace: Pamac
 use_gresource: pamac_transaction_gresource_xml
 vala_package: posix
@@ -145,7 +145,7 @@ vala_check_package: vte-2.91
 *vala_source: transaction_sum_dialog.vala
 
 vala_library: src/aur/aur
-version: 6.0.0
+version: 6.0.1
 *namespace: AUR
 vala_check_package: json-glib-1.0
 vala_check_package: libsoup-2.4

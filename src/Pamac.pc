@@ -6,7 +6,7 @@ includedir=@DOLLAR@{exec_prefix}/${CMAKE_INSTALL_INCLUDEDIR}
 
 Name: Pamac
 Description: Pamac
-Version: 6.0.0
+Version: 6.0.1
 Libs: -L@DOLLAR@{libdir} -lPamac
 Cflags: -I@DOLLAR@{includedir}
 Requires: gdk-3.0 gtk+-3.0 libalpm libnotify vte-2.91 gio-2.0 glib-2.0 gobject-2.0
