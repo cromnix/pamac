@@ -31,8 +31,8 @@ A graphical package manager for pacman
 - vte: 2.91
 - appindicator-gtk3 (optional to build KDE tray icon)
 - CMake
-- Vala
-- AutoVala (optional to regenerate CMake files)
+- Vala: 0.38
+- AutoVala: 1.1.1 (optional to regenerate CMake files)
 
 ## Using CMake
 
