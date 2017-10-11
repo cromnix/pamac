@@ -20,7 +20,7 @@ A graphical package manager for pacman
 
 - GTK+: 3.0
 - GIO: 2.0
-- GLib: 2.0
+- GLib: 2.38
 - GObject: 2.0
 - Json-Glib: 1.0
 - libalpm
