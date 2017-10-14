@@ -71,7 +71,6 @@ SET (pamac_transaction_gresource_xml_H_FILE ${CMAKE_CURRENT_BINARY_DIR}/pamac.tr
 endif ()
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/pamac-install.desktop DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications/ )
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/pamac-manager.desktop DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications/ )
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/pamac-updater.desktop DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications/ )
 if (KDE_TRAY)
 	if( NOT ( ${CMAKE_INSTALL_PREFIX} MATCHES "^/home/" ) )
 	install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/pamac-tray-appindicator.desktop DESTINATION /etc/xdg/autostart/ )

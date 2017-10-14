@@ -204,7 +204,6 @@ end
 
 *desktop: data/pamac-install.desktop
 *desktop: data/pamac-manager.desktop
-*desktop: data/pamac-updater.desktop
 
 if KDE_TRAY
 autostart: data/pamac-tray-appindicator.desktop
