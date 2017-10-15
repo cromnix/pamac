@@ -26,10 +26,13 @@ namespace Pamac {
 		public bool recurse { get; private set; }
 		public uint64 refresh_period { get; private set; }
 		public bool no_update_hide_icon { get; private set; }
+#if DISABLE_AUR
+#else
 		public bool enable_aur { get; private set; }
 		public bool search_aur { get; private set; }
 		public string aur_build_dir { get; private set; }
 		public bool check_aur_updates { get; private set; }
+#endif
 		public uint64 keep_num_pkgs { get; private set; }
 		public bool rm_only_uninstalled { get; private set; }
 		public unowned HashTable<string,string> environment_variables {
@@ -73,10 +76,13 @@ namespace Pamac {
 			// set default options
 			recurse = false;
 			no_update_hide_icon = false;
+#if DISABLE_AUR
+#else
 			enable_aur = false;
 			search_aur = false;
 			aur_build_dir = "/tmp";
 			check_aur_updates = false;
+#endif
 			keep_num_pkgs = 3;
 			rm_only_uninstalled = false;
 			parse_file (conf_path);
@@ -112,6 +118,8 @@ namespace Pamac {
 							}
 						} else if (key == "NoUpdateHideIcon") {
 							no_update_hide_icon = true;
+#if DISABLE_AUR
+#else
 						} else if (key == "EnableAUR") {
 							enable_aur = true;
 						} else if (key == "SearchInAURByDefault") {
@@ -122,6 +130,7 @@ namespace Pamac {
 							}
 						} else if (key == "CheckAURUpdates") {
 							check_aur_updates = true;
+#endif
 						} else if (key == "KeepNumPackages") {
 							if (splitted.length == 2) {
 								unowned string val = splitted[1]._strip ();
@@ -184,6 +193,8 @@ namespace Pamac {
 							} else {
 								data.append (line + "\n");
 							}
+#if DISABLE_AUR
+#else
 						} else if (line.contains ("EnableAUR")) {
 							if (new_conf.lookup_extended ("EnableAUR", null, out variant)) {
 								if (variant.get_boolean ()) {
@@ -224,6 +235,7 @@ namespace Pamac {
 							} else {
 								data.append (line + "\n");
 							}
+#endif
 						} else if (line.contains ("KeepNumPackages")) {
 							if (new_conf.lookup_extended ("KeepNumPackages", null, out variant)) {
 								data.append ("KeepNumPackages = %llu\n".printf (variant.get_uint64 ()));
@@ -275,6 +287,8 @@ namespace Pamac {
 						} else {
 							data.append ("#NoUpdateHideIcon\n");
 						}
+#if DISABLE_AUR
+#else
 					} else if (key == "EnableAUR") {
 						if (val.get_boolean ()) {
 							data.append ("EnableAUR\n");
@@ -295,6 +309,7 @@ namespace Pamac {
 						} else {
 							data.append ("#CheckAURUpdates\n");
 						}
+#endif
 					} else if (key == "KeepNumPackages") {
 						data.append ("KeepNumPackages = %llu\n".printf (val.get_uint64 ()));
 					} else if (key == "OnlyRmUninstalled") {
