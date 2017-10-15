@@ -11,13 +11,13 @@ set (VERSION "6.0.1")
 set (TESTSRCDIR "${CMAKE_SOURCE_DIR}")
 set (DOLLAR "$")
 
-configure_file (${CMAKE_SOURCE_DIR}/src/pamac-user-daemon/Config.vala.base ${CMAKE_BINARY_DIR}/src/pamac-user-daemon/Config.vala)
+configure_file (${CMAKE_SOURCE_DIR}/src/pamac-clean-cache/Config.vala.base ${CMAKE_BINARY_DIR}/src/pamac-clean-cache/Config.vala)
 add_definitions(-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
 set (VERSION "6.0.1")
 add_definitions (${DEPS_CFLAGS})
-include_directories ( ${CMAKE_BINARY_DIR}/src ${CMAKE_BINARY_DIR}/src/aur )
-link_libraries ( ${DEPS_LIBRARIES} -lPamac -lAUR )
-link_directories ( ${DEPS_LIBRARY_DIRS} ${CMAKE_BINARY_DIR}/src ${CMAKE_BINARY_DIR}/src/aur )
+include_directories ( ${CMAKE_BINARY_DIR}/src )
+link_libraries ( ${DEPS_LIBRARIES} -lPamac )
+link_directories ( ${DEPS_LIBRARY_DIRS} ${CMAKE_BINARY_DIR}/src )
 find_package (Vala REQUIRED)
 include (ValaVersion)
 ensure_vala_version ("0.38" MINIMUM)
@@ -25,21 +25,15 @@ include (ValaPrecompile)
 
 set (VALA_PACKAGES ${VALA_PACKAGES} posix)
 set (VALA_PACKAGES ${VALA_PACKAGES} gtk+-3.0)
-set (VALA_PACKAGES ${VALA_PACKAGES} json-glib-1.0)
-set (VALA_PACKAGES ${VALA_PACKAGES} libalpm)
-set (VALA_PACKAGES ${VALA_PACKAGES} libsoup-2.4)
 set (VALA_PACKAGES ${VALA_PACKAGES} gio-2.0)
 set (VALA_PACKAGES ${VALA_PACKAGES} glib-2.0)
 set (VALA_PACKAGES ${VALA_PACKAGES} gobject-2.0)
 
 set (APP_SOURCES ${APP_SOURCES} ${CMAKE_CURRENT_BINARY_DIR}/Config.vala)
-set (APP_SOURCES ${APP_SOURCES} alpm_config.vala)
-set (APP_SOURCES ${APP_SOURCES} user_daemon.vala)
+set (APP_SOURCES ${APP_SOURCES} clean_cache.vala)
+set (APP_SOURCES ${APP_SOURCES} pamac_config.vala)
 
 set (CUSTOM_VAPIS_LIST ${CUSTOM_VAPIS_LIST} ${CMAKE_BINARY_DIR}/src/Pamac.vapi)
-if (NOT DISABLE_AUR)
-	set (CUSTOM_VAPIS_LIST ${CUSTOM_VAPIS_LIST} ${CMAKE_BINARY_DIR}/src/aur/AUR.vapi)
-endif ()
 
 if (DISABLE_AUR)
 	set (COMPILE_OPTIONS ${COMPILE_OPTIONS} -D DISABLE_AUR)
@@ -58,7 +52,7 @@ if ((${CMAKE_BUILD_TYPE} STREQUAL "Debug") OR (${CMAKE_BUILD_TYPE} STREQUAL "Rel
 endif()
 
 
-vala_precompile(VALA_C pamac-user-daemon
+vala_precompile(VALA_C pamac-clean-cache
 	${APP_SOURCES}
 PACKAGES
 	${VALA_PACKAGES}
@@ -68,22 +62,19 @@ OPTIONS
 	${COMPILE_OPTIONS}
 )
 
-add_executable(pamac-user-daemon ${VALA_C})
-set ( pamac-user-daemon_DEPENDENCIES ${pamac-user-daemon_DEPENDENCIES} Pamac )
-if (NOT DISABLE_AUR)
-	set ( pamac-user-daemon_DEPENDENCIES ${pamac-user-daemon_DEPENDENCIES} AUR )
-endif ()
-add_dependencies( pamac-user-daemon ${pamac-user-daemon_DEPENDENCIES} )
+add_executable(pamac-clean-cache ${VALA_C})
+set ( pamac-clean-cache_DEPENDENCIES ${pamac-clean-cache_DEPENDENCIES} Pamac )
+add_dependencies( pamac-clean-cache ${pamac-clean-cache_DEPENDENCIES} )
 
 
 install(TARGETS
-	pamac-user-daemon
+	pamac-clean-cache
 RUNTIME DESTINATION
 	${CMAKE_INSTALL_BINDIR}
 )
 if(HAVE_VALADOC)
-	valadoc(pamac-user-daemon
-		${CMAKE_BINARY_DIR}/valadoc/pamac-user-daemon
+	valadoc(pamac-clean-cache
+		${CMAKE_BINARY_DIR}/valadoc/pamac-clean-cache
 		${APP_SOURCES}
 	PACKAGES
 		${VALA_PACKAGES}

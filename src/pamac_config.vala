@@ -33,6 +33,8 @@ namespace Pamac {
 		public string aur_build_dir { get; private set; }
 		public bool check_aur_updates { get; private set; }
 #endif
+		public uint64 keep_num_pkgs { get; private set; }
+		public bool rm_only_uninstalled { get; private set; }
 		public unowned HashTable<string,string> environment_variables {
 			get {
 				return _environment_variables;
@@ -81,6 +83,8 @@ namespace Pamac {
 			aur_build_dir = "/tmp";
 			check_aur_updates = false;
 #endif
+			keep_num_pkgs = 3;
+			rm_only_uninstalled = false;
 			parse_file (conf_path);
 		}
 
@@ -127,6 +131,13 @@ namespace Pamac {
 						} else if (key == "CheckAURUpdates") {
 							check_aur_updates = true;
 #endif
+						} else if (key == "KeepNumPackages") {
+							if (splitted.length == 2) {
+								unowned string val = splitted[1]._strip ();
+								keep_num_pkgs = uint64.parse (val);
+							}
+						} else if (key == "OnlyRmUninstalled") {
+							rm_only_uninstalled = true;
 						}
 					}
 				} catch (GLib.Error e) {

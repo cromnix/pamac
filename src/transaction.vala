@@ -74,7 +74,7 @@ namespace Pamac {
 		public abstract void start_write_alpm_config (HashTable<string,Variant> new_alpm_conf) throws IOError;
 		public abstract void start_write_mirrors_config (HashTable<string,Variant> new_mirrors_conf) throws IOError;
 		public abstract void start_generate_mirrors_list () throws IOError;
-		public abstract void clean_cache (uint keep_nb, bool only_uninstalled) throws IOError;
+		public abstract void clean_cache (uint64 keep_nb, bool only_uninstalled) throws IOError;
 		public abstract void start_set_pkgreason (string pkgname, uint reason) throws IOError;
 		public abstract void start_refresh (bool force) throws IOError;
 		public abstract void start_sysupgrade_prepare (bool enable_downgrade, string[] temporary_ignorepkgs) throws IOError;
@@ -144,6 +144,8 @@ namespace Pamac {
 		public bool search_aur { get { return pamac_config.search_aur; } }
 		public string aur_build_dir { get { return pamac_config.aur_build_dir; } }
 #endif
+		public uint64 keep_num_pkgs { get { return pamac_config.keep_num_pkgs; } }
+		public bool rm_only_uninstalled { get { return pamac_config.rm_only_uninstalled; } }
 		public unowned GLib.HashTable<string,string> environment_variables { get {return pamac_config.environment_variables; } }
 		public bool no_update_hide_icon { get { return pamac_config.no_update_hide_icon; } }
 		public bool recurse { get { return pamac_config.recurse; } }
@@ -505,7 +507,7 @@ namespace Pamac {
 			}
 		}
 
-		public void clean_cache (uint keep_nb, bool only_uninstalled) {
+		public void clean_cache (uint64 keep_nb, bool only_uninstalled) {
 			try {
 				system_daemon.clean_cache (keep_nb, only_uninstalled);
 			} catch (IOError e) {

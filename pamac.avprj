@@ -33,6 +33,17 @@ end
 
 vapidir: src/vapis
 
+vala_binary: src/pamac-clean-cache/pamac-clean-cache
+version: 6.0.1
+vala_local_package: Pamac
+vala_package: posix
+vala_check_package: gtk+-3.0
+*vala_check_package: gio-2.0
+*vala_check_package: glib-2.0
+*vala_check_package: gobject-2.0
+*vala_source: clean_cache.vala
+*vala_source: pamac_config.vala
+
 vala_binary: src/pamac-install/pamac-install
 version: 6.0.1
 use_gresource: pamac_installer_gresource_xml
@@ -105,10 +116,10 @@ end
 
 vala_binary: src/pamac-user-daemon/pamac-user-daemon
 version: 6.0.1
+vala_local_package: Pamac
 if NOT DISABLE_AUR
 vala_local_package: AUR
 end
-vala_local_package: Pamac
 vala_package: posix
 vala_check_package: gtk+-3.0
 vala_check_package: json-glib-1.0
@@ -171,6 +182,8 @@ vala_check_package: libsoup-2.4
 *translate: vala src/common.vala
 *translate: vala src/mirrors_config.vala
 *translate: vala src/package.vala
+*translate: vala src/pamac-clean-cache/clean_cache.vala
+*translate: vala src/pamac-clean-cache/pamac_config.vala
 *translate: vala src/pamac-install/installer.vala
 *translate: vala src/pamac-install/progress_dialog.vala
 *translate: vala src/pamac-manager/history_dialog.vala

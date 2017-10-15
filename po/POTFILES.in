@@ -1,3 +1,5 @@
+src/pamac-clean-cache/clean_cache.vala
+src/pamac-clean-cache/pamac_config.vala
 src/pamac-install/installer.vala
 src/pamac-install/progress_dialog.vala
 src/pamac-manager/history_dialog.vala
