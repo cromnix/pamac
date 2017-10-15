@@ -22,7 +22,7 @@ glib_2_0_dep = dependency('glib-2.0')
 gobject_2_0_dep = dependency('gobject-2.0')
 
 subdir('po')
-meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','install_data.sh'),join_paths(get_option('prefix'),'${CMAKE_INSTALL_SYSCONFDIR}/dbus-1/system.d'),join_paths(meson.current_source_dir(),'data/dbus','org.pamac.system.conf'))
+meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','install_data.sh'),join_paths(get_option('prefix'),sysconfdir/dbus-1/system.d),join_paths(meson.current_source_dir(),'data/dbus','org.pamac.system.conf'))
 
 meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','install_data.sh'),join_paths(get_option('prefix'),'${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATAROOTDIR}/dbus-1/services'),join_paths(meson.current_source_dir(),'data/dbus','org.pamac.user.service'))
 
