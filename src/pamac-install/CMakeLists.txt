@@ -65,6 +65,8 @@ OPTIONS
 SET (VALA_C ${VALA_C} ${pamac_installer_gresource_xml_C_FILE})
 add_executable(pamac-install ${VALA_C})
 add_dependencies (pamac-install pamac_installer_gresource_xml)
+set ( pamac-install_DEPENDENCIES ${pamac-install_DEPENDENCIES} Pamac )
+add_dependencies( pamac-install ${pamac-install_DEPENDENCIES} )
 
 
 install(TARGETS
@@ -87,4 +89,3 @@ if(HAVE_VALADOC)
 		${CMAKE_INSTALL_DATAROOTDIR}/doc/pamac
 	)
 endif()
-include(${CMAKE_CURRENT_SOURCE_DIR}/CMakeDepends.txt)

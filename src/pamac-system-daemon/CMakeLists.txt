@@ -73,6 +73,11 @@ OPTIONS
 )
 
 add_executable(pamac-system-daemon ${VALA_C})
+set ( pamac-system-daemon_DEPENDENCIES ${pamac-system-daemon_DEPENDENCIES} Pamac )
+if (NOT DISABLE_AUR)
+	set ( pamac-system-daemon_DEPENDENCIES ${pamac-system-daemon_DEPENDENCIES} AUR )
+endif ()
+add_dependencies( pamac-system-daemon ${pamac-system-daemon_DEPENDENCIES} )
 
 
 install(TARGETS
@@ -95,4 +100,3 @@ if(HAVE_VALADOC)
 		${CMAKE_INSTALL_DATAROOTDIR}/doc/pamac
 	)
 endif()
-include(${CMAKE_CURRENT_SOURCE_DIR}/CMakeDepends.txt)

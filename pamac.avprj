@@ -105,7 +105,9 @@ end
 
 vala_binary: src/pamac-user-daemon/pamac-user-daemon
 version: 6.0.1
+if NOT DISABLE_AUR
 vala_local_package: AUR
+end
 vala_local_package: Pamac
 vala_package: posix
 vala_check_package: gtk+-3.0
@@ -132,6 +134,7 @@ vala_check_package: vte-2.91
 *vala_check_package: gio-2.0
 *vala_check_package: glib-2.0
 *vala_check_package: gobject-2.0
+*c_library: m
 *vala_source: alpm_config.vala
 *vala_source: choose_ignorepkgs_dialog.vala
 *vala_source: choose_provider_dialog.vala
@@ -240,9 +243,5 @@ end
 *pixmap: data/pixmaps/package-upgrade.png
 
 # These depends are needed to enable parallel builds
-include: src/pamac-install/CMakeDepends.txt
 include: src/pamac-manager/CMakeDepends.txt
-include: src/pamac-system-daemon/CMakeDepends.txt
-include: src/pamac-tray/CMakeDepends.txt
-include: src/pamac-user-daemon/CMakeDepends.txt
 

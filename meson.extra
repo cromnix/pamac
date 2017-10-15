@@ -1,0 +1,101 @@
+cfg_pamac_tray = configuration_data()
+cfg_pamac_tray.set('DATADIR', join_paths(get_option('prefix'),get_option('datadir')))
+cfg_pamac_tray.set('PKGDATADIR', join_paths(get_option('prefix'),get_option('datadir'),'pamac'))
+cfg_pamac_tray.set('GETTEXT_PACKAGE', 'pamac')
+cfg_pamac_tray.set('RELEASE_NAME', 'pamac')
+cfg_pamac_tray.set('PREFIX', get_option('prefix'))
+cfg_pamac_tray.set('VERSION', '6.0.1')
+cfg_pamac_tray.set('TESTSRCDIR', meson.current_source_dir())
+
+cfgfile_6 = configure_file(input: 'src/pamac-tray/Config.vala.base',output: 'Config_6.vala',configuration: cfg_pamac_tray)
+
+pamac_tray_deps = [json_glib_1_0_dep]
+pamac_tray_deps += [libnotify_dep]
+if KDE_TRAY
+pamac_tray_deps += [appindicator3_0_1_dep]
+else
+pamac_tray_deps += [gtk_3_0_dep]
+endif
+pamac_tray_deps += [gio_2_0_dep]
+pamac_tray_deps += [glib_2_0_dep]
+pamac_tray_deps += [gobject_2_0_dep]
+pamac_tray_sources = [cfgfile_6]
+if KDE_TRAY
+pamac_tray_sources += ['src/pamac-tray/tray-appindicator.vala']
+else
+pamac_tray_sources += ['src/pamac-tray/tray-gtk.vala']
+endif
+pamac_tray_sources += ['src/pamac-tray/pamac_config.vala']
+pamac_tray_sources += ['src/pamac-tray/tray.vala']
+pamac_tray_sources += ['src/pamac-tray/user_daemon.vala']
+pamac_tray_sources += [pamac_installer_gresource_xml_file_c]
+if DISABLE_AUR
+pamac_tray_sources += [pamac_manager_no_aur_gresource_xml_file_c]
+pamac_tray_sources += [pamac_transaction_no_aur_gresource_xml_file_c]
+else
+pamac_tray_sources += [pamac_manager_gresource_xml_file_c]
+pamac_tray_sources += [pamac_transaction_gresource_xml_file_c]
+endif
+pamac_tray_vala_args = ['--pkg','posix']
+pamac_tray_vala_args += ['--vapidir='+join_paths(meson.current_source_dir(),'src/vapis')]
+pamac_tray_dependencies = [Pamac_library]
+if not DISABLE_AUR
+pamac_tray_dependencies += [AUR_library]
+endif
+pamac_tray_c_args = []
+if DISABLE_AUR
+  pamac_tray_vala_args += ['-D', 'DISABLE_AUR']
+  pamac_tray_c_args += ['-DDISABLE_AUR']
+endif
+if KDE_TRAY
+  pamac_tray_vala_args += ['-D', 'KDE_TRAY']
+  pamac_tray_c_args += ['-DKDE_TRAY']
+endif
+
+executable('pamac-tray',pamac_tray_sources,dependencies: pamac_tray_deps,vala_args: pamac_tray_vala_args,c_args: pamac_tray_c_args,link_with: pamac_tray_dependencies,install: true)
+
+cfg_pamac_user_daemon = configuration_data()
+cfg_pamac_user_daemon.set('DATADIR', join_paths(get_option('prefix'),get_option('datadir')))
+cfg_pamac_user_daemon.set('PKGDATADIR', join_paths(get_option('prefix'),get_option('datadir'),'pamac'))
+cfg_pamac_user_daemon.set('GETTEXT_PACKAGE', 'pamac')
+cfg_pamac_user_daemon.set('RELEASE_NAME', 'pamac')
+cfg_pamac_user_daemon.set('PREFIX', get_option('prefix'))
+cfg_pamac_user_daemon.set('VERSION', '6.0.1')
+cfg_pamac_user_daemon.set('TESTSRCDIR', meson.current_source_dir())
+
+cfgfile_7 = configure_file(input: 'src/pamac-user-daemon/Config.vala.base',output: 'Config_7.vala',configuration: cfg_pamac_user_daemon)
+
+pamac_user_daemon_deps = [gtk_3_0_dep]
+pamac_user_daemon_deps += [json_glib_1_0_dep]
+pamac_user_daemon_deps += [libalpm_dep]
+pamac_user_daemon_deps += [libsoup_2_4_dep]
+pamac_user_daemon_deps += [gio_2_0_dep]
+pamac_user_daemon_deps += [glib_2_0_dep]
+pamac_user_daemon_deps += [gobject_2_0_dep]
+pamac_user_daemon_sources = [cfgfile_7]
+pamac_user_daemon_sources += ['src/pamac-user-daemon/alpm_config.vala']
+pamac_user_daemon_sources += ['src/pamac-user-daemon/user_daemon.vala']
+pamac_user_daemon_sources += [pamac_installer_gresource_xml_file_c]
+if DISABLE_AUR
+pamac_user_daemon_sources += [pamac_manager_no_aur_gresource_xml_file_c]
+pamac_user_daemon_sources += [pamac_transaction_no_aur_gresource_xml_file_c]
+else
+pamac_user_daemon_sources += [pamac_manager_gresource_xml_file_c]
+pamac_user_daemon_sources += [pamac_transaction_gresource_xml_file_c]
+endif
+pamac_user_daemon_vala_args = ['--pkg','posix']
+pamac_user_daemon_vala_args += ['--vapidir='+join_paths(meson.current_source_dir(),'src/vapis')]
+pamac_user_daemon_dependencies = [AUR_library]
+pamac_user_daemon_dependencies += [Pamac_library]
+pamac_user_daemon_c_args = []
+if DISABLE_AUR
+  pamac_user_daemon_vala_args += ['-D', 'DISABLE_AUR']
+  pamac_user_daemon_c_args += ['-DDISABLE_AUR']
+endif
+if KDE_TRAY
+  pamac_user_daemon_vala_args += ['-D', 'KDE_TRAY']
+  pamac_user_daemon_c_args += ['-DKDE_TRAY']
+endif
+
+executable('pamac-user-daemon',pamac_user_daemon_sources,dependencies: pamac_user_daemon_deps,vala_args: pamac_user_daemon_vala_args,c_args: pamac_user_daemon_c_args,link_with: pamac_user_daemon_dependencies,install: true)
+

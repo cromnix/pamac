@@ -18,6 +18,8 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+//using Math
+
 namespace Pamac {
 	[DBus (name = "org.pamac.user")]
 	interface UserDaemon : Object {

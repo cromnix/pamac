@@ -83,6 +83,7 @@ SET (VALA_C ${VALA_C} ${pamac_transaction_gresource_xml_C_FILE})
 add_library(Pamac SHARED ${VALA_C})
 
 add_dependencies (Pamac pamac_transaction_gresource_xml)
+target_link_libraries( Pamac m )
 set_target_properties( Pamac PROPERTIES
 VERSION
 	6.0.1

@@ -78,6 +78,11 @@ OPTIONS
 )
 
 add_executable(pamac-tray ${VALA_C})
+set ( pamac-tray_DEPENDENCIES ${pamac-tray_DEPENDENCIES} Pamac )
+if (NOT DISABLE_AUR)
+	set ( pamac-tray_DEPENDENCIES ${pamac-tray_DEPENDENCIES} AUR )
+endif ()
+add_dependencies( pamac-tray ${pamac-tray_DEPENDENCIES} )
 
 
 install(TARGETS
@@ -103,4 +108,3 @@ endif()
 if (KDE_TRAY)
 	else ()
 endif ()
-include(${CMAKE_CURRENT_SOURCE_DIR}/CMakeDepends.txt)
