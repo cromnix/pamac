@@ -32,9 +32,9 @@ A graphical package manager for pacman
 - appindicator-gtk3 (optional to build KDE tray icon)
 - CMake
 - Vala: 0.38
-- AutoVala: 1.1.1 (optional to regenerate CMake files)
+- AutoVala: 1.1.2 (optional to regenerate CMake and Meson files)
 
-## Using CMake
+## Using CMake with GNU Make
 
 ```
 mkdir build
@@ -48,11 +48,43 @@ make
 ### Extra build flags
 
 - -DDISABLE_AUR=ON (to disable AUR in Pamac)
-- -DKDE_TRAY=true (to build kde tray icon instead of gtk tray icon)
+- -DKDE_TRAY=ON (to build kde tray icon instead of gtk tray icon)
 
-## Using configure
+## Using CMake with Ninja
 
-The configure script is just a wrapper for CMake, in the background the build process is the same.
+```
+mkdir build
+cd build
+cmake .. \
+    -GNinja
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_INSTALL_LIBDIR=/usr/lib \
+    -DCMAKE_INSTALL_SYSCONFDIR=/etc
+ninja
+```
+### Extra build flags
+
+- -DDISABLE_AUR=ON (to disable AUR in Pamac)
+- -DKDE_TRAY=ON (to build kde tray icon instead of gtk tray icon)
+
+## Using Meson with Ninja
+
+```
+mkdir build
+cd build
+meson \
+    --prefix=/usr \
+    --sysconfdir=/etc
+ninja
+```
+### Extra build flags
+
+- -DDISABLE_AUR=ON (to disable AUR in Pamac)
+- -DKDE_TRAY=ON (to build kde tray icon instead of gtk tray icon)
+
+## Using configure wrapper
+
+The configure script is just a wrapper for CMake, in the background the build process is the same as using CMake with GNU Make.
 
 ```
 ./configure --prefix=/usr \
