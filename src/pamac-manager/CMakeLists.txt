@@ -66,7 +66,7 @@ OPTIONS
 
 SET (VALA_C ${VALA_C} ${pamac_manager_gresource_xml_C_FILE})
 add_executable(pamac-manager ${VALA_C})
-add_dependencies (pamac-manager pamac_manager_gresource_xml)
+set ( pamac-manager_DEPENDENCIES ${pamac-manager_DEPENDENCIES} pamac_manager_gresource_xml )
 set ( pamac-manager_DEPENDENCIES ${pamac-manager_DEPENDENCIES} Pamac )
 add_dependencies( pamac-manager ${pamac-manager_DEPENDENCIES} )
 

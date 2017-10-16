@@ -64,7 +64,7 @@ OPTIONS
 
 SET (VALA_C ${VALA_C} ${pamac_installer_gresource_xml_C_FILE})
 add_executable(pamac-install ${VALA_C})
-add_dependencies (pamac-install pamac_installer_gresource_xml)
+set ( pamac-install_DEPENDENCIES ${pamac-install_DEPENDENCIES} pamac_installer_gresource_xml )
 set ( pamac-install_DEPENDENCIES ${pamac-install_DEPENDENCIES} Pamac )
 add_dependencies( pamac-install ${pamac-install_DEPENDENCIES} )
 

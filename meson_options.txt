@@ -1,0 +1,2 @@
+option('DISABLE_AUR',type : 'string', value: '')
+option('KDE_TRAY',type : 'string', value: '')

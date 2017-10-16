@@ -3,20 +3,20 @@ autovala_version: 24
 project_name: pamac
 vala_version: 0.38
 
-custom: data/dbus/org.pamac.system.conf ${CMAKE_INSTALL_SYSCONFDIR}/dbus-1/system.d
-custom: data/dbus/org.pamac.user.service ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATAROOTDIR}/dbus-1/services
-custom: data/dbus/org.pamac.system.service ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATAROOTDIR}/dbus-1/system-services
-custom: data/systemd/pamac-system.service ${CMAKE_INSTALL_LIBDIR}/systemd/system
-custom: data/systemd/pamac-cleancache.service ${CMAKE_INSTALL_LIBDIR}/systemd/system
-custom: data/systemd/pamac-cleancache.timer ${CMAKE_INSTALL_LIBDIR}/systemd/system
-custom: data/systemd/pamac-mirrorlist.service ${CMAKE_INSTALL_LIBDIR}/systemd/system
-custom: data/systemd/pamac-mirrorlist.timer ${CMAKE_INSTALL_LIBDIR}/systemd/system
-custom: data/polkit/org.pamac.policy ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATAROOTDIR}/polkit-1/actions
-custom: data/mime/x-alpm-package.xml ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATAROOTDIR}/mime/packages
+custom: data/dbus/org.pamac.system.conf /etc/dbus-1/system.d
+custom: data/dbus/org.pamac.user.service /usr/share/dbus-1/services
+custom: data/dbus/org.pamac.system.service /usr/share/dbus-1/system-services
+custom: data/systemd/pamac-system.service /usr/lib/systemd/system
+custom: data/systemd/pamac-cleancache.service /usr/lib/systemd/system
+custom: data/systemd/pamac-cleancache.timer /usr/lib/systemd/system
+custom: data/systemd/pamac-mirrorlist.service /usr/lib/systemd/system
+custom: data/systemd/pamac-mirrorlist.timer /usr/lib/systemd/system
+custom: data/polkit/org.pamac.policy /usr/share/polkit-1/actions
+custom: data/mime/x-alpm-package.xml /usr/share/mime/packages
 if DISABLE_AUR
-custom: data/config/noaur/pamac.conf ${CMAKE_INSTALL_SYSCONFDIR}
+custom: data/config/noaur/pamac.conf /etc
 else
-custom: data/config/pamac.conf ${CMAKE_INSTALL_SYSCONFDIR}
+custom: data/config/pamac.conf /etc
 end
 
 define: KDE_TRAY
