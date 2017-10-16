@@ -91,4 +91,3 @@ if(HAVE_VALADOC)
 		${CMAKE_INSTALL_DATAROOTDIR}/doc/pamac
 	)
 endif()
-include(${CMAKE_CURRENT_SOURCE_DIR}/CMakeDepends.txt)

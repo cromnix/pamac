@@ -143,4 +143,4 @@ install(CODE "MESSAGE (\"
 * Run 'sudo ldconfig' to complete installation *
 ************************************************
 
-\") " )
+\") " )include(${CMAKE_CURRENT_SOURCE_DIR}/CMakeSymlinks.txt)
