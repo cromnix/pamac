@@ -5,3 +5,4 @@ PKGBUILD
 *.pkg.tar.xz
 *.pkg.tar.xz.sig
 /build
+src/interface/*~

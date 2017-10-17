@@ -146,6 +146,8 @@ namespace Pamac {
 #endif
 		public uint64 keep_num_pkgs { get { return pamac_config.keep_num_pkgs; } }
 		public bool rm_only_uninstalled { get { return pamac_config.rm_only_uninstalled; } }
+		public string terminal_background { get { return pamac_config.terminal_background; } }
+		public string terminal_foreground { get { return pamac_config.terminal_foreground; } }
 		public unowned GLib.HashTable<string,string> environment_variables { get {return pamac_config.environment_variables; } }
 		public bool no_update_hide_icon { get { return pamac_config.no_update_hide_icon; } }
 		public bool recurse { get { return pamac_config.recurse; } }
@@ -262,9 +264,19 @@ namespace Pamac {
 			term.set_scrollback_lines (-1);
 			term.expand = true;
 			term.visible = true;
-			var black = Gdk.RGBA ();
+			/*var black = Gdk.RGBA ();
 			black.parse ("black");
+			var green = Gdk.RGBA ();
+			green.parse ("green");
 			term.set_color_cursor (black);
+			term.set_color_foreground (green);
+			term.set_color_background (black);*/
+			var tmp = Gdk.RGBA ();
+			tmp.parse (terminal_background);
+			term.set_color_cursor (tmp);
+			term.set_color_background (tmp);
+			tmp.parse (terminal_foreground);
+			term.set_color_foreground (tmp);
 			term.button_press_event.connect (on_term_button_press_event);
 			term.key_press_event.connect (on_term_key_press_event);
 			// creating pty for term

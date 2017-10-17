@@ -70,6 +70,10 @@ namespace Pamac {
 		Gtk.SpinButton cache_keep_nb_spin_button;
 		[GtkChild]
 		Gtk.CheckButton cache_only_uninstalled_checkbutton;
+		[GtkChild]
+		Gtk.ColorButton terminal_background;
+		[GtkChild]
+		Gtk.ColorButton terminal_foreground;
 
 		Gtk.ListStore ignorepkgs_liststore;
 		Transaction transaction;
@@ -106,6 +110,16 @@ namespace Pamac {
 			cache_keep_nb_spin_button.value = transaction.keep_num_pkgs;
 			cache_only_uninstalled_checkbutton.active = transaction.rm_only_uninstalled;
 
+			// Set up terminal colors
+			terminal_background.set_use_alpha (false);
+			terminal_foreground.set_use_alpha (false);
+			Gdk.RGBA rgba = Gdk.RGBA ();
+			bool tmp = rgba.parse (transaction.terminal_background);
+			terminal_background.rgba = rgba;
+			tmp = rgba.parse (transaction.terminal_foreground);
+			terminal_foreground.rgba = rgba;
+			stdout.printf(transaction.terminal_background);
+
 			// populate ignorepkgs_liststore
 			ignorepkgs_liststore = new Gtk.ListStore (1, typeof (string));
 			ignorepkgs_treeview.set_model (ignorepkgs_liststore);
@@ -121,6 +135,8 @@ namespace Pamac {
 			cache_keep_nb_spin_button.value_changed.connect (on_cache_keep_nb_spin_button_value_changed);
 			cache_only_uninstalled_checkbutton.toggled.connect (on_cache_only_uninstalled_checkbutton_toggled);
 			transaction.write_pamac_config_finished.connect (on_write_pamac_config_finished);
+			terminal_background.color_set.connect (on_select_background);
+			terminal_foreground.color_set.connect (on_select_foreground);
 
 			AlpmPackage pkg = transaction.find_installed_satisfier ("pacman-mirrors");
 			if (pkg.name == "") {
@@ -217,6 +233,18 @@ namespace Pamac {
 		void on_no_update_hide_icon_checkbutton_toggled () {
 			var new_pamac_conf = new HashTable<string,Variant> (str_hash, str_equal);
 			new_pamac_conf.insert ("NoUpdateHideIcon", new Variant.boolean (no_update_hide_icon_checkbutton.active));
+			transaction.start_write_pamac_config (new_pamac_conf);
+		}
+
+		void on_select_background () {
+			var new_pamac_conf = new HashTable<string,Variant> (str_hash, str_equal);
+			new_pamac_conf.insert ("BackgroundColor", new Variant.string (terminal_background.rgba.to_string ()));
+			transaction.start_write_pamac_config (new_pamac_conf);
+		}
+
+		void on_select_foreground () {
+			var new_pamac_conf = new HashTable<string,Variant> (str_hash, str_equal);
+			new_pamac_conf.insert ("ForegroundColor", new Variant.string (terminal_foreground.rgba.to_string ()));
 			transaction.start_write_pamac_config (new_pamac_conf);
 		}
 
