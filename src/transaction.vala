@@ -264,13 +264,6 @@ namespace Pamac {
 			term.set_scrollback_lines (-1);
 			term.expand = true;
 			term.visible = true;
-			/*var black = Gdk.RGBA ();
-			black.parse ("black");
-			var green = Gdk.RGBA ();
-			green.parse ("green");
-			term.set_color_cursor (black);
-			term.set_color_foreground (green);
-			term.set_color_background (black);*/
 			var tmp = Gdk.RGBA ();
 			tmp.parse (terminal_background);
 			term.set_color_cursor (tmp);
