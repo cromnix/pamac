@@ -7,7 +7,7 @@ set (GETTEXT_PACKAGE "pamac")
 set (RELEASE_NAME "pamac")
 set (CMAKE_C_FLAGS "")
 set (PREFIX ${CMAKE_INSTALL_PREFIX})
-set (VERSION "6.2.1")
+set (VERSION "6.3.0")
 set (TESTSRCDIR "${CMAKE_SOURCE_DIR}")
 set (DOLLAR "$")
 
@@ -15,7 +15,7 @@ configure_file (${CMAKE_SOURCE_DIR}/src/Config.vala.base ${CMAKE_BINARY_DIR}/src
 add_definitions(-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Pamac.pc ${CMAKE_CURRENT_BINARY_DIR}/Pamac.pc)
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Pamac.deps ${CMAKE_CURRENT_BINARY_DIR}/Pamac.deps)
-set (VERSION "6.2.1")
+set (VERSION "6.3.0")
 add_definitions (${DEPS_CFLAGS})
 link_libraries ( ${DEPS_LIBRARIES} )
 link_directories ( ${DEPS_LIBRARY_DIRS} )
@@ -64,7 +64,6 @@ if ((${CMAKE_BUILD_TYPE} STREQUAL "Debug") OR (${CMAKE_BUILD_TYPE} STREQUAL "Rel
 endif()
 
 set (COMPILE_OPTIONS ${COMPILE_OPTIONS} --library=Pamac --gir Pamac-6.0.gir )
-set (COMPILE_OPTIONS ${COMPILE_OPTIONS} --gresources=${CMAKE_SOURCE_DIR}/data/pamac.transaction_no_aur.gresource.xml )
 set (COMPILE_OPTIONS ${COMPILE_OPTIONS} --gresources=${CMAKE_SOURCE_DIR}/data/pamac.transaction.gresource.xml )
 
 vala_precompile(VALA_C Pamac
@@ -87,7 +86,7 @@ add_dependencies( Pamac ${Pamac_DEPENDENCIES} )
 target_link_libraries( Pamac m )
 set_target_properties( Pamac PROPERTIES
 VERSION
-	6.2.1
+	6.3.0
 SOVERSION
 	6 )
 

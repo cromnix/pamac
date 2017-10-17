@@ -39,11 +39,8 @@ namespace Pamac {
 		}
 	}
 
-#if DISABLE_AUR
-	[GtkTemplate (ui = "/org/pamac/manager/interface/manager_window_no_aur.ui")]
-#else
+
 	[GtkTemplate (ui = "/org/pamac/manager/interface/manager_window.ui")]
-#endif
 	class ManagerWindow : Gtk.ApplicationWindow {
 		// icons
 		Gdk.Pixbuf? installed_icon;
@@ -67,6 +64,8 @@ namespace Pamac {
 		[GtkChild]
 		Gtk.TreeViewColumn packages_state_column;
 #if DISABLE_AUR
+		[GtkChild]
+		Gtk.ScrolledWindow aur_scrolledwindow;
 #else
 		[GtkChild]
 		Gtk.TreeView aur_treeview;
@@ -172,8 +171,13 @@ namespace Pamac {
 			Object (application: application);
 
 #if DISABLE_AUR
+			packages_stack.remove (aur_scrolledwindow);
+			packages_stackswitcher.visible = false;
 #else
 			support_aur (false);
+			aur_treeview.row_activated.connect (on_aur_treeview_row_activated);
+			aur_treeview.button_press_event.connect (on_aur_treeview_button_press_event);
+			aur_treeview.query_tooltip.connect (on_aur_treeview_query_tooltip);
 #endif
 			button_back.visible = false;
 			transaction_infobox.visible = false;
@@ -1208,7 +1212,6 @@ namespace Pamac {
 
 #if DISABLE_AUR
 #else
-		[GtkCallback]
 		void on_aur_treeview_row_activated (Gtk.TreeView treeview, Gtk.TreePath path, Gtk.TreeViewColumn column) {
 			if (column.title == dgettext (null, "Name")) {
 				main_stack.visible_child_name = "details";
@@ -1508,7 +1511,6 @@ namespace Pamac {
 
 #if DISABLE_AUR
 #else
-		[GtkCallback]
 		bool on_aur_treeview_button_press_event (Gdk.EventButton event) {
 			aur_treeview.grab_focus ();
 			// Check if right mouse button was clicked
@@ -1568,7 +1570,6 @@ namespace Pamac {
 			return false;
 		}
 
-		[GtkCallback]
 		bool on_aur_treeview_query_tooltip (int x, int y, bool keyboard_tooltip, Gtk.Tooltip tooltip) {
 			Gtk.TreePath path;
 			Gtk.TreeIter iter;

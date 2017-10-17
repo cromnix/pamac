@@ -7,7 +7,7 @@ set (GETTEXT_PACKAGE "pamac")
 set (RELEASE_NAME "pamac")
 set (CMAKE_C_FLAGS "")
 set (PREFIX ${CMAKE_INSTALL_PREFIX})
-set (VERSION "6.2.1")
+set (VERSION "6.3.0")
 set (TESTSRCDIR "${CMAKE_SOURCE_DIR}")
 set (DOLLAR "$")
 
@@ -15,7 +15,7 @@ configure_file (${CMAKE_SOURCE_DIR}/src/aur/Config.vala.base ${CMAKE_BINARY_DIR}
 add_definitions(-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/AUR.pc ${CMAKE_CURRENT_BINARY_DIR}/AUR.pc)
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/AUR.deps ${CMAKE_CURRENT_BINARY_DIR}/AUR.deps)
-set (VERSION "6.2.1")
+set (VERSION "6.3.0")
 add_definitions (${DEPS_CFLAGS})
 link_libraries ( ${DEPS_LIBRARIES} )
 link_directories ( ${DEPS_LIBRARY_DIRS} )
@@ -65,7 +65,7 @@ add_library(AUR SHARED ${VALA_C})
 
 set_target_properties( AUR PROPERTIES
 VERSION
-	6.2.1
+	6.3.0
 SOVERSION
 	6 )
 

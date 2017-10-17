@@ -20,11 +20,7 @@
 
 namespace Pamac {
 
-#if DISABLE_AUR
-	[GtkTemplate (ui = "/org/pamac/preferences/interface/preferences_dialog_no_aur.ui")]
-#else
 	[GtkTemplate (ui = "/org/pamac/preferences/interface/preferences_dialog.ui")]
-#endif
 	class PreferencesDialog : Gtk.Dialog {
 
 		[GtkChild]
@@ -52,6 +48,10 @@ namespace Pamac {
 		[GtkChild]
 		Gtk.Button generate_mirrors_list_button;
 #if DISABLE_AUR
+		[GtkChild]
+		Gtk.Stack stack;
+		[GtkChild]
+		Gtk.Box aur_config_box;
 #else
 		[GtkChild]
 		Gtk.Switch enable_aur_button;
@@ -74,6 +74,8 @@ namespace Pamac {
 		Gtk.ColorButton terminal_background;
 		[GtkChild]
 		Gtk.ColorButton terminal_foreground;
+		[GtkChild]
+		Gtk.FontButton terminal_font;
 
 		Gtk.ListStore ignorepkgs_liststore;
 		Transaction transaction;
@@ -87,6 +89,7 @@ namespace Pamac {
 			refresh_period_label.set_markup (dgettext (null, "How often to check for updates, value in hours") +":");
 			cache_keep_nb_label.set_markup (dgettext (null, "Number of versions of each package to keep in the cache") +":");
 #if DISABLE_AUR
+			stack.remove (aur_config_box);
 #else
 			aur_build_dir_label.set_markup (dgettext (null, "Build directory") +":");
 #endif
@@ -110,7 +113,7 @@ namespace Pamac {
 			cache_keep_nb_spin_button.value = transaction.keep_num_pkgs;
 			cache_only_uninstalled_checkbutton.active = transaction.rm_only_uninstalled;
 
-			// Set up terminal colors
+			// Set up terminal
 			terminal_background.set_use_alpha (false);
 			terminal_foreground.set_use_alpha (false);
 			Gdk.RGBA rgba = Gdk.RGBA ();
@@ -118,6 +121,7 @@ namespace Pamac {
 			terminal_background.rgba = rgba;
 			tmp = rgba.parse (transaction.terminal_foreground);
 			terminal_foreground.rgba = rgba;
+			terminal_font.set_font(transaction.terminal_font);
 
 			// populate ignorepkgs_liststore
 			ignorepkgs_liststore = new Gtk.ListStore (1, typeof (string));
@@ -136,6 +140,7 @@ namespace Pamac {
 			transaction.write_pamac_config_finished.connect (on_write_pamac_config_finished);
 			terminal_background.color_set.connect (on_select_background);
 			terminal_foreground.color_set.connect (on_select_foreground);
+			terminal_font.font_set.connect (on_select_font);
 
 			AlpmPackage pkg = transaction.find_installed_satisfier ("pacman-mirrors");
 			if (pkg.name == "") {
@@ -247,6 +252,13 @@ namespace Pamac {
 			new_pamac_conf.insert ("ForegroundColor", new Variant.string (terminal_foreground.rgba.to_string ()));
 			transaction.start_write_pamac_config (new_pamac_conf);
 			transaction.update_terminal_foreground (terminal_foreground.rgba.to_string ());
+		}
+
+		void on_select_font () {
+			var new_pamac_conf = new HashTable<string,Variant> (str_hash, str_equal);
+			new_pamac_conf.insert ("TerminalFont", new Variant.string (terminal_font.get_font_name ()));
+			transaction.start_write_pamac_config (new_pamac_conf);
+			transaction.update_terminal_font (terminal_font.get_font_name ());
 		}
 
 #if DISABLE_AUR

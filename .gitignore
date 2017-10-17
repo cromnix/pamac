@@ -1,8 +1,9 @@
 po/*.mo
 po/*~
 po/locale
+data/interface/*~
+data/interface/#*#
 PKGBUILD
 *.pkg.tar.xz
 *.pkg.tar.xz.sig
 /build
-src/interface/*~

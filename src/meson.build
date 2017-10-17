@@ -4,7 +4,7 @@ cfg_pamac.set('PKGDATADIR', join_paths(get_option('prefix'),get_option('datadir'
 cfg_pamac.set('GETTEXT_PACKAGE', 'pamac')
 cfg_pamac.set('RELEASE_NAME', 'pamac')
 cfg_pamac.set('PREFIX', get_option('prefix'))
-cfg_pamac.set('VERSION', '6.2.1')
+cfg_pamac.set('VERSION', '6.3.0')
 cfg_pamac.set('TESTSRCDIR', meson.source_root())
 
 cfgfile_1 = configure_file(input: 'Config.vala.base',output: 'Config.vala',configuration: cfg_pamac)
@@ -29,18 +29,10 @@ pamac_sources += ['preferences_dialog.vala']
 pamac_sources += ['progress_box.vala']
 pamac_sources += ['transaction.vala']
 pamac_sources += ['transaction_sum_dialog.vala']
-if DISABLE_AUR
-pamac_sources += [pamac_transaction_no_aur_gresource_xml_file_c]
-else
 pamac_sources += [pamac_transaction_gresource_xml_file_c]
-endif
 pamac_vala_args = ['--pkg','posix']
 pamac_vala_args += ['--vapidir='+join_paths(meson.source_root(),'src/vapis')]
-if DISABLE_AUR
-pamac_vala_args += ['--gresources='+join_paths(meson.source_root(),'data/pamac.transaction_no_aur.gresource.xml')]
-else
 pamac_vala_args += ['--gresources='+join_paths(meson.source_root(),'data/pamac.transaction.gresource.xml')]
-endif
 pamac_c_args = []
 if DISABLE_AUR
   pamac_vala_args += ['-D', 'DISABLE_AUR']
@@ -54,7 +46,7 @@ pamac_deps += [meson.get_compiler('c').find_library('m', required : false)]
 pamac_vala_args += ['--gir=Pamac-6.0.gir']
 
 
-Pamac_library = shared_library('Pamac',pamac_sources,dependencies: pamac_deps,vala_args: pamac_vala_args,c_args: pamac_c_args,version: '6.2.1',soversion: '6',install: true)
+Pamac_library = shared_library('Pamac',pamac_sources,dependencies: pamac_deps,vala_args: pamac_vala_args,c_args: pamac_c_args,version: '6.3.0',soversion: '6',install: true)
 
 pamac_requires = []
 pamac_requires += ['gdk-3.0']
@@ -67,7 +59,7 @@ pamac_requires += ['glib-2.0']
 pamac_requires += ['gobject-2.0']
 pkg_mod = import('pkgconfig')
 pkg_mod.generate(libraries : Pamac_library,
-	version : '6.2.1',
+	version : '6.3.0',
 	name : 'Pamac',
 	filebase : 'Pamac',
 	description : 'Pamac',

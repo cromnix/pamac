@@ -7,13 +7,13 @@ set (GETTEXT_PACKAGE "pamac")
 set (RELEASE_NAME "pamac")
 set (CMAKE_C_FLAGS "")
 set (PREFIX ${CMAKE_INSTALL_PREFIX})
-set (VERSION "6.2.1")
+set (VERSION "6.3.0")
 set (TESTSRCDIR "${CMAKE_SOURCE_DIR}")
 set (DOLLAR "$")
 
 configure_file (${CMAKE_SOURCE_DIR}/src/pamac-manager/Config.vala.base ${CMAKE_BINARY_DIR}/src/pamac-manager/Config.vala)
 add_definitions(-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
-set (VERSION "6.2.1")
+set (VERSION "6.3.0")
 add_definitions (${DEPS_CFLAGS})
 include_directories ( ${CMAKE_BINARY_DIR}/src )
 link_libraries ( ${DEPS_LIBRARIES} -lPamac )
@@ -51,7 +51,6 @@ if ((${CMAKE_BUILD_TYPE} STREQUAL "Debug") OR (${CMAKE_BUILD_TYPE} STREQUAL "Rel
 	set(COMPILE_OPTIONS ${COMPILE_OPTIONS} "-g")
 endif()
 
-set (COMPILE_OPTIONS ${COMPILE_OPTIONS} --gresources=${CMAKE_SOURCE_DIR}/data/pamac.manager_no_aur.gresource.xml )
 set (COMPILE_OPTIONS ${COMPILE_OPTIONS} --gresources=${CMAKE_SOURCE_DIR}/data/pamac.manager.gresource.xml )
 
 vala_precompile(VALA_C pamac-manager

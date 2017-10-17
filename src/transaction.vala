@@ -148,6 +148,7 @@ namespace Pamac {
 		public bool rm_only_uninstalled { get { return pamac_config.rm_only_uninstalled; } }
 		public string terminal_background { get { return pamac_config.terminal_background; } }
 		public string terminal_foreground { get { return pamac_config.terminal_foreground; } }
+		public string terminal_font { get { return pamac_config.terminal_font; } }
 		public unowned GLib.HashTable<string,string> environment_variables { get {return pamac_config.environment_variables; } }
 		public bool no_update_hide_icon { get { return pamac_config.no_update_hide_icon; } }
 		public bool recurse { get { return pamac_config.recurse; } }
@@ -198,6 +199,7 @@ namespace Pamac {
 		//dialogs
 		TransactionSumDialog transaction_sum_dialog;
 		public ProgressBox progress_box;
+		//Pango.FontDescription pfd;
 		Vte.Terminal term;
 		Vte.Pty pty;
 #if DISABLE_AUR
@@ -270,6 +272,8 @@ namespace Pamac {
 			term.set_color_background (tmp);
 			tmp.parse (terminal_foreground);
 			term.set_color_foreground (tmp);
+			stdout.printf("Terminal font: %s\n", terminal_font);
+			term.set_font (Pango.FontDescription.from_string (terminal_font));
 			term.button_press_event.connect (on_term_button_press_event);
 			term.key_press_event.connect (on_term_key_press_event);
 			// creating pty for term
@@ -314,6 +318,10 @@ namespace Pamac {
 			var tmp = Gdk.RGBA ();
 			tmp.parse (foreground);
 			term.set_color_foreground (tmp);
+		}
+
+		public void update_terminal_font (string font) {
+			term.set_font (Pango.FontDescription.from_string (terminal_font));
 		}
 
 		public void run_preferences_dialog () {

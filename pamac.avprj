@@ -23,18 +23,13 @@ define: KDE_TRAY
 *define: DISABLE_AUR
 
 *gresource: pamac_installer_gresource_xml data/pamac.installer.gresource.xml
-if DISABLE_AUR
-gresource: pamac_manager_gresource_xml data/pamac.manager_no_aur.gresource.xml
-gresource: pamac_transaction_gresource_xml data/pamac.transaction_no_aur.gresource.xml
-else
-gresource: pamac_manager_gresource_xml data/pamac.manager.gresource.xml
-gresource: pamac_transaction_gresource_xml data/pamac.transaction.gresource.xml
-end
+*gresource: pamac_manager_gresource_xml data/pamac.manager.gresource.xml
+*gresource: pamac_transaction_gresource_xml data/pamac.transaction.gresource.xml
 
 vapidir: src/vapis
 
 vala_binary: src/pamac-clean-cache/pamac-clean-cache
-version: 6.2.1
+version: 6.3.0
 vala_local_package: Pamac
 vala_package: posix
 vala_check_package: gtk+-3.0
@@ -45,7 +40,7 @@ vala_check_package: gtk+-3.0
 *vala_source: pamac_config.vala
 
 vala_binary: src/pamac-install/pamac-install
-version: 6.2.1
+version: 6.3.0
 use_gresource: pamac_installer_gresource_xml
 vala_local_package: Pamac
 vala_check_package: gtk+-3.0
@@ -56,7 +51,7 @@ vala_check_package: gtk+-3.0
 *vala_source: progress_dialog.vala
 
 vala_binary: src/pamac-manager/pamac-manager
-version: 6.2.1
+version: 6.3.0
 use_gresource: pamac_manager_gresource_xml
 vala_local_package: Pamac
 vala_check_package: gtk+-3.0
@@ -68,7 +63,7 @@ vala_check_package: gtk+-3.0
 *vala_source: manager_window.vala
 
 vala_binary: src/pamac-system-daemon/pamac-system-daemon
-version: 6.2.1
+version: 6.3.0
 vala_local_package: Pamac
 if NOT DISABLE_AUR
 vala_local_package: AUR
@@ -89,7 +84,7 @@ vala_check_package: polkit-gobject-1
 *vala_source: system_daemon.vala
 
 vala_binary: src/pamac-tray/pamac-tray
-version: 6.2.1
+version: 6.3.0
 vala_local_package: Pamac
 if NOT DISABLE_AUR
 vala_local_package: AUR
@@ -115,7 +110,7 @@ end
 *vala_source: user_daemon.vala
 
 vala_binary: src/pamac-user-daemon/pamac-user-daemon
-version: 6.2.1
+version: 6.3.0
 vala_local_package: Pamac
 if NOT DISABLE_AUR
 vala_local_package: AUR
@@ -133,7 +128,7 @@ vala_check_package: libsoup-2.4
 
 
 vala_library: src/pamac
-version: 6.2.1
+version: 6.3.0
 *namespace: Pamac
 use_gresource: pamac_transaction_gresource_xml
 vala_package: posix
@@ -159,7 +154,7 @@ vala_check_package: vte-2.91
 *vala_source: transaction_sum_dialog.vala
 
 vala_library: src/aur/aur
-version: 6.2.1
+version: 6.3.0
 *namespace: AUR
 vala_check_package: json-glib-1.0
 vala_check_package: libsoup-2.4
@@ -172,6 +167,8 @@ vala_check_package: libsoup-2.4
 *translate: glade data/interface/choose_ignorepkgs_dialog.ui
 *translate: glade data/interface/choose_provider_dialog.ui
 *translate: glade data/interface/history_dialog.ui
+*translate: glade data/interface/manager_window.ui
+*translate: glade data/interface/preferences_dialog.ui
 *translate: glade data/interface/progress_box.ui
 *translate: glade data/interface/progress_dialog.ui
 *translate: glade data/interface/transaction_sum_dialog.ui
@@ -203,13 +200,6 @@ vala_check_package: libsoup-2.4
 *translate: vala src/progress_box.vala
 *translate: vala src/transaction.vala
 *translate: vala src/transaction_sum_dialog.vala
-if DISABLE_AUR
-translate: glade data/interface/manager_window_no_aur.ui
-translate: glade data/interface/preferences_dialog_no_aur.ui
-else
-translate: glade data/interface/manager_window.ui
-translate: glade data/interface/preferences_dialog.ui
-end
 if KDE_TRAY
 translate: vala src/pamac-tray/tray-appindicator.vala
 else
@@ -227,33 +217,12 @@ else
 autostart: data/pamac-tray.desktop
 end
 
-*glade: data/interface/choose_ignorepkgs_dialog.ui
-*glade: data/interface/choose_provider_dialog.ui
-*glade: data/interface/history_dialog.ui
-*glade: data/interface/progress_box.ui
-*glade: data/interface/transaction_sum_dialog.ui
-if DISABLE_AUR
-glade: data/interface/manager_window_no_aur.ui
-glade: data/interface/preferences_dialog_no_aur.ui
-else
-glade: data/interface/manager_window.ui
-glade: data/interface/preferences_dialog.ui
-end
-
 *full_icon: Hicolor Applications data/icons/16x16/apps/system-software-install.png
 *full_icon: Hicolor Applications data/icons/24x24/status/pamac-tray-no-update.png
 *full_icon: Hicolor Applications data/icons/24x24/status/pamac-tray-update.png
 *full_icon: Hicolor Applications data/icons/32x32/apps/system-software-install.png
 
-*pixmap: data/pixmaps/package-available-locked.png
-*pixmap: data/pixmaps/package-available.png
 *pixmap: data/pixmaps/package-generic.png
-*pixmap: data/pixmaps/package-install.png
-*pixmap: data/pixmaps/package-installed-locked.png
-*pixmap: data/pixmaps/package-installed-updated.png
-*pixmap: data/pixmaps/package-reinstall.png
-*pixmap: data/pixmaps/package-remove.png
-*pixmap: data/pixmaps/package-upgrade.png
 
 # These depends are needed to enable parallel builds
 include: src/CMakeSymlinks.txt

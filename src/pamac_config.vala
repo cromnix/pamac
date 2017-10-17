@@ -37,6 +37,7 @@ namespace Pamac {
 		public bool rm_only_uninstalled { get; private set; }
 		public string terminal_background { get; private set; }
 		public string terminal_foreground { get; private set; }
+		public string terminal_font { get; private set; }
 		public unowned HashTable<string,string> environment_variables {
 			get {
 				return _environment_variables;
@@ -89,6 +90,7 @@ namespace Pamac {
 			rm_only_uninstalled = false;
 			terminal_background = "rgb(0,0,0)";
 			terminal_foreground = "rgb(255,255,255)";
+			terminal_font = "Sans Regular 12";
 			parse_file (conf_path);
 		}
 
@@ -149,6 +151,10 @@ namespace Pamac {
 						} else if (key == "ForegroundColor") {
 							if (splitted.length == 2) {
 								terminal_foreground = splitted[1]._strip ();
+							}
+						} else if (key == "TerminalFont") {
+							if (splitted.length == 2) {
+								terminal_font = splitted[1]._strip ();
 							}
 						}
 					}
@@ -279,6 +285,13 @@ namespace Pamac {
 							} else {
 								data.append (line + "\n");
 							}
+						} else if (line.contains ("TerminalFont")) {
+							if (new_conf.lookup_extended ("TerminalFont", null, out variant)) {
+								data.append ("TerminalFont = %s\n".printf (variant.get_string ()));
+								new_conf.remove ("TerminalFont");
+							} else {
+								data.append (line + "\n");
+							}
 						} else {
 							data.append (line + "\n");
 						}
@@ -347,6 +360,8 @@ namespace Pamac {
 						data.append ("BackgroundColor = %s\n".printf (val.get_string ()));
 					} else if (key == "ForegroundColor") {
 						data.append ("ForegroundCOlor = %s\n".printf (val.get_string ()));
+					} else if (key == "TerminalFont") {
+						data.append ("TerminalFont = %s\n".printf (val.get_string ()));
 					}
 				}
 			}
