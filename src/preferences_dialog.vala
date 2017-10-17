@@ -118,7 +118,6 @@ namespace Pamac {
 			terminal_background.rgba = rgba;
 			tmp = rgba.parse (transaction.terminal_foreground);
 			terminal_foreground.rgba = rgba;
-			stdout.printf(transaction.terminal_background);
 
 			// populate ignorepkgs_liststore
 			ignorepkgs_liststore = new Gtk.ListStore (1, typeof (string));
