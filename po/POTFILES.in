@@ -31,10 +31,8 @@ src/aur/aur.vala
 data/interface/choose_ignorepkgs_dialog.ui
 data/interface/choose_provider_dialog.ui
 data/interface/history_dialog.ui
+data/interface/manager_window.ui
+data/interface/preferences_dialog.ui
 data/interface/progress_box.ui
 data/interface/progress_dialog.ui
 data/interface/transaction_sum_dialog.ui
-data/interface/manager_window_no_aur.ui
-data/interface/preferences_dialog_no_aur.ui
-data/interface/manager_window.ui
-data/interface/preferences_dialog.ui
