@@ -239,12 +239,14 @@ namespace Pamac {
 			var new_pamac_conf = new HashTable<string,Variant> (str_hash, str_equal);
 			new_pamac_conf.insert ("BackgroundColor", new Variant.string (terminal_background.rgba.to_string ()));
 			transaction.start_write_pamac_config (new_pamac_conf);
+			transaction.update_terminal_background (terminal_background.rgba.to_string ());
 		}
 
 		void on_select_foreground () {
 			var new_pamac_conf = new HashTable<string,Variant> (str_hash, str_equal);
 			new_pamac_conf.insert ("ForegroundColor", new Variant.string (terminal_foreground.rgba.to_string ()));
 			transaction.start_write_pamac_config (new_pamac_conf);
+			transaction.update_terminal_foreground (terminal_foreground.rgba.to_string ());
 		}
 
 #if DISABLE_AUR

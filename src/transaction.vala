@@ -303,6 +303,19 @@ namespace Pamac {
 			warning_textbuffer = new StringBuilder ();
 		}
 
+		public void update_terminal_background (string background) {
+			var tmp = Gdk.RGBA ();
+			tmp.parse (background);
+			term.set_color_cursor (tmp);
+			term.set_color_background (tmp);
+		}
+
+		public void update_terminal_foreground (string foreground) {
+			var tmp = Gdk.RGBA ();
+			tmp.parse (foreground);
+			term.set_color_foreground (tmp);
+		}
+
 		public void run_preferences_dialog () {
 			check_authorization.begin ((obj, res) => {
 				bool authorized = check_authorization.end (res);
