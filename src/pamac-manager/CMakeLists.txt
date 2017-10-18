@@ -7,13 +7,13 @@ set (GETTEXT_PACKAGE "pamac")
 set (RELEASE_NAME "pamac")
 set (CMAKE_C_FLAGS "")
 set (PREFIX ${CMAKE_INSTALL_PREFIX})
-set (VERSION "6.3.0")
+set (VERSION "6.3.1")
 set (TESTSRCDIR "${CMAKE_SOURCE_DIR}")
 set (DOLLAR "$")
 
 configure_file (${CMAKE_SOURCE_DIR}/src/pamac-manager/Config.vala.base ${CMAKE_BINARY_DIR}/src/pamac-manager/Config.vala)
 add_definitions(-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
-set (VERSION "6.3.0")
+set (VERSION "6.3.1")
 add_definitions (${DEPS_CFLAGS})
 include_directories ( ${CMAKE_BINARY_DIR}/src )
 link_libraries ( ${DEPS_LIBRARIES} -lPamac )
@@ -75,6 +75,12 @@ install(TARGETS
 RUNTIME DESTINATION
 	${CMAKE_INSTALL_BINDIR}
 )
+if (INSTALL_BINARYPATH_pamac-manager)
+	set(ALIAS_DESTINATION_PATH ${INSTALL_BINARYPATH_pamac-manager})
+else()
+	set(ALIAS_DESTINATION_PATH ${CMAKE_INSTALL_BINDIR})
+endif()
+install(CODE "execute_process(COMMAND ln -sf pamac-manager \$ENV{DESTDIR}/${PREFIX}/${ALIAS_DESTINATION_PATH}/pamac-updater )")
 if(HAVE_VALADOC)
 	valadoc(pamac-manager
 		${CMAKE_BINARY_DIR}/valadoc/pamac-manager

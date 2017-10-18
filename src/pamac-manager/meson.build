@@ -4,7 +4,7 @@ cfg_pamac_manager.set('PKGDATADIR', join_paths(get_option('prefix'),get_option('
 cfg_pamac_manager.set('GETTEXT_PACKAGE', 'pamac')
 cfg_pamac_manager.set('RELEASE_NAME', 'pamac')
 cfg_pamac_manager.set('PREFIX', get_option('prefix'))
-cfg_pamac_manager.set('VERSION', '6.3.0')
+cfg_pamac_manager.set('VERSION', '6.3.1')
 cfg_pamac_manager.set('TESTSRCDIR', meson.source_root())
 
 cfgfile_7 = configure_file(input: 'Config.vala.base',output: 'Config.vala',configuration: cfg_pamac_manager)
@@ -34,3 +34,4 @@ pamac_manager_hfolders = ['../../src']
 
 executable('pamac-manager',pamac_manager_sources,dependencies: pamac_manager_deps,vala_args: pamac_manager_vala_args,c_args: pamac_manager_c_args,link_with: pamac_manager_dependencies,include_directories: include_directories(pamac_manager_hfolders),install: true)
 
+meson.add_install_script('sh', '-c', 'ln -sf pamac_manager \$ENV{DESTDIR}/${MESON_INSTALL_PREFIX}/bin/pamac-updater')

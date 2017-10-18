@@ -4,7 +4,7 @@ cfg_pamac.set('PKGDATADIR', join_paths(get_option('prefix'),get_option('datadir'
 cfg_pamac.set('GETTEXT_PACKAGE', 'pamac')
 cfg_pamac.set('RELEASE_NAME', 'pamac')
 cfg_pamac.set('PREFIX', get_option('prefix'))
-cfg_pamac.set('VERSION', '6.3.0')
+cfg_pamac.set('VERSION', '6.3.1')
 cfg_pamac.set('TESTSRCDIR', meson.source_root())
 
 cfgfile_1 = configure_file(input: 'Config.vala.base',output: 'Config.vala',configuration: cfg_pamac)
@@ -46,7 +46,7 @@ pamac_deps += [meson.get_compiler('c').find_library('m', required : false)]
 pamac_vala_args += ['--gir=Pamac-6.0.gir']
 
 
-Pamac_library = shared_library('Pamac',pamac_sources,dependencies: pamac_deps,vala_args: pamac_vala_args,c_args: pamac_c_args,version: '6.3.0',soversion: '6',install: true)
+Pamac_library = shared_library('Pamac',pamac_sources,dependencies: pamac_deps,vala_args: pamac_vala_args,c_args: pamac_c_args,version: '6.3.1',soversion: '6',install: true)
 
 pamac_requires = []
 pamac_requires += ['gdk-3.0']
@@ -59,7 +59,7 @@ pamac_requires += ['glib-2.0']
 pamac_requires += ['gobject-2.0']
 pkg_mod = import('pkgconfig')
 pkg_mod.generate(libraries : Pamac_library,
-	version : '6.3.0',
+	version : '6.3.1',
 	name : 'Pamac',
 	filebase : 'Pamac',
 	description : 'Pamac',

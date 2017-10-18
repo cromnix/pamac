@@ -1,2 +1,0 @@
-include (InstallSymlink)
-install_symlink(pamac-manager ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_BINDIR}/pamac-updater)
