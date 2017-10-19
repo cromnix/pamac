@@ -272,7 +272,6 @@ namespace Pamac {
 			term.set_color_background (tmp);
 			tmp.parse (terminal_foreground);
 			term.set_color_foreground (tmp);
-			stdout.printf("Terminal font: %s\n", terminal_font);
 			term.set_font (Pango.FontDescription.from_string (terminal_font));
 			term.button_press_event.connect (on_term_button_press_event);
 			term.key_press_event.connect (on_term_key_press_event);
