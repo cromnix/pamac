@@ -4,7 +4,7 @@ cfg_pamac_install.set('PKGDATADIR', join_paths(get_option('prefix'),get_option('
 cfg_pamac_install.set('GETTEXT_PACKAGE', 'pamac')
 cfg_pamac_install.set('RELEASE_NAME', 'pamac')
 cfg_pamac_install.set('PREFIX', get_option('prefix'))
-cfg_pamac_install.set('VERSION', '6.3.1')
+cfg_pamac_install.set('VERSION', '6.3.3')
 cfg_pamac_install.set('TESTSRCDIR', meson.source_root())
 
 cfgfile_6 = configure_file(input: 'Config.vala.base',output: 'Config.vala',configuration: cfg_pamac_install)

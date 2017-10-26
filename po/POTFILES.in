@@ -11,9 +11,9 @@ src/pamac-system-daemon/pamac_config.vala
 src/pamac-system-daemon/system_daemon.vala
 src/pamac-tray/tray-appindicator.vala
 src/pamac-tray/tray-gtk.vala
+src/pamac-tray/alpm_config.vala
 src/pamac-tray/pamac_config.vala
 src/pamac-tray/tray.vala
-src/pamac-tray/user_daemon.vala
 src/pamac-user-daemon/alpm_config.vala
 src/pamac-user-daemon/user_daemon.vala
 src/alpm_config.vala

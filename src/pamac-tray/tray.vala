@@ -27,6 +27,18 @@ const string noupdate_info = _("Your system is up-to-date");
 
 namespace Pamac {
 	[DBus (name = "org.pamac.user")]
+	interface UserDaemon : Object {
+		public abstract void refresh_handle () throws IOError;
+		public abstract string get_lockfile () throws IOError;
+#if DISABLE_AUR
+		public abstract void start_get_updates () throws IOError;
+#else
+		public abstract void start_get_updates (bool check_aur_updates) throws IOError;
+#endif
+		[DBus (no_reply = true)]
+		public abstract void quit () throws IOError;
+		public signal void get_updates_finished (Updates updates);
+	}
 
 	public abstract class TrayIcon: Gtk.Application {
 		Notify.Notification notification;

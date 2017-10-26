@@ -74,6 +74,14 @@ class AlpmConfig {
 		reload ();
 	}
 
+	public unowned GLib.List<string> get_holdpkgs () {
+		return holdpkgs;
+	}
+
+	public unowned GLib.List<string> get_syncfirsts () {
+		return syncfirsts;
+	}
+
 	public void reload () {
 		// set default options
 		cachedirs = new GLib.List<string> ();
@@ -125,6 +133,85 @@ class AlpmConfig {
 		if (arch == null) {
 			arch = Posix.utsname().machine;
 		}
+	}
+
+	public Alpm.Handle? get_handle (bool files_db = false, bool tmp_db = false) {
+		Alpm.Errno error = 0;
+		Alpm.Handle? handle = null;
+		if (tmp_db) {
+			string tmp_dbpath = "/tmp/pamac-checkdbs";
+			try {
+				Process.spawn_command_line_sync ("mkdir -p %s/sync".printf (tmp_dbpath));
+				Process.spawn_command_line_sync ("ln -sf %s/local %s".printf (dbpath, tmp_dbpath));
+				Process.spawn_command_line_sync ("chmod -R 777 %s/sync".printf (tmp_dbpath));
+				handle = new Alpm.Handle (rootdir, tmp_dbpath, out error);
+			} catch (SpawnError e) {
+				stderr.printf ("SpawnError: %s\n", e.message);
+			}
+		} else {
+			handle = new Alpm.Handle (rootdir, dbpath, out error);
+		}
+		if (error == Alpm.Errno.DB_VERSION) {
+			try {
+				Process.spawn_command_line_sync ("pacman-db-upgrade", null, null, null);
+			} catch (SpawnError e) {
+				stdout.printf ("Error: %s\n", e.message);
+			}
+			handle = new Alpm.Handle (rootdir, dbpath, out error);
+		}
+		if (handle == null) {
+			stderr.printf ("Failed to initialize alpm library" + " (%s)\n".printf (Alpm.strerror (error)));
+			return null;
+		}
+		// define options
+		if (files_db) {
+			handle.dbext = ".files";
+		}
+		if (!tmp_db) {
+			handle.logfile = logfile;
+		}
+		handle.gpgdir = gpgdir;
+		handle.arch = arch;
+		handle.deltaratio = deltaratio;
+		handle.usesyslog = usesyslog;
+		handle.checkspace = checkspace;
+		handle.defaultsiglevel = siglevel;
+		localfilesiglevel = merge_siglevel (siglevel, localfilesiglevel, localfilesiglevel_mask);
+		remotefilesiglevel = merge_siglevel (siglevel, remotefilesiglevel, remotefilesiglevel_mask);
+		handle.localfilesiglevel = localfilesiglevel;
+		handle.remotefilesiglevel = remotefilesiglevel;
+		foreach (unowned string cachedir in cachedirs) {
+			handle.add_cachedir (cachedir);
+		}
+		foreach (unowned string hookdir in hookdirs) {
+			handle.add_hookdir (hookdir);
+		}
+		foreach (unowned string ignoregroup in ignoregroups) {
+			handle.add_ignoregroup (ignoregroup);
+		}
+		foreach (unowned string ignorepkg in ignorepkgs) {
+			handle.add_ignorepkg (ignorepkg);
+		}
+		foreach (unowned string noextract in noextracts) {
+			handle.add_noextract (noextract);
+		}
+		foreach (unowned string noupgrade in noupgrades) {
+			handle.add_noupgrade (noupgrade);
+		}
+		// register dbs
+		foreach (unowned AlpmRepo repo in repo_order) {
+			repo.siglevel = merge_siglevel (siglevel, repo.siglevel, repo.siglevel_mask);
+			unowned Alpm.DB db = handle.register_syncdb (repo.name, repo.siglevel);
+			foreach (unowned string url in repo.urls) {
+				db.add_server (url.replace ("$repo", repo.name).replace ("$arch", handle.arch));
+			}
+			if (repo.usage == 0) {
+				db.usage = Alpm.DB.Usage.ALL;
+			} else {
+				db.usage = repo.usage;
+			}
+		}
+		return handle;
 	}
 
 	void parse_file (string path, string? section = null) {
@@ -250,6 +337,66 @@ class AlpmConfig {
 		}
 	}
 
+	public void write (HashTable<string,Variant> new_conf) {
+		var file = GLib.File.new_for_path (conf_path);
+		if (file.query_exists ()) {
+			try {
+				// Open file for reading and wrap returned FileInputStream into a
+				// DataInputStream, so we can read line by line
+				var dis = new DataInputStream (file.read ());
+				string? line;
+				string[] data = {};
+				// Read lines until end of file (null) is reached
+				while ((line = dis.read_line ()) != null) {
+					if (line.length == 0) {
+						data += "\n";
+						continue;
+					}
+					if (line.contains ("IgnorePkg")) {
+						if (new_conf.contains ("IgnorePkg")) {
+							string val = new_conf.get ("IgnorePkg").get_string ();
+							if (val == "") {
+								data += "#IgnorePkg   =\n";
+							} else {
+								data += "IgnorePkg   = %s\n".printf (val);
+							}
+							new_conf.remove ("IgnorePkg");
+						} else {
+							data += line + "\n";
+						}
+					} else if (line.contains ("CheckSpace")) {
+						if (new_conf.contains ("CheckSpace")) {
+							bool val = new_conf.get ("CheckSpace").get_boolean ();
+							if (val) {
+								data += "CheckSpace\n";
+							} else {
+								data += "#CheckSpace\n";
+							}
+							new_conf.remove ("CheckSpace");
+						} else {
+							data += line + "\n";
+						}
+					} else {
+						data += line + "\n";
+					}
+				}
+				// delete the file before rewrite it
+				file.delete ();
+				// creating a DataOutputStream to the file
+				var dos = new DataOutputStream (file.create (FileCreateFlags.REPLACE_DESTINATION));
+				foreach (unowned string new_line in data) {
+					// writing a short string to the stream
+					dos.put_string (new_line);
+				}
+				reload ();
+			} catch (GLib.Error e) {
+				GLib.stderr.printf("%s\n", e.message);
+			}
+		} else {
+			GLib.stderr.printf ("File '%s' doesn't exist.\n", conf_path);
+		}
+	}
+
 	Alpm.DB.Usage define_usage (string conf_string) {
 		Alpm.DB.Usage usage = 0;
 		foreach (unowned string directive in conf_string.split(" ")) {
@@ -334,5 +481,9 @@ class AlpmConfig {
 			}
 		}
 		siglevel &= ~Alpm.Signature.Level.USE_DEFAULT;
+	}
+
+	Alpm.Signature.Level merge_siglevel(Alpm.Signature.Level sigbase, Alpm.Signature.Level sigover, Alpm.Signature.Level sigmask) {
+		return (sigmask != 0) ? (sigover & sigmask) | (sigbase & ~sigmask) : sigover;
 	}
 }

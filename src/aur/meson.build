@@ -4,7 +4,7 @@ cfg_aur.set('PKGDATADIR', join_paths(get_option('prefix'),get_option('datadir'),
 cfg_aur.set('GETTEXT_PACKAGE', 'pamac')
 cfg_aur.set('RELEASE_NAME', 'pamac')
 cfg_aur.set('PREFIX', get_option('prefix'))
-cfg_aur.set('VERSION', '6.3.1')
+cfg_aur.set('VERSION', '6.3.3')
 cfg_aur.set('TESTSRCDIR', meson.source_root())
 
 cfgfile_2 = configure_file(input: 'Config.vala.base',output: 'Config.vala',configuration: cfg_aur)
@@ -27,7 +27,7 @@ endif
 aur_vala_args += ['--gir=AUR-6.0.gir']
 
 
-AUR_library = shared_library('AUR',aur_sources,dependencies: aur_deps,vala_args: aur_vala_args,c_args: aur_c_args,version: '6.3.1',soversion: '6',install: true)
+AUR_library = shared_library('AUR',aur_sources,dependencies: aur_deps,vala_args: aur_vala_args,c_args: aur_c_args,version: '6.3.3',soversion: '6',install: true)
 
 aur_requires = []
 aur_requires += ['json-glib-1.0']
@@ -35,7 +35,7 @@ aur_requires += ['libsoup-2.4']
 aur_requires += ['glib-2.0']
 pkg_mod = import('pkgconfig')
 pkg_mod.generate(libraries : AUR_library,
-	version : '6.3.1',
+	version : '6.3.3',
 	name : 'AUR',
 	filebase : 'AUR',
 	description : 'AUR',

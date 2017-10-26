@@ -4,12 +4,13 @@ cfg_pamac_tray.set('PKGDATADIR', join_paths(get_option('prefix'),get_option('dat
 cfg_pamac_tray.set('GETTEXT_PACKAGE', 'pamac')
 cfg_pamac_tray.set('RELEASE_NAME', 'pamac')
 cfg_pamac_tray.set('PREFIX', get_option('prefix'))
-cfg_pamac_tray.set('VERSION', '6.3.1')
+cfg_pamac_tray.set('VERSION', '6.3.3')
 cfg_pamac_tray.set('TESTSRCDIR', meson.source_root())
 
 cfgfile_4 = configure_file(input: 'Config.vala.base',output: 'Config.vala',configuration: cfg_pamac_tray)
 
 pamac_tray_deps = [json_glib_1_0_dep]
+pamac_tray_deps += [libalpm_dep]
 pamac_tray_deps += [libnotify_dep]
 if KDE_TRAY
 pamac_tray_deps += [appindicator3_0_1_dep]
@@ -25,9 +26,9 @@ pamac_tray_sources += ['tray-appindicator.vala']
 else
 pamac_tray_sources += ['tray-gtk.vala']
 endif
+pamac_tray_sources += ['alpm_config.vala']
 pamac_tray_sources += ['pamac_config.vala']
 pamac_tray_sources += ['tray.vala']
-pamac_tray_sources += ['user_daemon.vala']
 pamac_tray_vala_args = ['--pkg','posix']
 pamac_tray_vala_args += ['--vapidir='+join_paths(meson.source_root(),'src/vapis')]
 pamac_tray_dependencies = [Pamac_library]

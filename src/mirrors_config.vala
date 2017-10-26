@@ -75,5 +75,57 @@ namespace Pamac {
 				GLib.stderr.printf ("File '%s' doesn't exist.\n", path);
 			}
 		}
+
+		public void write (HashTable<string,Variant> new_conf) {
+			var file = GLib.File.new_for_path (conf_path);
+			if (file.query_exists ()) {
+				try {
+					// Open file for reading and wrap returned FileInputStream into a
+					// DataInputStream, so we can read line by line
+					var dis = new DataInputStream (file.read ());
+					string? line;
+					var data = new GLib.List<string> ();
+					// Read lines until end of file (null) is reached
+					while ((line = dis.read_line ()) != null) {
+						if (line.length == 0) {
+							data.append ("\n");
+							continue;
+						}
+						unowned Variant variant;
+						if (line.contains ("Method")) {
+							if (new_conf.lookup_extended ("Method", null, out variant)) {
+								data.append ("Method = %s\n".printf (variant.get_string ()));
+							} else {
+								data.append (line + "\n");
+							}
+						} else if (line.contains ("OnlyCountry")) {
+							if (new_conf.lookup_extended ("OnlyCountry", null, out variant)) {
+								if (variant.get_string () == "ALL") {
+									data.append ("#%s\n".printf (line));
+								} else {
+									data.append ("OnlyCountry = %s\n".printf (variant.get_string ()));
+								}
+							} else {
+								data.append (line + "\n");
+							}
+						} else {
+							data.append (line + "\n");
+						}
+					}
+					// delete the file before rewrite it
+					file.delete ();
+					// creating a DataOutputStream to the file
+					var dos = new DataOutputStream (file.create (FileCreateFlags.REPLACE_DESTINATION));
+					foreach (unowned string new_line in data) {
+						// writing a short string to the stream
+						dos.put_string (new_line);
+					}
+				} catch (GLib.Error e) {
+					GLib.stderr.printf("%s\n", e.message);
+				}
+			} else {
+				GLib.stderr.printf ("File '%s' doesn't exist.\n", file.get_path ());
+			}
+		}
 	}
 }

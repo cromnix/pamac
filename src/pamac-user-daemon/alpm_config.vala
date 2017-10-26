@@ -1,1 +1,1 @@
-../pamac-system-daemon/alpm_config.vala
+../alpm_config.vala
