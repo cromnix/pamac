@@ -13,19 +13,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2016-04-24 08:44+0200\n"
+"POT-Creation-Date: 2017-10-27 17:56-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
-"Language-Team: Hungarian (http://www.transifex.com/manjarolinux/manjaro-pamac/language/hu/)\n"
+"Language-Team: Hungarian (http://www.transifex.com/manjarolinux/manjaro-"
+"pamac/language/hu/)\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: data/polkit/org.pamac.policy
-msgid "Authentication is required"
-msgstr "Hitelesítés szükséges"
 
 #: ../src/pamac-user-daemon/user_daemon.vala
 msgid "Unknown"
@@ -177,6 +174,10 @@ msgstr "Telepítésre"
 #: ../src/transaction.vala
 msgid "To reinstall"
 msgstr "Újra telepítésre"
+
+#: ../src/transaction.vala
+msgid "To upgrade"
+msgstr ""
 
 #: ../src/transaction.vala ../src/pamac-manager/manager_window.vala
 msgid "Total download size"
@@ -357,6 +358,10 @@ msgstr "A tranzakció sikeresen végrehajtódott"
 msgid "Pamac is already running"
 msgstr "Pamac már el lett indítva"
 
+#: ../src/pamac-install/installer.vala ../src/pamac-manager/manager_window.vala
+msgid "Waiting for another package manager to quit"
+msgstr "Várakozás másik csomagkezelő kilépésére"
+
 #: ../src/pamac-tray/tray.vala ../src/pamac-manager/manager_window.vala
 msgid "Your system is up-to-date"
 msgstr "A rendszer naprakész"
@@ -396,10 +401,6 @@ msgstr "Telepítés"
 #: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
 msgid "Remove"
 msgstr "Eltávolít"
-
-#: ../src/pamac-manager/manager_window.vala
-msgid "Waiting for another package manager to quit"
-msgstr "Várakozás másik csomagkezelő kilépésére"
 
 #: ../src/pamac-manager/manager_window.vala
 #, c-format
@@ -575,6 +576,10 @@ msgstr "Sebesség"
 msgid "Random"
 msgstr "Vélerlenszerű"
 
+#: ../data/polkit/org.pamac.policy.in
+msgid "Authentication is required"
+msgstr "Hitelesítés szükséges"
+
 #: ../data/interface/choose_provider_dialog.ui
 msgid "Choose a Provider"
 msgstr "Válassz szolgáltatót"
@@ -673,8 +678,12 @@ msgid "Remove unrequired dependencies"
 msgstr "Nem megkövetelt függőségek eltávolítása"
 
 #: ../data/interface/preferences_dialog.ui
-msgid "When removing a package, also remove its dependencies that are not required by other packages"
-msgstr "Csomag eltávolításakor távolítsa el a függőségeket amik nem megköveteltek más csomagok által"
+msgid ""
+"When removing a package, also remove its dependencies that are not required "
+"by other packages"
+msgstr ""
+"Csomag eltávolításakor távolítsa el a függőségeket amik nem megköveteltek "
+"más csomagok által"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Check available disk space"
@@ -697,6 +706,22 @@ msgid "General"
 msgstr "Általános"
 
 #: ../data/interface/preferences_dialog.ui
+msgid "Background color:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Text color:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Font:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Terminal"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
 msgid "Use mirrors from:"
 msgstr "Tükrözések használata innen:"
 
@@ -714,10 +739,12 @@ msgstr "Hivatalos tárolók"
 
 #: ../data/interface/preferences_dialog.ui
 msgid ""
-"AUR is a community maintained repository so it presents potential risks and problems.\n"
+"AUR is a community maintained repository so it presents potential risks and "
+"problems.\n"
 "All AUR users should be familiar with the build process."
 msgstr ""
-"Az AUR egy közösségileg karbantartott tároló, így lehetséges veszélyek és problémák forrása.\n"
+"Az AUR egy közösségileg karbantartott tároló, így lehetséges veszélyek és "
+"problémák forrása.\n"
 "Az AUR felhasználónak ismernie kell a telepítési folyamatot."
 
 #: ../data/interface/preferences_dialog.ui
@@ -747,22 +774,6 @@ msgstr "Cache törlés"
 #: ../data/interface/preferences_dialog.ui
 msgid "Cache"
 msgstr "Cache"
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Terminal"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Background color"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Text color"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Font"
-msgstr ""
 
 #: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "Choose Ignored Upgrades"

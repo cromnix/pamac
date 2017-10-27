@@ -19,19 +19,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2016-04-24 08:44+0200\n"
+"POT-Creation-Date: 2017-10-27 17:56-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
-"Language-Team: Danish (http://www.transifex.com/manjarolinux/manjaro-pamac/language/da/)\n"
+"Language-Team: Danish (http://www.transifex.com/manjarolinux/manjaro-pamac/"
+"language/da/)\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: data/polkit/org.pamac.policy
-msgid "Authentication is required"
-msgstr "Godkendelse er påkrævet"
 
 #: ../src/pamac-user-daemon/user_daemon.vala
 msgid "Unknown"
@@ -183,6 +180,10 @@ msgstr "Installeres"
 #: ../src/transaction.vala
 msgid "To reinstall"
 msgstr "Geninstalleres"
+
+#: ../src/transaction.vala
+msgid "To upgrade"
+msgstr ""
 
 #: ../src/transaction.vala ../src/pamac-manager/manager_window.vala
 msgid "Total download size"
@@ -363,6 +364,10 @@ msgstr "Transaktion fuldført succesfuldt"
 msgid "Pamac is already running"
 msgstr "Pamac kører allerede"
 
+#: ../src/pamac-install/installer.vala ../src/pamac-manager/manager_window.vala
+msgid "Waiting for another package manager to quit"
+msgstr "Venter på at en anden pakke administrator lukker"
+
 #: ../src/pamac-tray/tray.vala ../src/pamac-manager/manager_window.vala
 msgid "Your system is up-to-date"
 msgstr "Dit system er opdateret"
@@ -402,10 +407,6 @@ msgstr "Installer"
 #: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
 msgid "Remove"
 msgstr "Fjern"
-
-#: ../src/pamac-manager/manager_window.vala
-msgid "Waiting for another package manager to quit"
-msgstr "Venter på at en anden pakke administrator lukker"
 
 #: ../src/pamac-manager/manager_window.vala
 #, c-format
@@ -581,6 +582,10 @@ msgstr "Hastighed"
 msgid "Random"
 msgstr "Tilfældig"
 
+#: ../data/polkit/org.pamac.policy.in
+msgid "Authentication is required"
+msgstr "Godkendelse er påkrævet"
+
 #: ../data/interface/choose_provider_dialog.ui
 msgid "Choose a Provider"
 msgstr "Vælg en udgiver"
@@ -679,8 +684,12 @@ msgid "Remove unrequired dependencies"
 msgstr "Fjern unødvendige afhængigheder"
 
 #: ../data/interface/preferences_dialog.ui
-msgid "When removing a package, also remove its dependencies that are not required by other packages"
-msgstr "Ved fjernelse af pakke, fjern også afhængigheder der ikke bliver brugt af andre pakker"
+msgid ""
+"When removing a package, also remove its dependencies that are not required "
+"by other packages"
+msgstr ""
+"Ved fjernelse af pakke, fjern også afhængigheder der ikke bliver brugt af "
+"andre pakker"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Check available disk space"
@@ -703,6 +712,22 @@ msgid "General"
 msgstr "Generelt"
 
 #: ../data/interface/preferences_dialog.ui
+msgid "Background color:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Text color:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Font:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Terminal"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
 msgid "Use mirrors from:"
 msgstr "Brug mirrors fra:"
 
@@ -720,10 +745,12 @@ msgstr "Officielle Repositories"
 
 #: ../data/interface/preferences_dialog.ui
 msgid ""
-"AUR is a community maintained repository so it presents potential risks and problems.\n"
+"AUR is a community maintained repository so it presents potential risks and "
+"problems.\n"
 "All AUR users should be familiar with the build process."
 msgstr ""
-"AUR er et samfunds vedligeholdt repository så det kan forårsage risici og problemer.\n"
+"AUR er et samfunds vedligeholdt repository så det kan forårsage risici og "
+"problemer.\n"
 "Alle AUR brugere burde være bekendt med bygge processen."
 
 #: ../data/interface/preferences_dialog.ui
@@ -753,22 +780,6 @@ msgstr "Ryd cache"
 #: ../data/interface/preferences_dialog.ui
 msgid "Cache"
 msgstr "Cache"
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Terminal"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Background color"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Text color"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Font"
-msgstr ""
 
 #: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "Choose Ignored Upgrades"

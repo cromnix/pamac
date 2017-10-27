@@ -1,36 +1,34 @@
-# Translation of Pamac.
-# Copyright (C) 2017 Chris Cromer <cromer@cromnix.org>
-# Copyright (C) 2013-2016 Manjaro Developers <manjaro-dev@manjaro.org>
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the Pamac package.
-# Guillaume Benoit <guillaume@manjaro.org>, 2013-2016.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Pamac-Classic\n"
+"Project-Id-Version: Pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2016-04-24 08:44+0200\n"
+"POT-Creation-Date: 2017-10-27 18:09-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-
-#: data/polkit/org.pamac.policy
-msgid "Authentication is required"
-msgstr ""
 
 #: ../src/pamac-user-daemon/user_daemon.vala
 msgid "Unknown"
 msgstr ""
 
-#: ../src/pamac-user-daemon/user_daemon.vala ../src/pamac-manager/manager_window.vala
+#: ../src/pamac-user-daemon/user_daemon.vala
+#: ../src/pamac-manager/manager_window.vala
 msgid "Explicitly installed"
 msgstr ""
 
-#: ../src/pamac-user-daemon/user_daemon.vala ../src/pamac-manager/manager_window.vala
+#: ../src/pamac-user-daemon/user_daemon.vala
+#: ../src/pamac-manager/manager_window.vala
 msgid "Installed as a dependency for another package"
 msgstr ""
 
@@ -169,6 +167,10 @@ msgstr ""
 
 #: ../src/transaction.vala
 msgid "To reinstall"
+msgstr ""
+
+#: ../src/transaction.vala
+msgid "To upgrade"
 msgstr ""
 
 #: ../src/transaction.vala ../src/pamac-manager/manager_window.vala
@@ -350,6 +352,10 @@ msgstr ""
 msgid "Pamac is already running"
 msgstr ""
 
+#: ../src/pamac-install/installer.vala ../src/pamac-manager/manager_window.vala
+msgid "Waiting for another package manager to quit"
+msgstr ""
+
 #: ../src/pamac-tray/tray.vala ../src/pamac-manager/manager_window.vala
 msgid "Your system is up-to-date"
 msgstr ""
@@ -369,8 +375,8 @@ msgid_plural "%u available updates"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/pamac-tray/tray.vala ../src/pamac-manager/manager_window.vala ../data/interface/progress_dialog.ui
-#: ../data/interface/manager_window.ui
+#: ../src/pamac-tray/tray.vala ../src/pamac-manager/manager_window.vala
+#: ../data/interface/progress_dialog.ui ../data/interface/manager_window.ui
 msgid "Details"
 msgstr ""
 
@@ -388,10 +394,6 @@ msgstr ""
 
 #: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
 msgid "Remove"
-msgstr ""
-
-#: ../src/pamac-manager/manager_window.vala
-msgid "Waiting for another package manager to quit"
 msgstr ""
 
 #: ../src/pamac-manager/manager_window.vala
@@ -525,8 +527,10 @@ msgstr ""
 msgid "Install Local Packages"
 msgstr ""
 
-#: ../src/pamac-manager/manager_window.vala ../data/interface/transaction_sum_dialog.ui
-#: ../data/interface/manager_window.ui ../data/interface/choose_ignorepkgs_dialog.ui
+#: ../src/pamac-manager/manager_window.vala
+#: ../data/interface/transaction_sum_dialog.ui
+#: ../data/interface/manager_window.ui
+#: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "_Cancel"
 msgstr ""
 
@@ -564,6 +568,10 @@ msgstr ""
 
 #: ../src/preferences_dialog.vala
 msgid "Random"
+msgstr ""
+
+#: ../data/polkit/org.pamac.policy.in
+msgid "Authentication is required"
 msgstr ""
 
 #: ../data/interface/choose_provider_dialog.ui
@@ -690,6 +698,22 @@ msgid "General"
 msgstr ""
 
 #: ../data/interface/preferences_dialog.ui
+msgid "Background color:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Text color:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Font:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Terminal"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
 msgid "Use mirrors from:"
 msgstr ""
 
@@ -738,22 +762,6 @@ msgstr ""
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Cache"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Terminal"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Background color"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Text color"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Font"
 msgstr ""
 
 #: ../data/interface/choose_ignorepkgs_dialog.ui

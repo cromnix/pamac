@@ -7,7 +7,7 @@
 ../src/pamac-manager/manager_window.vala
 ../src/preferences_dialog.vala
 ../src/choose_ignorepkgs_dialog.vala
-
+../data/polkit/org.pamac.policy.in
 ../data/interface/choose_provider_dialog.ui
 ../data/interface/progress_dialog.ui
 ../data/interface/history_dialog.ui

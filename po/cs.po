@@ -15,19 +15,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2016-04-24 08:44+0200\n"
+"POT-Creation-Date: 2017-10-27 17:56-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
-"Language-Team: Czech (http://www.transifex.com/manjarolinux/manjaro-pamac/language/cs/)\n"
+"Language-Team: Czech (http://www.transifex.com/manjarolinux/manjaro-pamac/"
+"language/cs/)\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-
-#: data/polkit/org.pamac.policy
-msgid "Authentication is required"
-msgstr "Je vyžadováno ověření"
 
 #: ../src/pamac-user-daemon/user_daemon.vala
 msgid "Unknown"
@@ -179,6 +176,10 @@ msgstr "Pro instalaci"
 #: ../src/transaction.vala
 msgid "To reinstall"
 msgstr "Pro přeinstalaci"
+
+#: ../src/transaction.vala
+msgid "To upgrade"
+msgstr ""
 
 #: ../src/transaction.vala ../src/pamac-manager/manager_window.vala
 msgid "Total download size"
@@ -360,6 +361,10 @@ msgstr "Transakce úspěšně dokončena"
 msgid "Pamac is already running"
 msgstr "Pamac je již spuštěn"
 
+#: ../src/pamac-install/installer.vala ../src/pamac-manager/manager_window.vala
+msgid "Waiting for another package manager to quit"
+msgstr "Čekání na ukončení jiného správce balíčků"
+
 #: ../src/pamac-tray/tray.vala ../src/pamac-manager/manager_window.vala
 msgid "Your system is up-to-date"
 msgstr "Váš systém je aktuální"
@@ -400,10 +405,6 @@ msgstr "Instalace"
 #: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
 msgid "Remove"
 msgstr "Odstranit"
-
-#: ../src/pamac-manager/manager_window.vala
-msgid "Waiting for another package manager to quit"
-msgstr "Čekání na ukončení jiného správce balíčků"
 
 #: ../src/pamac-manager/manager_window.vala
 #, c-format
@@ -580,6 +581,10 @@ msgstr "rychlost"
 msgid "Random"
 msgstr "náhodně"
 
+#: ../data/polkit/org.pamac.policy.in
+msgid "Authentication is required"
+msgstr "Je vyžadováno ověření"
+
 #: ../data/interface/choose_provider_dialog.ui
 msgid "Choose a Provider"
 msgstr "Vybrat poskytovatele"
@@ -678,8 +683,12 @@ msgid "Remove unrequired dependencies"
 msgstr "Odebrat nepotřebné závislosti"
 
 #: ../data/interface/preferences_dialog.ui
-msgid "When removing a package, also remove its dependencies that are not required by other packages"
-msgstr "Při odebírání balíčku také odebrat jeho závislosti, které nejsou vyžadovány jinými balíčky"
+msgid ""
+"When removing a package, also remove its dependencies that are not required "
+"by other packages"
+msgstr ""
+"Při odebírání balíčku také odebrat jeho závislosti, které nejsou vyžadovány "
+"jinými balíčky"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Check available disk space"
@@ -702,6 +711,22 @@ msgid "General"
 msgstr "Obecné"
 
 #: ../data/interface/preferences_dialog.ui
+msgid "Background color:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Text color:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Font:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Terminal"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
 msgid "Use mirrors from:"
 msgstr "Použít zrcadla z:"
 
@@ -719,10 +744,12 @@ msgstr "Oficiální repozitáře"
 
 #: ../data/interface/preferences_dialog.ui
 msgid ""
-"AUR is a community maintained repository so it presents potential risks and problems.\n"
+"AUR is a community maintained repository so it presents potential risks and "
+"problems.\n"
 "All AUR users should be familiar with the build process."
 msgstr ""
-"AUR je komunitně udržovaný repozitář, to sebou nese potencionální rizika a problémy.\n"
+"AUR je komunitně udržovaný repozitář, to sebou nese potencionální rizika a "
+"problémy.\n"
 "Všichni uživatelé AUR by měli znát postup vytváření balíčku neboli buildu."
 
 #: ../data/interface/preferences_dialog.ui
@@ -752,22 +779,6 @@ msgstr "Vyčistit mezipaměť"
 #: ../data/interface/preferences_dialog.ui
 msgid "Cache"
 msgstr "Mezipaměť"
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Terminal"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Background color"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Text color"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Font"
-msgstr ""
 
 #: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "Choose Ignored Upgrades"

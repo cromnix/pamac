@@ -14,19 +14,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2016-04-24 08:44+0200\n"
+"POT-Creation-Date: 2017-10-27 17:56-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
-"Language-Team: Chinese (China) (http://www.transifex.com/manjarolinux/manjaro-pamac/language/zh_CN/)\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/manjarolinux/"
+"manjaro-pamac/language/zh_CN/)\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-
-#: data/polkit/org.pamac.policy
-msgid "Authentication is required"
-msgstr "需要验证"
 
 #: ../src/pamac-user-daemon/user_daemon.vala
 msgid "Unknown"
@@ -178,6 +175,10 @@ msgstr "安装"
 #: ../src/transaction.vala
 msgid "To reinstall"
 msgstr "重新安装"
+
+#: ../src/transaction.vala
+msgid "To upgrade"
+msgstr ""
 
 #: ../src/transaction.vala ../src/pamac-manager/manager_window.vala
 msgid "Total download size"
@@ -357,6 +358,10 @@ msgstr "事务成功完成"
 msgid "Pamac is already running"
 msgstr "Pamac已经运行"
 
+#: ../src/pamac-install/installer.vala ../src/pamac-manager/manager_window.vala
+msgid "Waiting for another package manager to quit"
+msgstr "正在等待另一包管理器退出"
+
 #: ../src/pamac-tray/tray.vala ../src/pamac-manager/manager_window.vala
 msgid "Your system is up-to-date"
 msgstr "系统为最新状态"
@@ -395,10 +400,6 @@ msgstr "安装"
 #: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
 msgid "Remove"
 msgstr "移除"
-
-#: ../src/pamac-manager/manager_window.vala
-msgid "Waiting for another package manager to quit"
-msgstr "正在等待另一包管理器退出"
 
 #: ../src/pamac-manager/manager_window.vala
 #, c-format
@@ -573,6 +574,10 @@ msgstr "速度"
 msgid "Random"
 msgstr "随机"
 
+#: ../data/polkit/org.pamac.policy.in
+msgid "Authentication is required"
+msgstr "需要验证"
+
 #: ../data/interface/choose_provider_dialog.ui
 msgid "Choose a Provider"
 msgstr "选择提供者"
@@ -671,7 +676,9 @@ msgid "Remove unrequired dependencies"
 msgstr "移除不需要的依赖"
 
 #: ../data/interface/preferences_dialog.ui
-msgid "When removing a package, also remove its dependencies that are not required by other packages"
+msgid ""
+"When removing a package, also remove its dependencies that are not required "
+"by other packages"
 msgstr "移除软件包时，也移除该软件包需要，但其他软件包不需要的依赖"
 
 #: ../data/interface/preferences_dialog.ui
@@ -695,6 +702,22 @@ msgid "General"
 msgstr "常规"
 
 #: ../data/interface/preferences_dialog.ui
+msgid "Background color:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Text color:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Font:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Terminal"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
 msgid "Use mirrors from:"
 msgstr "使用镜像从："
 
@@ -712,7 +735,8 @@ msgstr "官方软件仓库"
 
 #: ../data/interface/preferences_dialog.ui
 msgid ""
-"AUR is a community maintained repository so it presents potential risks and problems.\n"
+"AUR is a community maintained repository so it presents potential risks and "
+"problems.\n"
 "All AUR users should be familiar with the build process."
 msgstr ""
 "AUR 是由社区维护的仓库，所以它具有潜在的风险和问题。\n"
@@ -745,22 +769,6 @@ msgstr "清除缓存"
 #: ../data/interface/preferences_dialog.ui
 msgid "Cache"
 msgstr "缓存"
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Terminal"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Background color"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Text color"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Font"
-msgstr ""
 
 #: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "Choose Ignored Upgrades"

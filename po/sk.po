@@ -14,19 +14,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2016-04-24 08:44+0200\n"
+"POT-Creation-Date: 2017-10-27 17:56-0300\n"
 "PO-Revision-Date: 2017-07-30 06:06+0000\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
-"Language-Team: Slovak (http://www.transifex.com/manjarolinux/manjaro-pamac/language/sk/)\n"
+"Language-Team: Slovak (http://www.transifex.com/manjarolinux/manjaro-pamac/"
+"language/sk/)\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-
-#: data/polkit/org.pamac.policy
-msgid "Authentication is required"
-msgstr "Vyžaduje sa overenie totožnosti"
 
 #: ../src/pamac-user-daemon/user_daemon.vala
 msgid "Unknown"
@@ -88,7 +85,8 @@ msgstr "nie je možné vyriešiť závislosť „%s“ požadovanú balíkom %s"
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
 msgid "installing %s (%s) breaks dependency '%s' required by %s"
-msgstr "nainštalovaním balíka %s (%s) sa poruší závislosť „%s“ požadovaná balíkom %s"
+msgstr ""
+"nainštalovaním balíka %s (%s) sa poruší závislosť „%s“ požadovaná balíkom %s"
 
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
@@ -178,6 +176,10 @@ msgstr "Na nainštalovanie"
 #: ../src/transaction.vala
 msgid "To reinstall"
 msgstr "Na preinštalovanie"
+
+#: ../src/transaction.vala
+msgid "To upgrade"
+msgstr ""
 
 #: ../src/transaction.vala ../src/pamac-manager/manager_window.vala
 msgid "Total download size"
@@ -359,6 +361,10 @@ msgstr "Transakcia bola úspešná"
 msgid "Pamac is already running"
 msgstr "Program Pamac je už spustený"
 
+#: ../src/pamac-install/installer.vala ../src/pamac-manager/manager_window.vala
+msgid "Waiting for another package manager to quit"
+msgstr "Čaká sa na ukončenie iného správcu balíkov"
+
 #: ../src/pamac-tray/tray.vala ../src/pamac-manager/manager_window.vala
 msgid "Your system is up-to-date"
 msgstr "Váš systém je aktuálny"
@@ -399,10 +405,6 @@ msgstr "Inštalovať"
 #: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
 msgid "Remove"
 msgstr "Odstrániť"
-
-#: ../src/pamac-manager/manager_window.vala
-msgid "Waiting for another package manager to quit"
-msgstr "Čaká sa na ukončenie iného správcu balíkov"
 
 #: ../src/pamac-manager/manager_window.vala
 #, c-format
@@ -579,6 +581,10 @@ msgstr "Rýchlosti"
 msgid "Random"
 msgstr "Náhodne"
 
+#: ../data/polkit/org.pamac.policy.in
+msgid "Authentication is required"
+msgstr "Vyžaduje sa overenie totožnosti"
+
 #: ../data/interface/choose_provider_dialog.ui
 msgid "Choose a Provider"
 msgstr "Voľba poskytovateľa"
@@ -677,8 +683,12 @@ msgid "Remove unrequired dependencies"
 msgstr "Odstrániť nepožadované závislosti"
 
 #: ../data/interface/preferences_dialog.ui
-msgid "When removing a package, also remove its dependencies that are not required by other packages"
-msgstr "Pri odstránení balíka tiež odstráni závislosti, ktoré nie sú potrebné inými balíkmi"
+msgid ""
+"When removing a package, also remove its dependencies that are not required "
+"by other packages"
+msgstr ""
+"Pri odstránení balíka tiež odstráni závislosti, ktoré nie sú potrebné inými "
+"balíkmi"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Check available disk space"
@@ -701,6 +711,22 @@ msgid "General"
 msgstr "Všeobecné"
 
 #: ../data/interface/preferences_dialog.ui
+msgid "Background color:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Text color:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Font:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Terminal"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
 msgid "Use mirrors from:"
 msgstr "Použiť zrkadlá z:"
 
@@ -718,11 +744,14 @@ msgstr "Oficiálne repozitáre"
 
 #: ../data/interface/preferences_dialog.ui
 msgid ""
-"AUR is a community maintained repository so it presents potential risks and problems.\n"
+"AUR is a community maintained repository so it presents potential risks and "
+"problems.\n"
 "All AUR users should be familiar with the build process."
 msgstr ""
-"AUR je repozitár spravovaný komunitou, preto predstavuje potenciálne hrozby a problémy.\n"
-"Všetci používatelia repozitára AUR by mali byť oboznámení s procesom zostavovania balíkov."
+"AUR je repozitár spravovaný komunitou, preto predstavuje potenciálne hrozby "
+"a problémy.\n"
+"Všetci používatelia repozitára AUR by mali byť oboznámení s procesom "
+"zostavovania balíkov."
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Enable AUR support"
@@ -751,22 +780,6 @@ msgstr "Vyčistiť vyrovnávaciu pamäť"
 #: ../data/interface/preferences_dialog.ui
 msgid "Cache"
 msgstr "Vyrovnávacia pamäť"
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Terminal"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Background color"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Text color"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Font"
-msgstr ""
 
 #: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "Choose Ignored Upgrades"

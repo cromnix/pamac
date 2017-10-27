@@ -19,19 +19,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2016-04-24 08:44+0200\n"
+"POT-Creation-Date: 2017-10-27 17:56-0300\n"
 "PO-Revision-Date: 2017-08-02 11:35+0000\n"
 "Last-Translator: Piotr Strębski <strebski@gmail.com>\n"
-"Language-Team: Polish (http://www.transifex.com/manjarolinux/manjaro-pamac/language/pl/)\n"
+"Language-Team: Polish (http://www.transifex.com/manjarolinux/manjaro-pamac/"
+"language/pl/)\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
-
-#: data/polkit/org.pamac.policy
-msgid "Authentication is required"
-msgstr "Wymagane jest uwierzytelnienie"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
+"%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
+"%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #: ../src/pamac-user-daemon/user_daemon.vala
 msgid "Unknown"
@@ -183,6 +182,10 @@ msgstr "Do zainstalowania"
 #: ../src/transaction.vala
 msgid "To reinstall"
 msgstr "Do przeinstalowania"
+
+#: ../src/transaction.vala
+msgid "To upgrade"
+msgstr ""
 
 #: ../src/transaction.vala ../src/pamac-manager/manager_window.vala
 msgid "Total download size"
@@ -365,6 +368,10 @@ msgstr "Operacja zakończona sukcesem"
 msgid "Pamac is already running"
 msgstr "Pamac jest już uruchomiony"
 
+#: ../src/pamac-install/installer.vala ../src/pamac-manager/manager_window.vala
+msgid "Waiting for another package manager to quit"
+msgstr "Oczekiwanie na zakończenie innego menedżera pakietów"
+
 #: ../src/pamac-tray/tray.vala ../src/pamac-manager/manager_window.vala
 msgid "Your system is up-to-date"
 msgstr "Twój system jest w pełni zaktualizowany"
@@ -406,10 +413,6 @@ msgstr "Zainstaluj"
 #: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
 msgid "Remove"
 msgstr "Usuń"
-
-#: ../src/pamac-manager/manager_window.vala
-msgid "Waiting for another package manager to quit"
-msgstr "Oczekiwanie na zakończenie innego menedżera pakietów"
 
 #: ../src/pamac-manager/manager_window.vala
 #, c-format
@@ -587,6 +590,10 @@ msgstr "Prędkość"
 msgid "Random"
 msgstr "Losowy"
 
+#: ../data/polkit/org.pamac.policy.in
+msgid "Authentication is required"
+msgstr "Wymagane jest uwierzytelnienie"
+
 #: ../data/interface/choose_provider_dialog.ui
 msgid "Choose a Provider"
 msgstr "Wybierz dostawcę"
@@ -685,8 +692,12 @@ msgid "Remove unrequired dependencies"
 msgstr "Usuwanie niewymaganych zależności"
 
 #: ../data/interface/preferences_dialog.ui
-msgid "When removing a package, also remove its dependencies that are not required by other packages"
-msgstr "Podczas usuwania pakietu usuwać także te zależności, które nie są już wymagane przez inne pakiety"
+msgid ""
+"When removing a package, also remove its dependencies that are not required "
+"by other packages"
+msgstr ""
+"Podczas usuwania pakietu usuwać także te zależności, które nie są już "
+"wymagane przez inne pakiety"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Check available disk space"
@@ -709,6 +720,22 @@ msgid "General"
 msgstr "Ogólne"
 
 #: ../data/interface/preferences_dialog.ui
+msgid "Background color:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Text color:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Font:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Terminal"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
 msgid "Use mirrors from:"
 msgstr "Użyj serwerów zwierciadlanych z:"
 
@@ -726,11 +753,14 @@ msgstr "Repozytoria oficjalne"
 
 #: ../data/interface/preferences_dialog.ui
 msgid ""
-"AUR is a community maintained repository so it presents potential risks and problems.\n"
+"AUR is a community maintained repository so it presents potential risks and "
+"problems.\n"
 "All AUR users should be familiar with the build process."
 msgstr ""
-"AUR jest repozytorium zarządzanym przez społeczność, w związku z czym stanowi potencjalne źródło ryzyka i problemów.\n"
-"Wszyscy użytkownicy AUR powinni być zaznajomieni z procesem tworzenia pakietów. "
+"AUR jest repozytorium zarządzanym przez społeczność, w związku z czym "
+"stanowi potencjalne źródło ryzyka i problemów.\n"
+"Wszyscy użytkownicy AUR powinni być zaznajomieni z procesem tworzenia "
+"pakietów. "
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Enable AUR support"
@@ -759,22 +789,6 @@ msgstr "Wyczyść pamięć podręczną"
 #: ../data/interface/preferences_dialog.ui
 msgid "Cache"
 msgstr "Pamięć podręczna"
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Terminal"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Background color"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Text color"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Font"
-msgstr ""
 
 #: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "Choose Ignored Upgrades"

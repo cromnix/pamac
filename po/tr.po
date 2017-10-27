@@ -13,19 +13,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2016-04-24 08:44+0200\n"
+"POT-Creation-Date: 2017-10-27 17:56-0300\n"
 "PO-Revision-Date: 2017-08-04 06:07+0000\n"
 "Last-Translator: Demiray Muhterem <mdemiray@msn.com>\n"
-"Language-Team: Turkish (http://www.transifex.com/manjarolinux/manjaro-pamac/language/tr/)\n"
+"Language-Team: Turkish (http://www.transifex.com/manjarolinux/manjaro-pamac/"
+"language/tr/)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-
-#: data/polkit/org.pamac.policy
-msgid "Authentication is required"
-msgstr "Kimlik doğrulaması gerekli"
 
 #: ../src/pamac-user-daemon/user_daemon.vala
 msgid "Unknown"
@@ -179,6 +176,10 @@ msgstr "Kurulacak paketler"
 #: ../src/transaction.vala
 msgid "To reinstall"
 msgstr "Kurulacak paketler"
+
+#: ../src/transaction.vala
+msgid "To upgrade"
+msgstr ""
 
 #: ../src/transaction.vala ../src/pamac-manager/manager_window.vala
 msgid "Total download size"
@@ -359,6 +360,10 @@ msgstr "Işlem Başarılı"
 msgid "Pamac is already running"
 msgstr "Pamac Zaten Çalışıyor"
 
+#: ../src/pamac-install/installer.vala ../src/pamac-manager/manager_window.vala
+msgid "Waiting for another package manager to quit"
+msgstr "Başka bir paket yöneticisinin çıkması ya da durması bekleniyor"
+
 #: ../src/pamac-tray/tray.vala ../src/pamac-manager/manager_window.vala
 msgid "Your system is up-to-date"
 msgstr "Sisteminiz Güncel"
@@ -398,10 +403,6 @@ msgstr "Yükle"
 #: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
 msgid "Remove"
 msgstr "Kaldır"
-
-#: ../src/pamac-manager/manager_window.vala
-msgid "Waiting for another package manager to quit"
-msgstr "Başka bir paket yöneticisinin çıkması ya da durması bekleniyor"
 
 #: ../src/pamac-manager/manager_window.vala
 #, c-format
@@ -577,6 +578,10 @@ msgstr "Hız"
 msgid "Random"
 msgstr "Rastgele"
 
+#: ../data/polkit/org.pamac.policy.in
+msgid "Authentication is required"
+msgstr "Kimlik doğrulaması gerekli"
+
 #: ../data/interface/choose_provider_dialog.ui
 msgid "Choose a Provider"
 msgstr "Sağlayıcı Seç"
@@ -675,8 +680,12 @@ msgid "Remove unrequired dependencies"
 msgstr "Gereksiz bağımlılıkları kaldır"
 
 #: ../data/interface/preferences_dialog.ui
-msgid "When removing a package, also remove its dependencies that are not required by other packages"
-msgstr "Bir paket kaldırılırken, başka bir uygulama aynı bağımlılıkları kullanmıyorsa paketi bağımlılıkları ile birlikte kaldır"
+msgid ""
+"When removing a package, also remove its dependencies that are not required "
+"by other packages"
+msgstr ""
+"Bir paket kaldırılırken, başka bir uygulama aynı bağımlılıkları "
+"kullanmıyorsa paketi bağımlılıkları ile birlikte kaldır"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Check available disk space"
@@ -699,6 +708,22 @@ msgid "General"
 msgstr "Genel"
 
 #: ../data/interface/preferences_dialog.ui
+msgid "Background color:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Text color:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Font:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Terminal"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
 msgid "Use mirrors from:"
 msgstr "Yansıyı kullan:"
 
@@ -716,10 +741,12 @@ msgstr "Resmi Depolar"
 
 #: ../data/interface/preferences_dialog.ui
 msgid ""
-"AUR is a community maintained repository so it presents potential risks and problems.\n"
+"AUR is a community maintained repository so it presents potential risks and "
+"problems.\n"
 "All AUR users should be familiar with the build process."
 msgstr ""
-"AUR topluluk depolarının potansiyel riskler ve sorunlar içerebileceğini unutmayın.\n"
+"AUR topluluk depolarının potansiyel riskler ve sorunlar içerebileceğini "
+"unutmayın.\n"
 "AUR hakkında bilgi sahibi iseniz bunları biliyor olmalısınız."
 
 #: ../data/interface/preferences_dialog.ui
@@ -749,22 +776,6 @@ msgstr "Önbelleği temizle"
 #: ../data/interface/preferences_dialog.ui
 msgid "Cache"
 msgstr "Önbellek"
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Terminal"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Background color"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Text color"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Font"
-msgstr ""
 
 #: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "Choose Ignored Upgrades"

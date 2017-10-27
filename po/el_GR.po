@@ -9,19 +9,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2016-04-24 08:44+0200\n"
+"POT-Creation-Date: 2017-10-27 17:56-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
-"Language-Team: Greek (Greece) (http://www.transifex.com/manjarolinux/manjaro-pamac/language/el_GR/)\n"
+"Language-Team: Greek (Greece) (http://www.transifex.com/manjarolinux/manjaro-"
+"pamac/language/el_GR/)\n"
 "Language: el_GR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: data/polkit/org.pamac.policy
-msgid "Authentication is required"
-msgstr "Απαιτείται πιστοποίηση"
 
 #: ../src/pamac-user-daemon/user_daemon.vala
 msgid "Unknown"
@@ -173,6 +170,10 @@ msgstr "Προς εγκατάσταση"
 #: ../src/transaction.vala
 msgid "To reinstall"
 msgstr "Προς επανεγκατάσταση"
+
+#: ../src/transaction.vala
+msgid "To upgrade"
+msgstr ""
 
 #: ../src/transaction.vala ../src/pamac-manager/manager_window.vala
 msgid "Total download size"
@@ -353,6 +354,10 @@ msgstr "Οι ενέργειες ολοκληρώθηκαν επιτυχώς"
 msgid "Pamac is already running"
 msgstr "Ο Pamac είναι ήδη ενεργός"
 
+#: ../src/pamac-install/installer.vala ../src/pamac-manager/manager_window.vala
+msgid "Waiting for another package manager to quit"
+msgstr "Περιμένοντας να τερματίσει ένας άλλος διαχειριστής πακέτων."
+
 #: ../src/pamac-tray/tray.vala ../src/pamac-manager/manager_window.vala
 msgid "Your system is up-to-date"
 msgstr "Το σύστημα σας είναι ενημερωμένο"
@@ -392,10 +397,6 @@ msgstr "Εγκατάσταση"
 #: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
 msgid "Remove"
 msgstr "Απεγκατάσταση"
-
-#: ../src/pamac-manager/manager_window.vala
-msgid "Waiting for another package manager to quit"
-msgstr "Περιμένοντας να τερματίσει ένας άλλος διαχειριστής πακέτων."
 
 #: ../src/pamac-manager/manager_window.vala
 #, c-format
@@ -571,6 +572,10 @@ msgstr "Ταχύτητα"
 msgid "Random"
 msgstr "Τυχαίο"
 
+#: ../data/polkit/org.pamac.policy.in
+msgid "Authentication is required"
+msgstr "Απαιτείται πιστοποίηση"
+
 #: ../data/interface/choose_provider_dialog.ui
 msgid "Choose a Provider"
 msgstr "Επέλεξε έναν πάροχο "
@@ -669,8 +674,12 @@ msgid "Remove unrequired dependencies"
 msgstr "Αφαίρεση  αχρησιμοποίητων εξαρτήσεων"
 
 #: ../data/interface/preferences_dialog.ui
-msgid "When removing a package, also remove its dependencies that are not required by other packages"
-msgstr "Όταν αφαιρείτε ένα πακέτο, επίσης αφαιρέστε και τις εξαρτήσεις του, που δεν χρειάζονται απο άλλα πακέτα"
+msgid ""
+"When removing a package, also remove its dependencies that are not required "
+"by other packages"
+msgstr ""
+"Όταν αφαιρείτε ένα πακέτο, επίσης αφαιρέστε και τις εξαρτήσεις του, που δεν "
+"χρειάζονται απο άλλα πακέτα"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Check available disk space"
@@ -693,6 +702,22 @@ msgid "General"
 msgstr "Γενικά"
 
 #: ../data/interface/preferences_dialog.ui
+msgid "Background color:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Text color:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Font:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Terminal"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
 msgid "Use mirrors from:"
 msgstr "Χρησιμοποίησε διακομιστές από:"
 
@@ -710,9 +735,13 @@ msgstr "Επίσημα αποθετήρια"
 
 #: ../data/interface/preferences_dialog.ui
 msgid ""
-"AUR is a community maintained repository so it presents potential risks and problems.\n"
+"AUR is a community maintained repository so it presents potential risks and "
+"problems.\n"
 "All AUR users should be familiar with the build process."
-msgstr "Το AUR είναι αποθετήριο συντηρούμενο από την κοινότητα, γι'αυτό και ενδεχομένως να δημιουργήσει προβλήματα. Όλοι οι χρήστες του AUR, θα πρέπει να είναι εξοικειωμένοι με την διαδικασία χτισίματος των πακέτων."
+msgstr ""
+"Το AUR είναι αποθετήριο συντηρούμενο από την κοινότητα, γι'αυτό και "
+"ενδεχομένως να δημιουργήσει προβλήματα. Όλοι οι χρήστες του AUR, θα πρέπει "
+"να είναι εξοικειωμένοι με την διαδικασία χτισίματος των πακέτων."
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Enable AUR support"
@@ -741,22 +770,6 @@ msgstr "Καθαρισμός αποθήκης"
 #: ../data/interface/preferences_dialog.ui
 msgid "Cache"
 msgstr "Αποθήκη"
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Terminal"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Background color"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Text color"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Font"
-msgstr ""
 
 #: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "Choose Ignored Upgrades"

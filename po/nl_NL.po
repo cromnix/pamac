@@ -13,19 +13,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2016-04-24 08:44+0200\n"
+"POT-Creation-Date: 2017-10-27 17:56-0300\n"
 "PO-Revision-Date: 2017-07-30 09:19+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
-"Language-Team: Dutch (Netherlands) (http://www.transifex.com/manjarolinux/manjaro-pamac/language/nl_NL/)\n"
+"Language-Team: Dutch (Netherlands) (http://www.transifex.com/manjarolinux/"
+"manjaro-pamac/language/nl_NL/)\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: data/polkit/org.pamac.policy
-msgid "Authentication is required"
-msgstr "Authenticatie vereist"
 
 #: ../src/pamac-user-daemon/user_daemon.vala
 msgid "Unknown"
@@ -87,7 +84,8 @@ msgstr "niet in staat om te voldoen aan afhankelijkheid '%s', vereist voor %s"
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
 msgid "installing %s (%s) breaks dependency '%s' required by %s"
-msgstr "installeren van %s (%s) doorbreekt afhankelijkheid '%s', vereist voor %s"
+msgstr ""
+"installeren van %s (%s) doorbreekt afhankelijkheid '%s', vereist voor %s"
 
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
@@ -177,6 +175,10 @@ msgstr "Te installeren"
 #: ../src/transaction.vala
 msgid "To reinstall"
 msgstr "Te herinstalleren"
+
+#: ../src/transaction.vala
+msgid "To upgrade"
+msgstr ""
 
 #: ../src/transaction.vala ../src/pamac-manager/manager_window.vala
 msgid "Total download size"
@@ -357,6 +359,10 @@ msgstr "De overdracht is succesvol afgerond"
 msgid "Pamac is already running"
 msgstr "Pamac draait al"
 
+#: ../src/pamac-install/installer.vala ../src/pamac-manager/manager_window.vala
+msgid "Waiting for another package manager to quit"
+msgstr "Bezig met wachten op het afsluiten van een andere pakketbeheerder"
+
 #: ../src/pamac-tray/tray.vala ../src/pamac-manager/manager_window.vala
 msgid "Your system is up-to-date"
 msgstr "Uw systeem is bijgewerkt"
@@ -396,10 +402,6 @@ msgstr "Installeren"
 #: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
 msgid "Remove"
 msgstr "Verwijderen"
-
-#: ../src/pamac-manager/manager_window.vala
-msgid "Waiting for another package manager to quit"
-msgstr "Bezig met wachten op het afsluiten van een andere pakketbeheerder"
 
 #: ../src/pamac-manager/manager_window.vala
 #, c-format
@@ -575,6 +577,10 @@ msgstr "Snelheid"
 msgid "Random"
 msgstr "Willekeurig"
 
+#: ../data/polkit/org.pamac.policy.in
+msgid "Authentication is required"
+msgstr "Authenticatie vereist"
+
 #: ../data/interface/choose_provider_dialog.ui
 msgid "Choose a Provider"
 msgstr "Kies een leverancier"
@@ -673,8 +679,12 @@ msgid "Remove unrequired dependencies"
 msgstr "Niet-benodigde afhankelijkheden verwijderen"
 
 #: ../data/interface/preferences_dialog.ui
-msgid "When removing a package, also remove its dependencies that are not required by other packages"
-msgstr "Verwijder, bij het verwijderen van een pakket, ook de afhankelijkheden die niet vereist zijn door andere pakketten"
+msgid ""
+"When removing a package, also remove its dependencies that are not required "
+"by other packages"
+msgstr ""
+"Verwijder, bij het verwijderen van een pakket, ook de afhankelijkheden die "
+"niet vereist zijn door andere pakketten"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Check available disk space"
@@ -697,6 +707,22 @@ msgid "General"
 msgstr "Algemeen"
 
 #: ../data/interface/preferences_dialog.ui
+msgid "Background color:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Text color:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Font:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Terminal"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
 msgid "Use mirrors from:"
 msgstr "Spiegelservers gebruiken van:"
 
@@ -714,10 +740,12 @@ msgstr "Officiële pakketbronnen"
 
 #: ../data/interface/preferences_dialog.ui
 msgid ""
-"AUR is a community maintained repository so it presents potential risks and problems.\n"
+"AUR is a community maintained repository so it presents potential risks and "
+"problems.\n"
 "All AUR users should be familiar with the build process."
 msgstr ""
-"AUR is een pakketbron die beheerd wordt door de gemeenschap. Dit kan leiden tot risico's en problemen.\n"
+"AUR is een pakketbron die beheerd wordt door de gemeenschap. Dit kan leiden "
+"tot risico's en problemen.\n"
 "Alle AUR-gebruikers dienen bekend te zijn met het bouwproces."
 
 #: ../data/interface/preferences_dialog.ui
@@ -747,22 +775,6 @@ msgstr "Cache opschonen"
 #: ../data/interface/preferences_dialog.ui
 msgid "Cache"
 msgstr "Cache"
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Terminal"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Background color"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Text color"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Font"
-msgstr ""
 
 #: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "Choose Ignored Upgrades"

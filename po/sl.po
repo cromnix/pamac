@@ -15,19 +15,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2016-04-24 08:44+0200\n"
+"POT-Creation-Date: 2017-10-27 17:56-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
-"Language-Team: Slovenian (http://www.transifex.com/manjarolinux/manjaro-pamac/language/sl/)\n"
+"Language-Team: Slovenian (http://www.transifex.com/manjarolinux/manjaro-"
+"pamac/language/sl/)\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
-
-#: data/polkit/org.pamac.policy
-msgid "Authentication is required"
-msgstr "Zahtevana je overitev"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #: ../src/pamac-user-daemon/user_daemon.vala
 msgid "Unknown"
@@ -179,6 +177,10 @@ msgstr "Za namestitev"
 #: ../src/transaction.vala
 msgid "To reinstall"
 msgstr "Za ponovno namestitev"
+
+#: ../src/transaction.vala
+msgid "To upgrade"
+msgstr ""
 
 #: ../src/transaction.vala ../src/pamac-manager/manager_window.vala
 msgid "Total download size"
@@ -361,6 +363,10 @@ msgstr "Transakcija uspešno zaključena"
 msgid "Pamac is already running"
 msgstr "Pamac je že v teku"
 
+#: ../src/pamac-install/installer.vala ../src/pamac-manager/manager_window.vala
+msgid "Waiting for another package manager to quit"
+msgstr "Čakanje na izhod drugega paketnega upravljalnika"
+
 #: ../src/pamac-tray/tray.vala ../src/pamac-manager/manager_window.vala
 msgid "Your system is up-to-date"
 msgstr "Vaš sistem je posodobljen"
@@ -402,10 +408,6 @@ msgstr "Namesti"
 #: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
 msgid "Remove"
 msgstr "Odstrani"
-
-#: ../src/pamac-manager/manager_window.vala
-msgid "Waiting for another package manager to quit"
-msgstr "Čakanje na izhod drugega paketnega upravljalnika"
 
 #: ../src/pamac-manager/manager_window.vala
 #, c-format
@@ -583,6 +585,10 @@ msgstr "Hitrost"
 msgid "Random"
 msgstr "Naključno"
 
+#: ../data/polkit/org.pamac.policy.in
+msgid "Authentication is required"
+msgstr "Zahtevana je overitev"
+
 #: ../data/interface/choose_provider_dialog.ui
 msgid "Choose a Provider"
 msgstr "Izberi ponudnika"
@@ -681,8 +687,12 @@ msgid "Remove unrequired dependencies"
 msgstr "Odstrani nezahtevane odvisnosti"
 
 #: ../data/interface/preferences_dialog.ui
-msgid "When removing a package, also remove its dependencies that are not required by other packages"
-msgstr "Ob odstranjevanju paketov odstrani tudi tiste odvisnosti, ki niso zahtevani s strani drugih paketov"
+msgid ""
+"When removing a package, also remove its dependencies that are not required "
+"by other packages"
+msgstr ""
+"Ob odstranjevanju paketov odstrani tudi tiste odvisnosti, ki niso zahtevani "
+"s strani drugih paketov"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Check available disk space"
@@ -705,6 +715,22 @@ msgid "General"
 msgstr "Splošno"
 
 #: ../data/interface/preferences_dialog.ui
+msgid "Background color:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Text color:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Font:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Terminal"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
 msgid "Use mirrors from:"
 msgstr "Uporabi zrcalne strežnike iz:"
 
@@ -722,11 +748,14 @@ msgstr "Uradna skladišča"
 
 #: ../data/interface/preferences_dialog.ui
 msgid ""
-"AUR is a community maintained repository so it presents potential risks and problems.\n"
+"AUR is a community maintained repository so it presents potential risks and "
+"problems.\n"
 "All AUR users should be familiar with the build process."
 msgstr ""
-"AUR je skladišče, ki ga urejajo uporabniki, zaradi česar je lahko potencialni vir tveganj in težav.\n"
-"Priporočljivo je, da so vsi uporabniki AUR seznanjeni s procesom izgradnje programov."
+"AUR je skladišče, ki ga urejajo uporabniki, zaradi česar je lahko "
+"potencialni vir tveganj in težav.\n"
+"Priporočljivo je, da so vsi uporabniki AUR seznanjeni s procesom izgradnje "
+"programov."
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Enable AUR support"
@@ -755,22 +784,6 @@ msgstr "Izbriši predpomnilnik"
 #: ../data/interface/preferences_dialog.ui
 msgid "Cache"
 msgstr "Predpomnilnik"
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Terminal"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Background color"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Text color"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Font"
-msgstr ""
 
 #: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "Choose Ignored Upgrades"

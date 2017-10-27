@@ -8,19 +8,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2016-04-24 08:44+0200\n"
+"POT-Creation-Date: 2017-10-27 17:56-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
-"Language-Team: Belarusian (http://www.transifex.com/manjarolinux/manjaro-pamac/language/be/)\n"
+"Language-Team: Belarusian (http://www.transifex.com/manjarolinux/manjaro-"
+"pamac/language/be/)\n"
 "Language: be\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
-
-#: data/polkit/org.pamac.policy
-msgid "Authentication is required"
-msgstr ""
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: ../src/pamac-user-daemon/user_daemon.vala
 msgid "Unknown"
@@ -171,6 +170,10 @@ msgstr ""
 
 #: ../src/transaction.vala
 msgid "To reinstall"
+msgstr ""
+
+#: ../src/transaction.vala
+msgid "To upgrade"
 msgstr ""
 
 #: ../src/transaction.vala ../src/pamac-manager/manager_window.vala
@@ -354,6 +357,10 @@ msgstr ""
 msgid "Pamac is already running"
 msgstr ""
 
+#: ../src/pamac-install/installer.vala ../src/pamac-manager/manager_window.vala
+msgid "Waiting for another package manager to quit"
+msgstr ""
+
 #: ../src/pamac-tray/tray.vala ../src/pamac-manager/manager_window.vala
 msgid "Your system is up-to-date"
 msgstr ""
@@ -394,10 +401,6 @@ msgstr ""
 
 #: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
 msgid "Remove"
-msgstr ""
-
-#: ../src/pamac-manager/manager_window.vala
-msgid "Waiting for another package manager to quit"
 msgstr ""
 
 #: ../src/pamac-manager/manager_window.vala
@@ -576,6 +579,10 @@ msgstr ""
 msgid "Random"
 msgstr ""
 
+#: ../data/polkit/org.pamac.policy.in
+msgid "Authentication is required"
+msgstr ""
+
 #: ../data/interface/choose_provider_dialog.ui
 msgid "Choose a Provider"
 msgstr ""
@@ -674,7 +681,9 @@ msgid "Remove unrequired dependencies"
 msgstr ""
 
 #: ../data/interface/preferences_dialog.ui
-msgid "When removing a package, also remove its dependencies that are not required by other packages"
+msgid ""
+"When removing a package, also remove its dependencies that are not required "
+"by other packages"
 msgstr ""
 
 #: ../data/interface/preferences_dialog.ui
@@ -698,6 +707,22 @@ msgid "General"
 msgstr ""
 
 #: ../data/interface/preferences_dialog.ui
+msgid "Background color:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Text color:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Font:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Terminal"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
 msgid "Use mirrors from:"
 msgstr ""
 
@@ -715,7 +740,8 @@ msgstr ""
 
 #: ../data/interface/preferences_dialog.ui
 msgid ""
-"AUR is a community maintained repository so it presents potential risks and problems.\n"
+"AUR is a community maintained repository so it presents potential risks and "
+"problems.\n"
 "All AUR users should be familiar with the build process."
 msgstr ""
 
@@ -745,22 +771,6 @@ msgstr ""
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Cache"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Terminal"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Background color"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Text color"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Font"
 msgstr ""
 
 #: ../data/interface/choose_ignorepkgs_dialog.ui

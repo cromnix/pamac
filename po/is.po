@@ -11,19 +11,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2016-04-24 08:44+0200\n"
+"POT-Creation-Date: 2017-10-27 17:56-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
-"Language-Team: Icelandic (http://www.transifex.com/manjarolinux/manjaro-pamac/language/is/)\n"
+"Language-Team: Icelandic (http://www.transifex.com/manjarolinux/manjaro-"
+"pamac/language/is/)\n"
 "Language: is\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);\n"
-
-#: data/polkit/org.pamac.policy
-msgid "Authentication is required"
-msgstr "Auðkenningar er krafist"
 
 #: ../src/pamac-user-daemon/user_daemon.vala
 msgid "Unknown"
@@ -175,6 +172,10 @@ msgstr "Til uppsetningar"
 #: ../src/transaction.vala
 msgid "To reinstall"
 msgstr "Til enduruppsetningar"
+
+#: ../src/transaction.vala
+msgid "To upgrade"
+msgstr ""
 
 #: ../src/transaction.vala ../src/pamac-manager/manager_window.vala
 msgid "Total download size"
@@ -355,6 +356,10 @@ msgstr "Aðgerð lokið - tókst"
 msgid "Pamac is already running"
 msgstr "Pamac er þegar í keyrslu"
 
+#: ../src/pamac-install/installer.vala ../src/pamac-manager/manager_window.vala
+msgid "Waiting for another package manager to quit"
+msgstr "Bíð eftir að annar pakka framkvæmdastjórn hætti"
+
 #: ../src/pamac-tray/tray.vala ../src/pamac-manager/manager_window.vala
 msgid "Your system is up-to-date"
 msgstr "Kerfið þitt er með öllum nýjasta hugbúnaðinum"
@@ -394,10 +399,6 @@ msgstr "Setja upp"
 #: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
 msgid "Remove"
 msgstr "Fjarlægja"
-
-#: ../src/pamac-manager/manager_window.vala
-msgid "Waiting for another package manager to quit"
-msgstr "Bíð eftir að annar pakka framkvæmdastjórn hætti"
 
 #: ../src/pamac-manager/manager_window.vala
 #, c-format
@@ -573,6 +574,10 @@ msgstr "Hraði"
 msgid "Random"
 msgstr "Handahófskennt"
 
+#: ../data/polkit/org.pamac.policy.in
+msgid "Authentication is required"
+msgstr "Auðkenningar er krafist"
+
 #: ../data/interface/choose_provider_dialog.ui
 msgid "Choose a Provider"
 msgstr "Veldu útgefanda"
@@ -671,8 +676,12 @@ msgid "Remove unrequired dependencies"
 msgstr "Fjarlægja ónauðsynlegar kerfiskröfur"
 
 #: ../data/interface/preferences_dialog.ui
-msgid "When removing a package, also remove its dependencies that are not required by other packages"
-msgstr "Þegar pakki er fjarlægður, fjarlægja þá einnig pakka sem honum eru háðir ef þeirra er ekki krafist af öðrum pökkum"
+msgid ""
+"When removing a package, also remove its dependencies that are not required "
+"by other packages"
+msgstr ""
+"Þegar pakki er fjarlægður, fjarlægja þá einnig pakka sem honum eru háðir ef "
+"þeirra er ekki krafist af öðrum pökkum"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Check available disk space"
@@ -695,6 +704,22 @@ msgid "General"
 msgstr "Almennt"
 
 #: ../data/interface/preferences_dialog.ui
+msgid "Background color:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Text color:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Font:"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Terminal"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
 msgid "Use mirrors from:"
 msgstr "Nota spegla frá:"
 
@@ -712,10 +737,12 @@ msgstr "Opinber hugbúnaðarsöfn"
 
 #: ../data/interface/preferences_dialog.ui
 msgid ""
-"AUR is a community maintained repository so it presents potential risks and problems.\n"
+"AUR is a community maintained repository so it presents potential risks and "
+"problems.\n"
 "All AUR users should be familiar with the build process."
 msgstr ""
-"AUR er hugbúnaðarsafn sem viðhaldið er af fjölda sjálfboðaliða þannig að því fylgir ákveðin áhætta.\n"
+"AUR er hugbúnaðarsafn sem viðhaldið er af fjölda sjálfboðaliða þannig að því "
+"fylgir ákveðin áhætta.\n"
 "Allir notendur AUR ættu að vera meðvitaðir um byggingaferlið."
 
 #: ../data/interface/preferences_dialog.ui
@@ -745,22 +772,6 @@ msgstr "Hreinsa skyndiminni"
 #: ../data/interface/preferences_dialog.ui
 msgid "Cache"
 msgstr "Skyndiminni"
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Terminal"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Background color"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Text color"
-msgstr ""
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Font"
-msgstr ""
 
 #: ../data/interface/choose_ignorepkgs_dialog.ui
 msgid "Choose Ignored Upgrades"
