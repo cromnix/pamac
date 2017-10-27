@@ -4,7 +4,7 @@ MSGLANGS=$(notdir $(wildcard *.po))
 MSGOBJS=$(addprefix locale/,$(MSGLANGS:.po=/LC_MESSAGES/pamac.mo))
 
 gettext: ../data/polkit/org.pamac.policy.in $(MSGOBJS)
-	itstool -j ../data/polkit/org.pamac.policy.in -o ../data/polkit/org.pamac.policy $(MSGLANGS:.po=.mo)
+	msgfmt --xml --template ../data/polkit/org.pamac.policy.in -d ./ -o ../data/polkit/org.pamac.policy
 
 clean:
 	rm -rf locale
