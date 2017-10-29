@@ -3,7 +3,7 @@ autovala_version: 26
 project_name: pamac
 vala_version: 0.38
 
-custom: data/dbus/org.pamac.system.conf /etc/dbus-1/system.d
+custom: data/dbus/org.pamac.system.conf /usr/share/dbus-1/system.d
 custom: data/systemd/pamac-system.service /usr/lib/systemd/system
 custom: data/systemd/pamac-cleancache.service /usr/lib/systemd/system
 custom: data/systemd/pamac-cleancache.timer /usr/lib/systemd/system
@@ -17,6 +17,7 @@ else
 custom: data/config/pamac.conf /etc
 end
 
+define: ENABLE_UPDATE_ICON
 define: KDE_TRAY
 *define: DISABLE_AUR
 
@@ -212,6 +213,9 @@ end
 
 *desktop: data/pamac-install.desktop
 *desktop: data/pamac-manager.desktop
+if ENABLE_UPDATE_ICON
+desktop: data/pamac-updater.desktop
+end
 
 if KDE_TRAY
 autostart: data/pamac-tray-appindicator.desktop

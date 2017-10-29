@@ -1,6 +1,7 @@
 project('pamac',['c','vala'])
 
 DISABLE_AUR = (get_option('DISABLE_AUR') != '')
+ENABLE_UPDATE_ICON = (get_option('ENABLE_UPDATE_ICON') != '')
 KDE_TRAY = (get_option('KDE_TRAY') != '')
 
 add_global_arguments('-DGETTEXT_PACKAGE="pamac"',language: 'c')
@@ -24,7 +25,7 @@ gobject_2_0_dep = dependency('gobject-2.0')
 subdir('po')
 cfg_dbus_data = configuration_data()
 cfg_dbus_data.set ('DBUS_PREFIX',get_option('prefix'))
-meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','install_data.sh'),'/etc/dbus-1/system.d',join_paths(meson.current_source_dir(),'data/dbus','org.pamac.system.conf'))
+meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','install_data.sh'),'/usr/share/dbus-1/system.d',join_paths(meson.current_source_dir(),'data/dbus','org.pamac.system.conf'))
 
 meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','install_data.sh'),'/usr/lib/systemd/system',join_paths(meson.current_source_dir(),'data/systemd','pamac-system.service'))
 
@@ -68,6 +69,9 @@ meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','
 
 install_data('data/pamac-install.desktop',install_dir:join_paths(get_option('prefix'),get_option('datadir'),'applications'))
 install_data('data/pamac-manager.desktop',install_dir:join_paths(get_option('prefix'),get_option('datadir'),'applications'))
+if ENABLE_UPDATE_ICON
+	install_data('data/pamac-updater.desktop',install_dir:join_paths(get_option('prefix'),get_option('datadir'),'applications'))
+endif
 if KDE_TRAY
 	if (get_option('prefix').startswith('/home/'))
 		message('[33mAutostart file data/pamac-tray-appindicator.desktop will not be installed. You must create your own .desktop file and put it at ~/.config/autostart[39m')

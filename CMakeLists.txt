@@ -9,6 +9,7 @@ enable_testing ()
 option(ICON_UPDATE "Update the icon cache after installing" ON)
 option(BUILD_VALADOC "Build API documentation if Valadoc is available" OFF)
 option(DISABLE_AUR "DISABLE_AUR" OFF)
+option(ENABLE_UPDATE_ICON "ENABLE_UPDATE_ICON" OFF)
 option(KDE_TRAY "KDE_TRAY" OFF)
 
 if( NOT CMAKE_BUILD_TYPE )

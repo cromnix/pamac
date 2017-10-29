@@ -49,6 +49,8 @@ make
 
 - -DDISABLE_AUR=ON (to disable AUR in Pamac)
 - -DKDE_TRAY=ON (to build kde tray icon instead of gtk tray icon)
+- -DENABLE_UPDATE_ICON=ON (to install the update desktop entry)
+- -DICON_UPDATE=OFF (to disable updating the icon cache)
 
 ## Using CMake with Ninja
 
@@ -66,6 +68,8 @@ ninja
 
 - -DDISABLE_AUR=ON (to disable AUR in Pamac)
 - -DKDE_TRAY=ON (to build kde tray icon instead of gtk tray icon)
+- -DENABLE_UPDATE_ICON=ON (to install the update desktop entry)
+- -DICON_UPDATE=OFF (to disable updating the icon cache)
 
 ## Using Meson with Ninja
 
@@ -81,6 +85,8 @@ ninja
 
 - -DDISABLE_AUR=ON (to disable AUR in Pamac)
 - -DKDE_TRAY=ON (to build kde tray icon instead of gtk tray icon)
+- -DENABLE_UPDATE_ICON=ON (to install the update desktop entry)
+- -DICON_UPDATE=OFF (to disable updating the icon cache)
 
 ## Using configure wrapper
 
@@ -97,3 +103,5 @@ make
 
 - --disable-aur (to disable Aur in Pamac)
 - --enable-kde-tray (to build kde tray icon instead of gtk tray icon)
+- --enable-update-desktop (to install the update desktop entry)
+- --disable-icon-update (to disable updating the icon cache)

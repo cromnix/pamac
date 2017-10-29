@@ -25,6 +25,10 @@ if DISABLE_AUR
   pamac_install_vala_args += ['-D', 'DISABLE_AUR']
   pamac_install_c_args += ['-DDISABLE_AUR']
 endif
+if ENABLE_UPDATE_ICON
+  pamac_install_vala_args += ['-D', 'ENABLE_UPDATE_ICON']
+  pamac_install_c_args += ['-DENABLE_UPDATE_ICON']
+endif
 if KDE_TRAY
   pamac_install_vala_args += ['-D', 'KDE_TRAY']
   pamac_install_c_args += ['-DKDE_TRAY']

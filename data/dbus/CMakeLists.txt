@@ -6,13 +6,13 @@ IF(IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/org.pamac.system.conf)
 	install(DIRECTORY
 		${CMAKE_CURRENT_SOURCE_DIR}/org.pamac.system.conf
 	DESTINATION
-		/etc/dbus-1/system.d
+		/usr/share/dbus-1/system.d
 	)
 ELSE()
 	install(FILES
 		${CMAKE_CURRENT_SOURCE_DIR}/org.pamac.system.conf
 	DESTINATION
-		/etc/dbus-1/system.d
+		/usr/share/dbus-1/system.d
 	)
 ENDIF()
 

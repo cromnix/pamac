@@ -20,6 +20,10 @@ if DISABLE_AUR
   aur_vala_args += ['-D', 'DISABLE_AUR']
   aur_c_args += ['-DDISABLE_AUR']
 endif
+if ENABLE_UPDATE_ICON
+  aur_vala_args += ['-D', 'ENABLE_UPDATE_ICON']
+  aur_c_args += ['-DENABLE_UPDATE_ICON']
+endif
 if KDE_TRAY
   aur_vala_args += ['-D', 'KDE_TRAY']
   aur_c_args += ['-DKDE_TRAY']
