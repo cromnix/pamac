@@ -16,6 +16,7 @@ src/pamac-tray/pamac_config.vala
 src/pamac-tray/tray.vala
 src/pamac-user-daemon/alpm_config.vala
 src/pamac-user-daemon/user_daemon.vala
+src/aur.vala
 src/alpm_config.vala
 src/choose_ignorepkgs_dialog.vala
 src/choose_provider_dialog.vala
@@ -27,7 +28,6 @@ src/preferences_dialog.vala
 src/progress_box.vala
 src/transaction.vala
 src/transaction_sum_dialog.vala
-src/aur/aur.vala
 data/interface/choose_ignorepkgs_dialog.ui
 data/interface/choose_provider_dialog.ui
 data/interface/history_dialog.ui

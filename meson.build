@@ -1,10 +1,10 @@
-project('pamac',['c','vala'])
+project('pamac-classic',['c','vala'])
 
 DISABLE_AUR = (get_option('DISABLE_AUR') != '')
 ENABLE_UPDATE_ICON = (get_option('ENABLE_UPDATE_ICON') != '')
 KDE_TRAY = (get_option('KDE_TRAY') != '')
 
-add_global_arguments('-DGETTEXT_PACKAGE="pamac"',language: 'c')
+add_global_arguments('-DGETTEXT_PACKAGE="pamac-classic"',language: 'c')
 
 gdk_3_0_dep = dependency('gdk-3.0')
 gtk_3_0_dep = dependency('gtk+-3.0')
@@ -25,8 +25,6 @@ gobject_2_0_dep = dependency('gobject-2.0')
 subdir('po')
 cfg_dbus_data = configuration_data()
 cfg_dbus_data.set ('DBUS_PREFIX',get_option('prefix'))
-meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','install_data.sh'),'/usr/share/dbus-1/system.d',join_paths(meson.current_source_dir(),'data/dbus','org.pamac.system.conf'))
-
 meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','install_data.sh'),'/usr/lib/systemd/system',join_paths(meson.current_source_dir(),'data/systemd','pamac-system.service'))
 
 meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','install_data.sh'),'/usr/lib/systemd/system',join_paths(meson.current_source_dir(),'data/systemd','pamac-cleancache.service'))
@@ -60,7 +58,7 @@ pamac_transaction_gresource_xml_generator = generator(find_program('glib-compile
 
 pamac_transaction_gresource_xml_file_c = pamac_transaction_gresource_xml_generator.process(['data/pamac.transaction.gresource.xml'])
 
-meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','install_data.sh'),join_paths(get_option('prefix'),get_option('datadir'),'pamac'),join_paths(meson.current_source_dir(),'data/local','','*'))
+meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','install_data.sh'),join_paths(get_option('prefix'),get_option('datadir'),'pamac-classic'),join_paths(meson.current_source_dir(),'data/local','','*'))
 
 meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','install_data.sh'),join_paths(get_option('prefix'),get_option('datadir'),'doc'),join_paths(meson.current_source_dir(),'doc','','*'))
 
@@ -86,13 +84,13 @@ dbus_cfg_org_pamac_system_service = configure_file(input: 'data/dbus/org.pamac.s
 install_data(dbus_cfg_org_pamac_system_service,install_dir: join_paths(get_option('prefix'),get_option('datadir'),'dbus-1','system-services'))
 dbus_cfg_org_pamac_user_service = configure_file(input: 'data/dbus/org.pamac.user.service',output: 'org.pamac.user.service', configuration: cfg_dbus_data)
 install_data(dbus_cfg_org_pamac_user_service,install_dir: join_paths(get_option('prefix'),get_option('datadir'),'dbus-1','services'))
+install_data( 'data/dbus/org.pamac.system.conf',install_dir: join_paths(get_option('prefix'),get_option('datadir'),'dbus-1','system.d'))
 install_data('data/icons/16x16/apps/system-software-install.png',install_dir: join_paths(get_option('prefix'),get_option('datadir'),'icons','hicolor/16x16/apps'))
 install_data('data/icons/24x24/status/pamac-tray-no-update.png',install_dir: join_paths(get_option('prefix'),get_option('datadir'),'icons','hicolor/24x24/apps'))
 install_data('data/icons/24x24/status/pamac-tray-update.png',install_dir: join_paths(get_option('prefix'),get_option('datadir'),'icons','hicolor/24x24/apps'))
 install_data('data/icons/32x32/apps/system-software-install.png',install_dir: join_paths(get_option('prefix'),get_option('datadir'),'icons','hicolor/32x32/apps'))
-install_data('data/pixmaps/package-generic.png',install_dir: join_paths(get_option('prefix'),get_option('datadir'),'pamac'))
+install_data('data/pixmaps/package-generic.png',install_dir: join_paths(get_option('prefix'),get_option('datadir'),'pamac-classic'))
 subdir('src')
-subdir('src/aur')
 subdir('src/pamac-user-daemon')
 subdir('src/pamac-tray')
 subdir('src/pamac-clean-cache')

@@ -2,9 +2,9 @@
 ### Do not edit
 
 set (DATADIR "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATAROOTDIR}")
-set (PKGDATADIR "${DATADIR}/pamac")
-set (GETTEXT_PACKAGE "pamac")
-set (RELEASE_NAME "pamac")
+set (PKGDATADIR "${DATADIR}/pamac-classic")
+set (GETTEXT_PACKAGE "pamac-classic")
+set (RELEASE_NAME "pamac-classic")
 set (CMAKE_C_FLAGS "")
 set (PREFIX ${CMAKE_INSTALL_PREFIX})
 set (VERSION "6.3.5")
@@ -15,9 +15,9 @@ configure_file (${CMAKE_SOURCE_DIR}/src/pamac-tray/Config.vala.base ${CMAKE_BINA
 add_definitions(-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
 set (VERSION "6.3.5")
 add_definitions (${DEPS_CFLAGS})
-include_directories ( ${CMAKE_BINARY_DIR}/src ${CMAKE_BINARY_DIR}/src/aur )
-link_libraries ( ${DEPS_LIBRARIES} -lPamac -lAUR )
-link_directories ( ${DEPS_LIBRARY_DIRS} ${CMAKE_BINARY_DIR}/src ${CMAKE_BINARY_DIR}/src/aur )
+include_directories ( ${CMAKE_BINARY_DIR}/src )
+link_libraries ( ${DEPS_LIBRARIES} -lpamacclassic )
+link_directories ( ${DEPS_LIBRARY_DIRS} ${CMAKE_BINARY_DIR}/src )
 find_package (Vala REQUIRED)
 include (ValaVersion)
 ensure_vala_version ("0.38" MINIMUM)
@@ -46,10 +46,7 @@ set (APP_SOURCES ${APP_SOURCES} alpm_config.vala)
 set (APP_SOURCES ${APP_SOURCES} pamac_config.vala)
 set (APP_SOURCES ${APP_SOURCES} tray.vala)
 
-set (CUSTOM_VAPIS_LIST ${CUSTOM_VAPIS_LIST} ${CMAKE_BINARY_DIR}/src/Pamac.vapi)
-if (NOT DISABLE_AUR)
-	set (CUSTOM_VAPIS_LIST ${CUSTOM_VAPIS_LIST} ${CMAKE_BINARY_DIR}/src/aur/AUR.vapi)
-endif ()
+set (CUSTOM_VAPIS_LIST ${CUSTOM_VAPIS_LIST} ${CMAKE_BINARY_DIR}/src/pamacclassic.vapi)
 
 if (DISABLE_AUR)
 	set (COMPILE_OPTIONS ${COMPILE_OPTIONS} -D DISABLE_AUR)
@@ -84,10 +81,7 @@ OPTIONS
 )
 
 add_executable(pamac-tray ${VALA_C})
-set ( pamac-tray_DEPENDENCIES ${pamac-tray_DEPENDENCIES} Pamac )
-if (NOT DISABLE_AUR)
-	set ( pamac-tray_DEPENDENCIES ${pamac-tray_DEPENDENCIES} AUR )
-endif ()
+set ( pamac-tray_DEPENDENCIES ${pamac-tray_DEPENDENCIES} pamacclassic )
 add_dependencies( pamac-tray ${pamac-tray_DEPENDENCIES} )
 
 
@@ -108,6 +102,6 @@ if(HAVE_VALADOC)
 	install(DIRECTORY
 		${CMAKE_BINARY_DIR}/valadoc
 	DESTINATION
-		${CMAKE_INSTALL_DATAROOTDIR}/doc/pamac
+		${CMAKE_INSTALL_DATAROOTDIR}/doc/pamac-classic
 	)
 endif()

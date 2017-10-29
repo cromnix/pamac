@@ -7,13 +7,13 @@ foreach(file_data ${list_data})
 		install(DIRECTORY
 			${file_data}
 		DESTINATION
-			${CMAKE_INSTALL_DATAROOTDIR}/doc/pamac
+			${CMAKE_INSTALL_DATAROOTDIR}/doc/pamac-classic
 		)
 	ELSE()
 		install(FILES
 			${file_data}
 		DESTINATION
-			${CMAKE_INSTALL_DATAROOTDIR}/doc/pamac
+			${CMAKE_INSTALL_DATAROOTDIR}/doc/pamac-classic
 		)
 	ENDIF()
 endforeach()

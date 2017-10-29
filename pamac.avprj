@@ -1,9 +1,8 @@
 ### AutoVala Project ###
 autovala_version: 26
-project_name: pamac
+project_name: pamac-classic
 vala_version: 0.38
 
-custom: data/dbus/org.pamac.system.conf /usr/share/dbus-1/system.d
 custom: data/systemd/pamac-system.service /usr/lib/systemd/system
 custom: data/systemd/pamac-cleancache.service /usr/lib/systemd/system
 custom: data/systemd/pamac-cleancache.timer /usr/lib/systemd/system
@@ -29,9 +28,10 @@ vapidir: src/vapis
 
 vala_binary: src/pamac-clean-cache/pamac-clean-cache
 version: 6.3.5
-vala_local_package: Pamac
+vala_local_package: pamacclassic
 vala_package: posix
 vala_check_package: gtk+-3.0
+vala_check_package: json-glib-1.0
 *vala_check_package: gio-2.0
 *vala_check_package: glib-2.0
 *vala_check_package: gobject-2.0
@@ -41,8 +41,9 @@ vala_check_package: gtk+-3.0
 vala_binary: src/pamac-install/pamac-install
 version: 6.3.5
 use_gresource: pamac_installer_gresource_xml
-vala_local_package: Pamac
+vala_local_package: pamacclassic
 vala_check_package: gtk+-3.0
+vala_check_package: json-glib-1.0
 *vala_check_package: gio-2.0
 *vala_check_package: glib-2.0
 *vala_check_package: gobject-2.0
@@ -53,8 +54,9 @@ vala_binary: src/pamac-manager/pamac-manager
 version: 6.3.5
 alias: pamac-updater
 use_gresource: pamac_manager_gresource_xml
-vala_local_package: Pamac
+vala_local_package: pamacclassic
 vala_check_package: gtk+-3.0
+vala_check_package: json-glib-1.0
 *vala_check_package: gio-2.0
 *vala_check_package: glib-2.0
 *vala_check_package: gobject-2.0
@@ -64,10 +66,7 @@ vala_check_package: gtk+-3.0
 
 vala_binary: src/pamac-system-daemon/pamac-system-daemon
 version: 6.3.5
-vala_local_package: Pamac
-if NOT DISABLE_AUR
-vala_local_package: AUR
-end
+vala_local_package: pamacclassic
 vala_package: posix
 vala_check_package: gtk+-3.0
 vala_check_package: json-glib-1.0
@@ -85,10 +84,7 @@ vala_check_package: polkit-gobject-1
 
 vala_binary: src/pamac-tray/pamac-tray
 version: 6.3.5
-vala_local_package: Pamac
-if NOT DISABLE_AUR
-vala_local_package: AUR
-end
+vala_local_package: pamacclassic
 vala_package: posix
 vala_check_package: json-glib-1.0
 vala_check_package: libalpm
@@ -112,10 +108,7 @@ end
 
 vala_binary: src/pamac-user-daemon/pamac-user-daemon
 version: 6.3.5
-vala_local_package: Pamac
-if NOT DISABLE_AUR
-vala_local_package: AUR
-end
+vala_local_package: pamacclassic
 vala_package: posix
 vala_check_package: gtk+-3.0
 vala_check_package: json-glib-1.0
@@ -128,20 +121,25 @@ vala_check_package: libsoup-2.4
 *vala_source: user_daemon.vala
 
 
-vala_library: src/pamac
+vala_library: src/pamac-classic
 version: 6.3.5
-*namespace: Pamac
+namespace: pamacclassic
 use_gresource: pamac_transaction_gresource_xml
 vala_package: posix
 vala_check_package: gdk-3.0
 vala_check_package: gtk+-3.0
+vala_check_package: json-glib-1.0
 vala_check_package: libalpm
 vala_check_package: libnotify
+vala_check_package: libsoup-2.4
 vala_check_package: vte-2.91
 *vala_check_package: gio-2.0
 *vala_check_package: glib-2.0
 *vala_check_package: gobject-2.0
 *c_library: m
+if NOT DISABLE_AUR
+vala_source: aur.vala
+end
 *vala_source: alpm_config.vala
 *vala_source: choose_ignorepkgs_dialog.vala
 *vala_source: choose_provider_dialog.vala
@@ -153,14 +151,6 @@ vala_check_package: vte-2.91
 *vala_source: progress_box.vala
 *vala_source: transaction.vala
 *vala_source: transaction_sum_dialog.vala
-
-vala_library: src/aur/aur
-version: 6.3.5
-*namespace: AUR
-vala_check_package: json-glib-1.0
-vala_check_package: libsoup-2.4
-*vala_check_package: glib-2.0
-*vala_source: aur.vala
 
 
 *po: po
@@ -174,7 +164,7 @@ vala_check_package: libsoup-2.4
 *translate: glade data/interface/progress_dialog.ui
 *translate: glade data/interface/transaction_sum_dialog.ui
 *translate: vala src/alpm_config.vala
-*translate: vala src/aur/aur.vala
+*translate: vala src/aur.vala
 *translate: vala src/choose_ignorepkgs_dialog.vala
 *translate: vala src/choose_provider_dialog.vala
 *translate: vala src/common.vala
@@ -222,6 +212,8 @@ end
 
 *dbus_system_service: data/dbus/org.pamac.system.service
 *dbus_service: data/dbus/org.pamac.user.service
+
+*dbus_config: data/dbus/org.pamac.system.conf
 
 *full_icon: Hicolor Applications data/icons/16x16/apps/system-software-install.png
 *full_icon: Hicolor Applications data/icons/24x24/status/pamac-tray-no-update.png
