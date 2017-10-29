@@ -4,7 +4,7 @@ cfg_pamac_system_daemon.set('PKGDATADIR', join_paths(get_option('prefix'),get_op
 cfg_pamac_system_daemon.set('GETTEXT_PACKAGE', 'pamac-classic')
 cfg_pamac_system_daemon.set('RELEASE_NAME', 'pamac-classic')
 cfg_pamac_system_daemon.set('PREFIX', get_option('prefix'))
-cfg_pamac_system_daemon.set('VERSION', '6.3.5')
+cfg_pamac_system_daemon.set('VERSION', '6.4.0')
 cfg_pamac_system_daemon.set('TESTSRCDIR', meson.source_root())
 
 cfgfile_7 = configure_file(input: 'Config.vala.base',output: 'Config.vala',configuration: cfg_pamac_system_daemon)
