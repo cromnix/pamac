@@ -34,4 +34,4 @@ pamac_manager_hfolders = ['../../src']
 
 executable('pamac-manager',pamac_manager_sources,dependencies: pamac_manager_deps,vala_args: pamac_manager_vala_args,c_args: pamac_manager_c_args,link_with: pamac_manager_dependencies,include_directories: include_directories(pamac_manager_hfolders),install: true)
 
-meson.add_install_script('sh', '-c', 'ln -sf pamac_manager ${DESTDIR}/${MESON_INSTALL_PREFIX}/bin/pamac-updater')
+meson.add_install_script('sh', '-c', 'ln -sf pamac-manager ${DESTDIR}/${MESON_INSTALL_PREFIX}/bin/pamac-updater')

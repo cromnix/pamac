@@ -7,3 +7,6 @@ PKGBUILD
 *.pkg.tar.xz
 *.pkg.tar.xz.sig
 /build
+.bzrignore
+.hgignore
+data/local/

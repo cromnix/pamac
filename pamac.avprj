@@ -1,11 +1,9 @@
 ### AutoVala Project ###
-autovala_version: 25
+autovala_version: 26
 project_name: pamac
 vala_version: 0.38
 
 custom: data/dbus/org.pamac.system.conf /etc/dbus-1/system.d
-custom: data/dbus/org.pamac.user.service /usr/share/dbus-1/services
-custom: data/dbus/org.pamac.system.service /usr/share/dbus-1/system-services
 custom: data/systemd/pamac-system.service /usr/lib/systemd/system
 custom: data/systemd/pamac-cleancache.service /usr/lib/systemd/system
 custom: data/systemd/pamac-cleancache.timer /usr/lib/systemd/system
@@ -208,6 +206,8 @@ else
 translate: vala src/pamac-tray/tray-gtk.vala
 end
 
+*data: data/local
+
 *doc: doc
 
 *desktop: data/pamac-install.desktop
@@ -218,6 +218,9 @@ autostart: data/pamac-tray-appindicator.desktop
 else
 autostart: data/pamac-tray.desktop
 end
+
+*dbus_system_service: data/dbus/org.pamac.system.service
+*dbus_service: data/dbus/org.pamac.user.service
 
 *full_icon: Hicolor Applications data/icons/16x16/apps/system-software-install.png
 *full_icon: Hicolor Applications data/icons/24x24/status/pamac-tray-no-update.png

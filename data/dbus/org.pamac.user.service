@@ -1,3 +1,3 @@
 [D-BUS Service]
 Name=org.pamac.user
-Exec=/usr/bin/pamac-user-daemon
+Exec=@DBUS_PREFIX@/bin/pamac-user-daemon

@@ -1,5 +1,5 @@
 [D-BUS Service]
 Name=org.pamac.system
-Exec=/usr/bin/pamac-system-daemon
+Exec=@DBUS_PREFIX@/bin/pamac-system-daemon
 User=root
 SystemdService=pamac-system.service
