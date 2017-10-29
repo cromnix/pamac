@@ -60,9 +60,6 @@ pamac_transaction_gresource_xml_generator = generator(find_program('glib-compile
 
 pamac_transaction_gresource_xml_file_c = pamac_transaction_gresource_xml_generator.process(['data/pamac.transaction.gresource.xml'])
 
-if KDE_TRAY
-else
-endif
 meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','install_data.sh'),join_paths(get_option('prefix'),get_option('datadir'),'pamac'),join_paths(meson.current_source_dir(),'data/local','','*'))
 
 meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','install_data.sh'),join_paths(get_option('prefix'),get_option('datadir'),'doc'),join_paths(meson.current_source_dir(),'doc','','*'))

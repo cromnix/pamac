@@ -111,6 +111,3 @@ if(HAVE_VALADOC)
 		${CMAKE_INSTALL_DATAROOTDIR}/doc/pamac
 	)
 endif()
-if (KDE_TRAY)
-	else ()
-endif ()
