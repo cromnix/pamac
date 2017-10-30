@@ -32,7 +32,7 @@ A graphical package manager for pacman
 - appindicator-gtk3 (optional to build KDE tray icon)
 - CMake
 - Vala: 0.38
-- AutoVala: 1.1.2 (optional to regenerate CMake and Meson files)
+- AutoVala: 1.2.0 (optional to regenerate CMake and Meson files)
 
 ## Using CMake with GNU Make
 
@@ -44,6 +44,7 @@ cmake .. \
     -DCMAKE_INSTALL_LIBDIR=/usr/lib \
     -DCMAKE_INSTALL_SYSCONFDIR=/etc
 make
+make install
 ```
 ### Extra build flags
 
@@ -63,6 +64,7 @@ cmake .. \
     -DCMAKE_INSTALL_LIBDIR=/usr/lib \
     -DCMAKE_INSTALL_SYSCONFDIR=/etc
 ninja
+ninja install
 ```
 ### Extra build flags
 
@@ -80,6 +82,7 @@ meson \
     --prefix=/usr \
     --sysconfdir=/etc
 ninja
+ninja install
 ```
 ### Extra build flags
 
@@ -97,6 +100,7 @@ The configure script is just a wrapper for CMake, in the background the build pr
 	--libdir=/usr/lib \
 	--sysconfdir=/etc
 make
+make install
 ```
 
 ### Extra configure options
