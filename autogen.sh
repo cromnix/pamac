@@ -8,5 +8,10 @@ make
 make clean
 popd
 
-# Update the autovala environment
-autovala update
+# Update the autovala project file
+autovala refresh
+# Remove unused folders and files made by autovala
+rm -rf ./{install,packages,doc} ./data/{local,bash_completion} ./.hgignore ./.bzrignore
+# Generate the cmake and meson build files
+autovala cmake
+autovala meson

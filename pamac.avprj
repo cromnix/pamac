@@ -1,6 +1,7 @@
 ### AutoVala Project ###
-autovala_version: 26
+autovala_version: 27
 project_name: pamac-classic
+project_version: 6.4.1
 vala_version: 0.38
 
 custom: data/systemd/pamac-system.service /usr/lib/systemd/system
@@ -8,8 +9,6 @@ custom: data/systemd/pamac-cleancache.service /usr/lib/systemd/system
 custom: data/systemd/pamac-cleancache.timer /usr/lib/systemd/system
 custom: data/systemd/pamac-mirrorlist.service /usr/lib/systemd/system
 custom: data/systemd/pamac-mirrorlist.timer /usr/lib/systemd/system
-custom: data/polkit/org.pamac.policy /usr/share/polkit-1/actions
-custom: data/mime/x-alpm-package.xml /usr/share/mime/packages
 if DISABLE_AUR
 custom: data/config/noaur/pamac.conf /etc
 else
@@ -27,7 +26,7 @@ define: KDE_TRAY
 vapidir: src/vapis
 
 vala_binary: src/pamac-clean-cache/pamac-clean-cache
-version: 6.4.0
+*version: 6.4.1
 vala_local_package: pamacclassic
 vala_package: posix
 vala_check_package: gtk+-3.0
@@ -39,7 +38,7 @@ vala_check_package: json-glib-1.0
 *vala_source: pamac_config.vala
 
 vala_binary: src/pamac-install/pamac-install
-version: 6.4.0
+*version: 6.4.1
 use_gresource: pamac_installer_gresource_xml
 vala_local_package: pamacclassic
 vala_check_package: gtk+-3.0
@@ -51,7 +50,7 @@ vala_check_package: json-glib-1.0
 *vala_source: progress_dialog.vala
 
 vala_binary: src/pamac-manager/pamac-manager
-version: 6.4.0
+*version: 6.4.1
 alias: pamac-updater
 use_gresource: pamac_manager_gresource_xml
 vala_local_package: pamacclassic
@@ -65,7 +64,7 @@ vala_check_package: json-glib-1.0
 *vala_source: manager_window.vala
 
 vala_binary: src/pamac-system-daemon/pamac-system-daemon
-version: 6.4.0
+*version: 6.4.1
 vala_local_package: pamacclassic
 vala_package: posix
 vala_check_package: gtk+-3.0
@@ -83,7 +82,7 @@ vala_check_package: polkit-gobject-1
 *vala_source: system_daemon.vala
 
 vala_binary: src/pamac-tray/pamac-tray
-version: 6.4.0
+*version: 6.4.1
 vala_local_package: pamacclassic
 vala_package: posix
 vala_check_package: json-glib-1.0
@@ -107,7 +106,7 @@ end
 *vala_source: tray.vala
 
 vala_binary: src/pamac-user-daemon/pamac-user-daemon
-version: 6.4.0
+*version: 6.4.1
 vala_local_package: pamacclassic
 vala_package: posix
 vala_check_package: gtk+-3.0
@@ -122,7 +121,7 @@ vala_check_package: libsoup-2.4
 
 
 vala_library: src/pamac-classic
-version: 6.4.0
+*version: 6.4.1
 namespace: pamacclassic
 use_gresource: pamac_transaction_gresource_xml
 vala_package: posix
@@ -221,4 +220,8 @@ end
 *full_icon: Hicolor Applications data/icons/32x32/apps/system-software-install.png
 
 *pixmap: data/pixmaps/package-generic.png
+
+*polkit: data/polkit/org.pamac.policy
+
+*mimetype: data/mime/x-alpm-package.xml
 

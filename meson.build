@@ -35,10 +35,6 @@ meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','
 
 meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','install_data.sh'),'/usr/lib/systemd/system',join_paths(meson.current_source_dir(),'data/systemd','pamac-mirrorlist.timer'))
 
-meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','install_data.sh'),'/usr/share/polkit-1/actions',join_paths(meson.current_source_dir(),'data/polkit','org.pamac.policy'))
-
-meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','install_data.sh'),'/usr/share/mime/packages',join_paths(meson.current_source_dir(),'data/mime','x-alpm-package.xml'))
-
 if DISABLE_AUR
 	meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','install_data.sh'),'/etc',join_paths(meson.current_source_dir(),'data/config/noaur','pamac.conf'))
 
@@ -57,10 +53,6 @@ pamac_manager_gresource_xml_file_c = pamac_manager_gresource_xml_generator.proce
 pamac_transaction_gresource_xml_generator = generator(find_program('glib-compile-resources'), arguments: [ '--sourcedir=@SOURCE_DIR@/data' , '--generate-source', '--target=@BUILD_DIR@/pamac.transaction.gresource.xml.c', '@INPUT@'], output: '@PLAINNAME@.c')
 
 pamac_transaction_gresource_xml_file_c = pamac_transaction_gresource_xml_generator.process(['data/pamac.transaction.gresource.xml'])
-
-meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','install_data.sh'),join_paths(get_option('prefix'),get_option('datadir'),'pamac-classic'),join_paths(meson.current_source_dir(),'data/local','','*'))
-
-meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','install_data.sh'),join_paths(get_option('prefix'),get_option('datadir'),'doc'),join_paths(meson.current_source_dir(),'doc','','*'))
 
 install_data('data/pamac-install.desktop',install_dir:join_paths(get_option('prefix'),get_option('datadir'),'applications'))
 install_data('data/pamac-manager.desktop',install_dir:join_paths(get_option('prefix'),get_option('datadir'),'applications'))
@@ -90,6 +82,8 @@ install_data('data/icons/24x24/status/pamac-tray-no-update.png',install_dir: joi
 install_data('data/icons/24x24/status/pamac-tray-update.png',install_dir: join_paths(get_option('prefix'),get_option('datadir'),'icons','hicolor/24x24/apps'))
 install_data('data/icons/32x32/apps/system-software-install.png',install_dir: join_paths(get_option('prefix'),get_option('datadir'),'icons','hicolor/32x32/apps'))
 install_data('data/pixmaps/package-generic.png',install_dir: join_paths(get_option('prefix'),get_option('datadir'),'pamac-classic'))
+install_data( 'data/polkit/org.pamac.policy',install_dir: join_paths(get_option('prefix'),get_option('datadir'),'polkit-1','actions'))
+install_data( 'data/mime/x-alpm-package.xml',install_dir: join_paths(get_option('prefix'),get_option('datadir'),'mime','packages'))
 subdir('src')
 subdir('src/pamac-user-daemon')
 subdir('src/pamac-tray')
