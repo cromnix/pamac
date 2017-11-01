@@ -2,6 +2,7 @@ project('pamac-classic',['c','vala'])
 
 DISABLE_AUR = (get_option('DISABLE_AUR') != '')
 ENABLE_UPDATE_ICON = (get_option('ENABLE_UPDATE_ICON') != '')
+ENABLE_HAMBURGER = (get_option('ENABLE_HAMBURGER') != '')
 KDE_TRAY = (get_option('KDE_TRAY') != '')
 
 add_global_arguments('-DGETTEXT_PACKAGE="pamac-classic"',language: 'c')

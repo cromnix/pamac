@@ -4,7 +4,7 @@ cfg_pamac_tray.set('PKGDATADIR', join_paths(get_option('prefix'),get_option('dat
 cfg_pamac_tray.set('GETTEXT_PACKAGE', 'pamac-classic')
 cfg_pamac_tray.set('RELEASE_NAME', 'pamac-classic')
 cfg_pamac_tray.set('PREFIX', get_option('prefix'))
-cfg_pamac_tray.set('VERSION', '6.4.1')
+cfg_pamac_tray.set('VERSION', '6.5.0')
 cfg_pamac_tray.set('TESTSRCDIR', meson.source_root())
 
 cfgfile_3 = configure_file(input: 'Config.vala.base',output: 'Config.vala',configuration: cfg_pamac_tray)
@@ -40,6 +40,10 @@ endif
 if ENABLE_UPDATE_ICON
   pamac_tray_vala_args += ['-D', 'ENABLE_UPDATE_ICON']
   pamac_tray_c_args += ['-DENABLE_UPDATE_ICON']
+endif
+if ENABLE_HAMBURGER
+  pamac_tray_vala_args += ['-D', 'ENABLE_HAMBURGER']
+  pamac_tray_c_args += ['-DENABLE_HAMBURGER']
 endif
 if KDE_TRAY
   pamac_tray_vala_args += ['-D', 'KDE_TRAY']

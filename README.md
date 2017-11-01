@@ -52,6 +52,7 @@ make install
 - -DKDE_TRAY=ON (to build kde tray icon instead of gtk tray icon)
 - -DENABLE_UPDATE_ICON=ON (to install the update desktop entry)
 - -DICON_UPDATE=OFF (to disable updating the icon cache)
+- -DENABLE_HAMBURGER=ON (to build with the classic hamburger menu)
 
 ## Using CMake with Ninja
 
@@ -72,6 +73,7 @@ ninja install
 - -DKDE_TRAY=ON (to build kde tray icon instead of gtk tray icon)
 - -DENABLE_UPDATE_ICON=ON (to install the update desktop entry)
 - -DICON_UPDATE=OFF (to disable updating the icon cache)
+- -DENABLE_HAMBURGER=ON (to build with the classic hamburger menu)
 
 ## Using Meson with Ninja
 
@@ -90,6 +92,7 @@ ninja install
 - -DKDE_TRAY=ON (to build kde tray icon instead of gtk tray icon)
 - -DENABLE_UPDATE_ICON=ON (to install the update desktop entry)
 - -DICON_UPDATE=OFF (to disable updating the icon cache)
+- -DENABLE_HAMBURGER=ON (to build with the classic hamburger menu)
 
 ## Using configure wrapper
 
@@ -109,3 +112,4 @@ make install
 - --enable-kde-tray (to build kde tray icon instead of gtk tray icon)
 - --enable-update-desktop (to install the update desktop entry)
 - --disable-icon-update (to disable updating the icon cache)
+- --enable-hamburger (to build with the classic hamburger menu)

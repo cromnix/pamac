@@ -20,6 +20,8 @@
 
 //using GIO
 
+extern void exit(int exit_code);
+
 const string VERSION = Constants.VERSION;
 
 namespace Pamac {
@@ -39,7 +41,6 @@ namespace Pamac {
 		}
 	}
 
-
 	[GtkTemplate (ui = "/org/pamac/manager/interface/manager_window.ui")]
 	class ManagerWindow : Gtk.ApplicationWindow {
 		// icons
@@ -58,7 +59,18 @@ namespace Pamac {
 		[GtkChild]
 		Gtk.Button button_back;
 		[GtkChild]
+		Gtk.HeaderBar headerbar;
+		[GtkChild]
+		Gtk.MenuButton button_menu_global;
+		[GtkChild]
+		Gtk.MenuButton button_menu;
+#if ENABLE_HAMBURGER
+		[GtkChild]
 		Gtk.ModelButton preferences_button;
+#else
+		[GtkChild]
+		Gtk.ModelButton preferences_button_global;
+#endif
 		[GtkChild]
 		Gtk.TreeView packages_treeview;
 		[GtkChild]
@@ -169,6 +181,14 @@ namespace Pamac {
 
 		public ManagerWindow (Gtk.Application application) {
 			Object (application: application);
+
+#if ENABLE_HAMBURGER
+			headerbar.remove(button_menu_global);
+			button_menu.toggled.connect (on_menu_button_toggled);
+#else
+			headerbar.remove(button_menu);
+			button_menu_global.toggled.connect (on_menu_button_toggled);
+#endif
 
 #if DISABLE_AUR
 			packages_stack.remove (aur_scrolledwindow);
@@ -1844,9 +1864,13 @@ namespace Pamac {
 			refresh_packages_list ();
 		}
 
-		[GtkCallback]
+
 		void on_menu_button_toggled () {
+#if ENABLE_HAMBURGER
 			preferences_button.sensitive = !(transaction_running || sysupgrade_running);
+#else
+			preferences_button_global.sensitive = !(transaction_running || sysupgrade_running);
+#endif
 		}
 
 		[GtkCallback]
@@ -1949,6 +1973,16 @@ namespace Pamac {
 				"version", VERSION,
 				"license_type", Gtk.License.GPL_3_0,
 				"website", "http://github.com/cromnix/pamac-classic");
+		}
+
+		[GtkCallback]
+		void on_quit_button_clicked () {
+			//Gtk.main_quit ();
+			this.quit();
+		}
+
+		void quit() {
+			exit(0);
 		}
 
 		[GtkCallback]

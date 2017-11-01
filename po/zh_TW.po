@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-10-27 17:56-0300\n"
+"POT-Creation-Date: 2017-11-01 18:29-0300\n"
 "PO-Revision-Date: 2017-07-30 12:17+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/manjarolinux/"
@@ -616,6 +616,10 @@ msgstr "偏好設定"
 #: ../data/interface/manager_window.ui
 msgid "About"
 msgstr "關於"
+
+#: ../data/interface/manager_window.ui
+msgid "Quit"
+msgstr ""
 
 #: ../data/interface/manager_window.ui
 msgid "Search"

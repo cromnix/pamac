@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-10-27 17:56-0300\n"
+"POT-Creation-Date: 2017-11-01 18:29-0300\n"
 "PO-Revision-Date: 2017-08-02 13:28+0000\n"
 "Last-Translator: Lovro Kudelić <lovro.kudelic@outlook.com>\n"
 "Language-Team: Croatian (http://www.transifex.com/manjarolinux/manjaro-pamac/"
@@ -624,6 +624,10 @@ msgstr "Postavke"
 #: ../data/interface/manager_window.ui
 msgid "About"
 msgstr "O programu"
+
+#: ../data/interface/manager_window.ui
+msgid "Quit"
+msgstr ""
 
 #: ../data/interface/manager_window.ui
 msgid "Search"

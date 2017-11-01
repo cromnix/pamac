@@ -1,3 +1,4 @@
 option('DISABLE_AUR',type : 'string', value: '')
 option('ENABLE_UPDATE_ICON',type : 'string', value: '')
+option('ENABLE_HAMBURGER',type : 'string', value: '')
 option('KDE_TRAY',type : 'string', value: '')
