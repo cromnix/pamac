@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-01 18:29-0300\n"
+"POT-Creation-Date: 2017-11-06 22:24-0300\n"
 "PO-Revision-Date: 2017-07-30 12:17+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/manjarolinux/"
@@ -383,6 +383,31 @@ msgstr[0] "有 %u 個可用的更新"
 msgid "Details"
 msgstr "細節"
 
+#: ../src/pamac-manager/manager.vala
+msgid "Refresh Databases"
+msgstr ""
+
+#: ../src/pamac-manager/manager.vala ../data/interface/manager_window.ui
+msgid "View History"
+msgstr "檢閱歷史"
+
+#: ../src/pamac-manager/manager.vala ../src/pamac-manager/manager_window.vala
+#: ../data/interface/manager_window.ui
+msgid "Install Local Packages"
+msgstr "安裝本機套件"
+
+#: ../src/pamac-manager/manager.vala ../data/interface/manager_window.ui
+msgid "Preferences"
+msgstr "偏好設定"
+
+#: ../src/pamac-manager/manager.vala ../data/interface/manager_window.ui
+msgid "About"
+msgstr "關於"
+
+#: ../src/pamac-manager/manager.vala
+msgid "Quit"
+msgstr ""
+
 #: ../src/pamac-manager/manager_window.vala
 msgid "Deselect"
 msgstr "取消選擇"
@@ -525,10 +550,6 @@ msgstr "檢查用依賴關係"
 msgid "Name"
 msgstr "名稱"
 
-#: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
-msgid "Install Local Packages"
-msgstr "安裝本機套件"
-
 #: ../src/pamac-manager/manager_window.vala
 #: ../data/interface/transaction_sum_dialog.ui
 #: ../data/interface/manager_window.ui
@@ -604,22 +625,6 @@ msgstr "遞交"
 #: ../data/interface/manager_window.ui
 msgid "Refresh databases"
 msgstr "刷新套件庫"
-
-#: ../data/interface/manager_window.ui
-msgid "View History"
-msgstr "檢閱歷史"
-
-#: ../data/interface/manager_window.ui
-msgid "Preferences"
-msgstr "偏好設定"
-
-#: ../data/interface/manager_window.ui
-msgid "About"
-msgstr "關於"
-
-#: ../data/interface/manager_window.ui
-msgid "Quit"
-msgstr ""
 
 #: ../data/interface/manager_window.ui
 msgid "Search"

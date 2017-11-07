@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-01 18:29-0300\n"
+"POT-Creation-Date: 2017-11-06 22:24-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
 "Language-Team: Dutch (Belgium) (http://www.transifex.com/manjarolinux/"
@@ -382,6 +382,31 @@ msgstr[1] "%u beschikbare updates"
 msgid "Details"
 msgstr "Details"
 
+#: ../src/pamac-manager/manager.vala
+msgid "Refresh Databases"
+msgstr ""
+
+#: ../src/pamac-manager/manager.vala ../data/interface/manager_window.ui
+msgid "View History"
+msgstr "Bekijk geschiedenis"
+
+#: ../src/pamac-manager/manager.vala ../src/pamac-manager/manager_window.vala
+#: ../data/interface/manager_window.ui
+msgid "Install Local Packages"
+msgstr "Installeer lokale pakketten"
+
+#: ../src/pamac-manager/manager.vala ../data/interface/manager_window.ui
+msgid "Preferences"
+msgstr "Voorkeuren"
+
+#: ../src/pamac-manager/manager.vala ../data/interface/manager_window.ui
+msgid "About"
+msgstr ""
+
+#: ../src/pamac-manager/manager.vala
+msgid "Quit"
+msgstr ""
+
 #: ../src/pamac-manager/manager_window.vala
 msgid "Deselect"
 msgstr "Deselecteer  "
@@ -525,10 +550,6 @@ msgstr ""
 msgid "Name"
 msgstr "Naam"
 
-#: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
-msgid "Install Local Packages"
-msgstr "Installeer lokale pakketten"
-
 #: ../src/pamac-manager/manager_window.vala
 #: ../data/interface/transaction_sum_dialog.ui
 #: ../data/interface/manager_window.ui
@@ -604,22 +625,6 @@ msgstr ""
 #: ../data/interface/manager_window.ui
 msgid "Refresh databases"
 msgstr "Databanken vernieuwen"
-
-#: ../data/interface/manager_window.ui
-msgid "View History"
-msgstr "Bekijk geschiedenis"
-
-#: ../data/interface/manager_window.ui
-msgid "Preferences"
-msgstr "Voorkeuren"
-
-#: ../data/interface/manager_window.ui
-msgid "About"
-msgstr ""
-
-#: ../data/interface/manager_window.ui
-msgid "Quit"
-msgstr ""
 
 #: ../data/interface/manager_window.ui
 msgid "Search"

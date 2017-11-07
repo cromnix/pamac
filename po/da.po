@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-01 18:29-0300\n"
+"POT-Creation-Date: 2017-11-06 22:24-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
 "Language-Team: Danish (http://www.transifex.com/manjarolinux/manjaro-pamac/"
@@ -392,6 +392,31 @@ msgstr[1] "%u tilgængelige opdateringer"
 msgid "Details"
 msgstr "Detaljer"
 
+#: ../src/pamac-manager/manager.vala
+msgid "Refresh Databases"
+msgstr ""
+
+#: ../src/pamac-manager/manager.vala ../data/interface/manager_window.ui
+msgid "View History"
+msgstr "Vis historik"
+
+#: ../src/pamac-manager/manager.vala ../src/pamac-manager/manager_window.vala
+#: ../data/interface/manager_window.ui
+msgid "Install Local Packages"
+msgstr "Installér Lokale Pakker"
+
+#: ../src/pamac-manager/manager.vala ../data/interface/manager_window.ui
+msgid "Preferences"
+msgstr "Indstillinger"
+
+#: ../src/pamac-manager/manager.vala ../data/interface/manager_window.ui
+msgid "About"
+msgstr "Om"
+
+#: ../src/pamac-manager/manager.vala
+msgid "Quit"
+msgstr ""
+
 #: ../src/pamac-manager/manager_window.vala
 msgid "Deselect"
 msgstr "Fravælg"
@@ -535,10 +560,6 @@ msgstr "Check Afhængigheder"
 msgid "Name"
 msgstr "Navn"
 
-#: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
-msgid "Install Local Packages"
-msgstr "Installér Lokale Pakker"
-
 #: ../src/pamac-manager/manager_window.vala
 #: ../data/interface/transaction_sum_dialog.ui
 #: ../data/interface/manager_window.ui
@@ -614,22 +635,6 @@ msgstr "Commit"
 #: ../data/interface/manager_window.ui
 msgid "Refresh databases"
 msgstr "Genopfrisk databaser"
-
-#: ../data/interface/manager_window.ui
-msgid "View History"
-msgstr "Vis historik"
-
-#: ../data/interface/manager_window.ui
-msgid "Preferences"
-msgstr "Indstillinger"
-
-#: ../data/interface/manager_window.ui
-msgid "About"
-msgstr "Om"
-
-#: ../data/interface/manager_window.ui
-msgid "Quit"
-msgstr ""
 
 #: ../data/interface/manager_window.ui
 msgid "Search"
