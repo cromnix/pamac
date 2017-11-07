@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-01 18:29-0300\n"
+"POT-Creation-Date: 2017-11-06 22:24-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
 "Language-Team: Serbian (http://www.transifex.com/manjarolinux/manjaro-pamac/"
@@ -387,6 +387,31 @@ msgstr[2] "%u доступних ажурирања"
 msgid "Details"
 msgstr "Детаљи"
 
+#: ../src/pamac-manager/manager.vala
+msgid "Refresh Databases"
+msgstr ""
+
+#: ../src/pamac-manager/manager.vala ../data/interface/manager_window.ui
+msgid "View History"
+msgstr "Прегледај историју"
+
+#: ../src/pamac-manager/manager.vala ../src/pamac-manager/manager_window.vala
+#: ../data/interface/manager_window.ui
+msgid "Install Local Packages"
+msgstr ""
+
+#: ../src/pamac-manager/manager.vala ../data/interface/manager_window.ui
+msgid "Preferences"
+msgstr "Подешавања"
+
+#: ../src/pamac-manager/manager.vala ../data/interface/manager_window.ui
+msgid "About"
+msgstr ""
+
+#: ../src/pamac-manager/manager.vala
+msgid "Quit"
+msgstr ""
+
 #: ../src/pamac-manager/manager_window.vala
 msgid "Deselect"
 msgstr "Одселектуј"
@@ -531,10 +556,6 @@ msgstr ""
 msgid "Name"
 msgstr "Име"
 
-#: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
-msgid "Install Local Packages"
-msgstr ""
-
 #: ../src/pamac-manager/manager_window.vala
 #: ../data/interface/transaction_sum_dialog.ui
 #: ../data/interface/manager_window.ui
@@ -610,22 +631,6 @@ msgstr ""
 #: ../data/interface/manager_window.ui
 msgid "Refresh databases"
 msgstr "Освежи базу"
-
-#: ../data/interface/manager_window.ui
-msgid "View History"
-msgstr "Прегледај историју"
-
-#: ../data/interface/manager_window.ui
-msgid "Preferences"
-msgstr "Подешавања"
-
-#: ../data/interface/manager_window.ui
-msgid "About"
-msgstr ""
-
-#: ../data/interface/manager_window.ui
-msgid "Quit"
-msgstr ""
 
 #: ../data/interface/manager_window.ui
 msgid "Search"

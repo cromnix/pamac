@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-01 18:29-0300\n"
+"POT-Creation-Date: 2017-11-06 22:24-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
 "Language-Team: Azerbaijani (Azerbaijan) (http://www.transifex.com/"
@@ -382,6 +382,31 @@ msgstr[1] ""
 msgid "Details"
 msgstr "Ətraflı"
 
+#: ../src/pamac-manager/manager.vala
+msgid "Refresh Databases"
+msgstr ""
+
+#: ../src/pamac-manager/manager.vala ../data/interface/manager_window.ui
+msgid "View History"
+msgstr "Tarixi göstər"
+
+#: ../src/pamac-manager/manager.vala ../src/pamac-manager/manager_window.vala
+#: ../data/interface/manager_window.ui
+msgid "Install Local Packages"
+msgstr ""
+
+#: ../src/pamac-manager/manager.vala ../data/interface/manager_window.ui
+msgid "Preferences"
+msgstr "Tərcihlər"
+
+#: ../src/pamac-manager/manager.vala ../data/interface/manager_window.ui
+msgid "About"
+msgstr "Haqqında"
+
+#: ../src/pamac-manager/manager.vala
+msgid "Quit"
+msgstr ""
+
 #: ../src/pamac-manager/manager_window.vala
 msgid "Deselect"
 msgstr "Sil"
@@ -525,10 +550,6 @@ msgstr "Aslılığın yoxlanılması"
 msgid "Name"
 msgstr "Ad"
 
-#: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
-msgid "Install Local Packages"
-msgstr ""
-
 #: ../src/pamac-manager/manager_window.vala
 #: ../data/interface/transaction_sum_dialog.ui
 #: ../data/interface/manager_window.ui
@@ -604,22 +625,6 @@ msgstr ""
 #: ../data/interface/manager_window.ui
 msgid "Refresh databases"
 msgstr "Bazaları yeniləmək"
-
-#: ../data/interface/manager_window.ui
-msgid "View History"
-msgstr "Tarixi göstər"
-
-#: ../data/interface/manager_window.ui
-msgid "Preferences"
-msgstr "Tərcihlər"
-
-#: ../data/interface/manager_window.ui
-msgid "About"
-msgstr "Haqqında"
-
-#: ../data/interface/manager_window.ui
-msgid "Quit"
-msgstr ""
 
 #: ../data/interface/manager_window.ui
 msgid "Search"

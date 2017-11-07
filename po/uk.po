@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-01 18:29-0300\n"
+"POT-Creation-Date: 2017-11-06 22:24-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/manjarolinux/manjaro-"
@@ -396,6 +396,31 @@ msgstr[2] "%u доступних оновлень"
 msgid "Details"
 msgstr "Деталі"
 
+#: ../src/pamac-manager/manager.vala
+msgid "Refresh Databases"
+msgstr ""
+
+#: ../src/pamac-manager/manager.vala ../data/interface/manager_window.ui
+msgid "View History"
+msgstr "Переглянути Історію"
+
+#: ../src/pamac-manager/manager.vala ../src/pamac-manager/manager_window.vala
+#: ../data/interface/manager_window.ui
+msgid "Install Local Packages"
+msgstr "Встановіть локальні пакети"
+
+#: ../src/pamac-manager/manager.vala ../data/interface/manager_window.ui
+msgid "Preferences"
+msgstr "Налаштування"
+
+#: ../src/pamac-manager/manager.vala ../data/interface/manager_window.ui
+msgid "About"
+msgstr "Про програму"
+
+#: ../src/pamac-manager/manager.vala
+msgid "Quit"
+msgstr ""
+
 #: ../src/pamac-manager/manager_window.vala
 msgid "Deselect"
 msgstr "Скасувати вибір"
@@ -540,10 +565,6 @@ msgstr "Перевірити залежності"
 msgid "Name"
 msgstr "Назва"
 
-#: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
-msgid "Install Local Packages"
-msgstr "Встановіть локальні пакети"
-
 #: ../src/pamac-manager/manager_window.vala
 #: ../data/interface/transaction_sum_dialog.ui
 #: ../data/interface/manager_window.ui
@@ -619,22 +640,6 @@ msgstr "Застосувати"
 #: ../data/interface/manager_window.ui
 msgid "Refresh databases"
 msgstr "Оновити бази даних"
-
-#: ../data/interface/manager_window.ui
-msgid "View History"
-msgstr "Переглянути Історію"
-
-#: ../data/interface/manager_window.ui
-msgid "Preferences"
-msgstr "Налаштування"
-
-#: ../data/interface/manager_window.ui
-msgid "About"
-msgstr "Про програму"
-
-#: ../data/interface/manager_window.ui
-msgid "Quit"
-msgstr ""
 
 #: ../data/interface/manager_window.ui
 msgid "Search"

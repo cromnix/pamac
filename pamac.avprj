@@ -1,7 +1,7 @@
 ### AutoVala Project ###
 autovala_version: 27
 project_name: pamac-classic
-project_version: 6.5.0
+project_version: 6.5.1
 vala_version: 0.38
 
 custom: data/systemd/pamac-system.service /usr/lib/systemd/system
@@ -27,7 +27,7 @@ define: KDE_TRAY
 vapidir: src/vapis
 
 vala_binary: src/pamac-clean-cache/pamac-clean-cache
-*version: 6.5.0
+*version: 6.5.1
 vala_local_package: pamacclassic
 vala_package: posix
 vala_check_package: gtk+-3.0
@@ -39,7 +39,7 @@ vala_check_package: json-glib-1.0
 *vala_source: pamac_config.vala
 
 vala_binary: src/pamac-install/pamac-install
-*version: 6.5.0
+*version: 6.5.1
 use_gresource: pamac_installer_gresource_xml
 vala_local_package: pamacclassic
 vala_check_package: gtk+-3.0
@@ -51,7 +51,7 @@ vala_check_package: json-glib-1.0
 *vala_source: progress_dialog.vala
 
 vala_binary: src/pamac-manager/pamac-manager
-*version: 6.5.0
+*version: 6.5.1
 alias: pamac-updater
 use_gresource: pamac_manager_gresource_xml
 vala_local_package: pamacclassic
@@ -65,7 +65,7 @@ vala_check_package: json-glib-1.0
 *vala_source: manager_window.vala
 
 vala_binary: src/pamac-system-daemon/pamac-system-daemon
-*version: 6.5.0
+*version: 6.5.1
 vala_local_package: pamacclassic
 vala_package: posix
 vala_check_package: gtk+-3.0
@@ -83,7 +83,7 @@ vala_check_package: polkit-gobject-1
 *vala_source: system_daemon.vala
 
 vala_binary: src/pamac-tray/pamac-tray
-*version: 6.5.0
+*version: 6.5.1
 vala_local_package: pamacclassic
 vala_package: posix
 vala_check_package: json-glib-1.0
@@ -107,7 +107,7 @@ end
 *vala_source: tray.vala
 
 vala_binary: src/pamac-user-daemon/pamac-user-daemon
-*version: 6.5.0
+*version: 6.5.1
 vala_local_package: pamacclassic
 vala_package: posix
 vala_check_package: gtk+-3.0
@@ -122,7 +122,7 @@ vala_check_package: libsoup-2.4
 
 
 vala_library: src/pamac-classic
-*version: 6.5.0
+*version: 6.5.1
 namespace: pamacclassic
 use_gresource: pamac_transaction_gresource_xml
 vala_package: posix

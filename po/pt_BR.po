@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-01 18:29-0300\n"
+"POT-Creation-Date: 2017-11-06 22:24-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/manjarolinux/"
@@ -399,6 +399,31 @@ msgstr[1] "%u atualizações disponíveis"
 msgid "Details"
 msgstr "Detalhes"
 
+#: ../src/pamac-manager/manager.vala
+msgid "Refresh Databases"
+msgstr ""
+
+#: ../src/pamac-manager/manager.vala ../data/interface/manager_window.ui
+msgid "View History"
+msgstr "Ver histórico"
+
+#: ../src/pamac-manager/manager.vala ../src/pamac-manager/manager_window.vala
+#: ../data/interface/manager_window.ui
+msgid "Install Local Packages"
+msgstr "Instalar pacotes locais"
+
+#: ../src/pamac-manager/manager.vala ../data/interface/manager_window.ui
+msgid "Preferences"
+msgstr "Preferências"
+
+#: ../src/pamac-manager/manager.vala ../data/interface/manager_window.ui
+msgid "About"
+msgstr "Sobre"
+
+#: ../src/pamac-manager/manager.vala
+msgid "Quit"
+msgstr ""
+
 #: ../src/pamac-manager/manager_window.vala
 msgid "Deselect"
 msgstr "Desmarque"
@@ -542,10 +567,6 @@ msgstr "Verificar Dependências"
 msgid "Name"
 msgstr "Nome"
 
-#: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
-msgid "Install Local Packages"
-msgstr "Instalar pacotes locais"
-
 #: ../src/pamac-manager/manager_window.vala
 #: ../data/interface/transaction_sum_dialog.ui
 #: ../data/interface/manager_window.ui
@@ -621,22 +642,6 @@ msgstr "Enviar"
 #: ../data/interface/manager_window.ui
 msgid "Refresh databases"
 msgstr "Atualizar banco de dados"
-
-#: ../data/interface/manager_window.ui
-msgid "View History"
-msgstr "Ver histórico"
-
-#: ../data/interface/manager_window.ui
-msgid "Preferences"
-msgstr "Preferências"
-
-#: ../data/interface/manager_window.ui
-msgid "About"
-msgstr "Sobre"
-
-#: ../data/interface/manager_window.ui
-msgid "Quit"
-msgstr ""
 
 #: ../data/interface/manager_window.ui
 msgid "Search"

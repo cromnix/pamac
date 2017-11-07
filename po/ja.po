@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-01 18:29-0300\n"
+"POT-Creation-Date: 2017-11-06 22:24-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/manjarolinux/manjaro-pamac/"
@@ -383,6 +383,31 @@ msgstr[0] "%u 種類の利用可能なアップデート"
 msgid "Details"
 msgstr "詳細"
 
+#: ../src/pamac-manager/manager.vala
+msgid "Refresh Databases"
+msgstr ""
+
+#: ../src/pamac-manager/manager.vala ../data/interface/manager_window.ui
+msgid "View History"
+msgstr "閲覧履歴"
+
+#: ../src/pamac-manager/manager.vala ../src/pamac-manager/manager_window.vala
+#: ../data/interface/manager_window.ui
+msgid "Install Local Packages"
+msgstr "ローカルパッケージをインストール"
+
+#: ../src/pamac-manager/manager.vala ../data/interface/manager_window.ui
+msgid "Preferences"
+msgstr "設定"
+
+#: ../src/pamac-manager/manager.vala ../data/interface/manager_window.ui
+msgid "About"
+msgstr "About"
+
+#: ../src/pamac-manager/manager.vala
+msgid "Quit"
+msgstr ""
+
 #: ../src/pamac-manager/manager_window.vala
 msgid "Deselect"
 msgstr "非選択"
@@ -525,10 +550,6 @@ msgstr "依存関係を確認"
 msgid "Name"
 msgstr "名前"
 
-#: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
-msgid "Install Local Packages"
-msgstr "ローカルパッケージをインストール"
-
 #: ../src/pamac-manager/manager_window.vala
 #: ../data/interface/transaction_sum_dialog.ui
 #: ../data/interface/manager_window.ui
@@ -604,22 +625,6 @@ msgstr "コミット"
 #: ../data/interface/manager_window.ui
 msgid "Refresh databases"
 msgstr "データベースの更新"
-
-#: ../data/interface/manager_window.ui
-msgid "View History"
-msgstr "閲覧履歴"
-
-#: ../data/interface/manager_window.ui
-msgid "Preferences"
-msgstr "設定"
-
-#: ../data/interface/manager_window.ui
-msgid "About"
-msgstr "About"
-
-#: ../data/interface/manager_window.ui
-msgid "Quit"
-msgstr ""
 
 #: ../data/interface/manager_window.ui
 msgid "Search"
