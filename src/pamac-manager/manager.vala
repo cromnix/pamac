@@ -19,7 +19,6 @@
  */
 
 namespace Pamac {
-
 	class Manager : Gtk.Application {
 		ManagerWindow manager_window;
 		bool pamac_run;
@@ -48,6 +47,23 @@ namespace Pamac {
 				msg.destroy ();
 			} else {
 				manager_window = new ManagerWindow (this);
+
+#if ENABLE_HAMBURGER
+#else
+				var menu = new Menu ();
+				menu.append (dgettext (null, "Refresh Databases"), "win.refreshdb");
+				menu.append (dgettext (null, "View History"), "win.viewhistory");
+				menu.append (dgettext (null, "Install Local Packages"), "win.installlocal");
+				menu.append (dgettext (null, "Preferences"), "win.preferences");
+				menu.append (dgettext (null, "About"), "win.about");
+				menu.append (dgettext (null, "Quit"), "app.quit");
+				this.app_menu = menu;
+
+				var quit_action = new SimpleAction ("quit", null);
+				quit_action.activate.connect (this.quit);
+				this.add_action (quit_action);
+#endif
+
 				// quit accel
 				var action =  new SimpleAction ("quit", null);
 				action.activate.connect  (() => {this.quit ();});
@@ -106,9 +122,19 @@ namespace Pamac {
 			run = app.get_is_remote ();
 			return run;
 		}
+
+#if ENABLE_HAMBURGER
+#else
+		protected override void activate () {
+			new ManagerWindow (this);
+		}
+#endif
 	}
 
 	static int main (string[] args) {
+		// This forces the gtk to show the menu icon instead of the global menu to debug
+		//Gtk.init (ref args);
+		//Gtk.Settings.get_default ().gtk_shell_shows_app_menu = false;
 		var manager = new Manager ();
 		return manager.run (args);
 	}
