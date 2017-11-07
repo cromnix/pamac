@@ -20,8 +20,6 @@
 
 //using GIO
 
-extern void exit(int exit_code);
-
 const string VERSION = Constants.VERSION;
 
 namespace Pamac {
@@ -59,17 +57,13 @@ namespace Pamac {
 		[GtkChild]
 		Gtk.Button button_back;
 		[GtkChild]
-		Gtk.HeaderBar headerbar;
-		[GtkChild]
-		Gtk.MenuButton button_menu_global;
-		[GtkChild]
 		Gtk.MenuButton button_menu;
 #if ENABLE_HAMBURGER
 		[GtkChild]
 		Gtk.ModelButton preferences_button;
 #else
 		[GtkChild]
-		Gtk.ModelButton preferences_button_global;
+		Gtk.HeaderBar headerbar;
 #endif
 		[GtkChild]
 		Gtk.TreeView packages_treeview;
@@ -180,14 +174,32 @@ namespace Pamac {
 		uint search_entry_timeout_id;
 
 		public ManagerWindow (Gtk.Application application) {
-			Object (application: application);
+			Object (application: application, title: "Pamac");
 
 #if ENABLE_HAMBURGER
-			headerbar.remove(button_menu_global);
 			button_menu.toggled.connect (on_menu_button_toggled);
 #else
 			headerbar.remove(button_menu);
-			button_menu_global.toggled.connect (on_menu_button_toggled);
+			// connect the menu
+			var action = new SimpleAction ("refreshdb", null);
+			action.activate.connect (on_refresh_button_clicked);
+			this.add_action (action);
+			
+			action = new SimpleAction ("viewhistory", null);
+			action.activate.connect (on_history_button_clicked);
+			this.add_action (action);
+			
+			action = new SimpleAction ("installlocal", null);
+			action.activate.connect (on_local_button_clicked);
+			this.add_action (action);	
+
+			action = new SimpleAction ("preferences", null);
+			action.activate.connect (on_preferences_button_clicked);
+			this.add_action (action);
+
+			action = new SimpleAction ("about", null);
+			action.activate.connect (on_about_button_clicked);
+			this.add_action (action);
 #endif
 
 #if DISABLE_AUR
@@ -209,10 +221,10 @@ namespace Pamac {
 
 			this.title = dgettext (null, "Package Manager");
 			updated_label.set_markup ("<b>%s</b>".printf (dgettext (null, "Your system is up-to-date")));
-			this.get_window ().set_cursor (new Gdk.Cursor.for_display (Gdk.Display.get_default (), Gdk.CursorType.WATCH));
 			while (Gtk.events_pending ()) {
 				Gtk.main_iteration ();
 			}
+
 			right_click_menu = new Gtk.Menu ();
 			deselect_item = new Gtk.MenuItem.with_label (dgettext (null, "Deselect"));
 			deselect_item.activate.connect (on_deselect_item_activate);
@@ -499,7 +511,6 @@ namespace Pamac {
 		}
 
 		public void show_default_pkgs () {
-			this.get_window ().set_cursor (new Gdk.Cursor.for_display (Gdk.Display.get_default (), Gdk.CursorType.WATCH));
 			transaction.get_installed_pkgs.begin ((obj, res) => {
 				populate_packages_list (transaction.get_installed_pkgs.end (res));
 			});
@@ -1868,8 +1879,6 @@ namespace Pamac {
 		void on_menu_button_toggled () {
 #if ENABLE_HAMBURGER
 			preferences_button.sensitive = !(transaction_running || sysupgrade_running);
-#else
-			preferences_button_global.sensitive = !(transaction_running || sysupgrade_running);
 #endif
 		}
 
@@ -1973,16 +1982,6 @@ namespace Pamac {
 				"version", VERSION,
 				"license_type", Gtk.License.GPL_3_0,
 				"website", "http://github.com/cromnix/pamac-classic");
-		}
-
-		[GtkCallback]
-		void on_quit_button_clicked () {
-			//Gtk.main_quit ();
-			this.quit();
-		}
-
-		void quit() {
-			exit(0);
 		}
 
 		[GtkCallback]
