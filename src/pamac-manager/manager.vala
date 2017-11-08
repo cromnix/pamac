@@ -82,6 +82,8 @@ namespace Pamac {
 				this.add_action (action);
 				accels = {"<Ctrl>F"};
 				this.set_accels_for_action ("app.search", accels);
+
+				manager_window.present ();
 			}
 		}
 

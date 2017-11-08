@@ -184,14 +184,14 @@ namespace Pamac {
 			var action = new SimpleAction ("refreshdb", null);
 			action.activate.connect (on_refresh_button_clicked);
 			this.add_action (action);
-			
+
 			action = new SimpleAction ("viewhistory", null);
 			action.activate.connect (on_history_button_clicked);
 			this.add_action (action);
-			
+
 			action = new SimpleAction ("installlocal", null);
 			action.activate.connect (on_local_button_clicked);
-			this.add_action (action);	
+			this.add_action (action);
 
 			action = new SimpleAction ("preferences", null);
 			action.activate.connect (on_preferences_button_clicked);
@@ -511,6 +511,7 @@ namespace Pamac {
 		}
 
 		public void show_default_pkgs () {
+			this.get_window ().set_cursor (new Gdk.Cursor.for_display (Gdk.Display.get_default (), Gdk.CursorType.WATCH));
 			transaction.get_installed_pkgs.begin ((obj, res) => {
 				populate_packages_list (transaction.get_installed_pkgs.end (res));
 			});
