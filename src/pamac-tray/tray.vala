@@ -45,7 +45,6 @@ namespace Pamac {
 		UserDaemon daemon;
 		bool extern_lock;
 		uint refresh_timeout_id;
-		uint icon_timeout_id;
 		public Gtk.Menu menu;
 		GLib.File lockfile;
 		bool updates_available;
@@ -250,17 +249,17 @@ namespace Pamac {
 		bool check_icon_hide_setting () {
 			var pamac_config = new Pamac.Config ();
 			if (!updates_available) {
-				set_icon_visible (!pamac_config.no_update_hide_icon);
+				if (get_icon_visible () && pamac_config.no_update_hide_icon) {
+					set_icon_visible (false);
+				} else if (!get_icon_visible () && !pamac_config.no_update_hide_icon) {
+					set_icon_visible (true);
+				}
 			}
 			return true;
 		}
 
 		void launch_icon_check_timeout () {
-			if (icon_timeout_id != 0) {
-				Source.remove (icon_timeout_id);
-				icon_timeout_id = 0;
-			}
-			icon_timeout_id = Timeout.add_seconds ((uint) 1, check_icon_hide_setting);
+			Timeout.add_seconds ((uint) 1, check_icon_hide_setting);
 		}
 
 		void launch_refresh_timeout (uint64 refresh_period_in_hours) {
@@ -288,7 +287,6 @@ namespace Pamac {
 
 			extern_lock = false;
 			refresh_timeout_id = 0;
-			icon_timeout_id = 0;
 
 			create_menu ();
 			init_status_icon ();
@@ -309,7 +307,6 @@ namespace Pamac {
 			Timeout.add (200, check_extern_lock);
 			// wait 30 seconds before check updates
 			Timeout.add_seconds (30, () => {
-				check_icon_hide_setting ();
 				check_updates ();
 				return false;
 			});
