@@ -42,6 +42,8 @@ namespace Pamac {
 		public string installdate;
 		public string reason;
 		public string has_signature;
+		public string downloadsize;
+		public string installsize;
 		public string[] licenses;
 		public string[] depends;
 		public string[] optdepends;

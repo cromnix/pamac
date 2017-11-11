@@ -815,7 +815,9 @@ namespace Pamac {
 					builddate = "",
 					installdate = "",
 					reason = "",
-					has_signature = ""
+					has_signature = "",
+					downloadsize = "",
+					installsize = ""
 				};
 			}
 		}

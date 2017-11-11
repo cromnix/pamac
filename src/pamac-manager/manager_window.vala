@@ -710,6 +710,12 @@ namespace Pamac {
 			if (details.repo != "") {
 				previous_widget = populate_details_grid (dgettext (null, "Repository"), details.repo, previous_widget);
 			}
+			if (uint64.parse(details.downloadsize) > 0) {
+				previous_widget = populate_details_grid (dgettext (null, "Download size"), GLib.format_size(uint64.parse(details.downloadsize)).to_string (), previous_widget);
+			}
+			if (uint64.parse(details.installsize) > 0) {
+				previous_widget = populate_details_grid (dgettext (null, "Installed size"), GLib.format_size(uint64.parse(details.installsize)).to_string (), previous_widget);
+			}
 			if (details.groups.length > 0) {
 				var label = new Gtk.Label ("<b>%s</b>".printf (dgettext (null, "Groups") + ":"));
 				label.use_markup = true;

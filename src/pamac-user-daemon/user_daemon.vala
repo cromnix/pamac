@@ -611,6 +611,8 @@ namespace Pamac {
 			string packager = "";
 			string builddate = "";
 			string installdate = "";
+			string downloadsize = "";
+			string installsize = "";
 			string[] groups = {};
 			string[] backups = {};
 			string[] licenses = {};
@@ -648,6 +650,10 @@ namespace Pamac {
 					groups += ((Alpm.List<unowned string>) list).data;
 					list.next ();
 				}
+				// download size
+				downloadsize = alpm_pkg.download_size.to_string ();
+				// installed size
+				installsize = alpm_pkg.isize.to_string ();
 				// licenses
 				list = alpm_pkg.licenses;
 				while (list != null) {
@@ -744,6 +750,8 @@ namespace Pamac {
 			details.builddate = (owned) builddate;
 			details.installdate = (owned) installdate;
 			details.reason = (owned) reason;
+			details.downloadsize = (owned) downloadsize;
+			details.installsize = (owned) installsize;
 			details.has_signature = (owned) has_signature;
 			details.licenses = (owned) licenses;
 			details.depends = (owned) depends;
