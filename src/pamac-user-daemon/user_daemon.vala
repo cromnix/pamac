@@ -58,7 +58,7 @@ namespace Pamac {
 			if (alpm_handle == null) {
 				return;
 			} else {
-				files_handle = alpm_config.get_handle (true);
+				files_handle = alpm_config.get_handle (false, true);
 			}
 		}
 
@@ -804,7 +804,7 @@ namespace Pamac {
 				syncdbs.next ();
 			}
 			// refresh file dbs
-			var tmp_files_handle = alpm_config.get_handle (true, true);
+			var tmp_files_handle = alpm_config.get_handle (false, true);
 			syncdbs = tmp_files_handle.syncdbs;
 			while (syncdbs != null) {
 				unowned Alpm.DB db = syncdbs.data;
