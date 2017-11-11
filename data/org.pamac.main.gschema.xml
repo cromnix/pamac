@@ -1,143 +1,60 @@
-<?xml version="1.0"?>
 <schemalist>
-  <schema id="org.pamac.main" path="/org/pamac/main/" gettext-domain="pamac">
-    <key name="remove-unrequired-deps" type="b">
-      <default>false</default>
-      <summary>Remove unrequired dependencies</summary>
-      <summary xml:lang="id">Hapus dependensi yang tidak dibutuhkan</summary>
-      <summary xml:lang="nl_NL">Niet-benodigde afhankelijkheden verwijderen</summary>
-      <summary xml:lang="hr">Ukloni nepotrebne zavisnosti</summary>
-      <summary xml:lang="uk">&#x412;&#x438;&#x43B;&#x443;&#x447;&#x438;&#x442;&#x438; &#x43D;&#x435;&#x43F;&#x43E;&#x442;&#x440;&#x456;&#x431;&#x43D;&#x456; &#x437;&#x430;&#x43B;&#x435;&#x436;&#x43D;&#x43E;&#x441;&#x442;&#x456;</summary>
-      <summary xml:lang="ast">Desaniciar dependencies non riqu&#xED;es</summary>
-      <summary xml:lang="bg">&#x41F;&#x440;&#x435;&#x43C;&#x430;&#x445;&#x43D;&#x438; &#x43D;&#x435;&#x43D;&#x443;&#x436;&#x43D;&#x438; &#x437;&#x430;&#x432;&#x438;&#x441;&#x438;&#x43C;&#x43E;&#x441;&#x442;&#x438;</summary>
-      <summary xml:lang="sk">Odstr&#xE1;ni&#x165; nepo&#x17E;adovan&#xE9; z&#xE1;vislosti</summary>
-      <summary xml:lang="ru">&#x423;&#x434;&#x430;&#x43B;&#x438;&#x442;&#x44C; &#x43D;&#x435;&#x43D;&#x443;&#x436;&#x43D;&#x44B;&#x435; &#x437;&#x430;&#x432;&#x438;&#x441;&#x438;&#x43C;&#x43E;&#x441;&#x442;&#x438;</summary>
-      <summary xml:lang="de">Entferne nicht ben&#xF6;tigte Abh&#xE4;ngigkeiten</summary>
-      <summary xml:lang="fa_IR">&#x62D;&#x630;&#x641; &#x648;&#x627;&#x628;&#x633;&#x62A;&#x6AF;&#x6CC; &#x647;&#x627;&#x6CC; &#x63A;&#x6CC;&#x631;&#x636;&#x631;&#x648;&#x631;&#x6CC;</summary>
-      <summary xml:lang="it">Rimuovere le dipendenze non necessarie</summary>
-      <summary xml:lang="lt">&#x160;alinti nereikalingas priklausomybes</summary>
-      <summary xml:lang="et">Eemalda mitte-n&#xF5;utud s&#xF5;ltuvused</summary>
-      <summary xml:lang="he">&#x5D4;&#x5E1;&#x5E8; &#x5EA;&#x5D5;&#x5E1;&#x5E4;&#x5D9;&#x5DD; &#x5DC;&#x5D0; &#x5E0;&#x5D7;&#x5D5;&#x5E6;&#x5D9;&#x5DD;</summary>
-      <summary xml:lang="tr">Gereksiz ba&#x11F;&#x131;ml&#x131;l&#x131;klar&#x131; kald&#x131;r</summary>
-      <summary xml:lang="ca">Elimina les depend&#xE8;ncies no requerides</summary>
-      <summary xml:lang="nl_BE">Verwijder onnodige afhankelijkheiden</summary>
-      <summary xml:lang="pt_PT">Remover depend&#xEA;ncias n&#xE3;o requeridas</summary>
-      <summary xml:lang="pt_BR">Remover depend&#xEA;ncias desnecess&#xE1;rias</summary>
-      <summary xml:lang="ja">&#x5FC5;&#x8981;&#x3067;&#x306F;&#x306A;&#x3044;&#x4F9D;&#x5B58;&#x95A2;&#x4FC2;&#x3092;&#x524A;&#x9664;</summary>
-      <summary xml:lang="nb">Fjern avhengige pakker som er un&#xF8;dvendige</summary>
-      <summary xml:lang="hu">Nem megk&#xF6;vetelt f&#xFC;gg&#x151;s&#xE9;gek elt&#xE1;vol&#xED;t&#xE1;sa</summary>
-      <summary xml:lang="nl">Verwijder onnodige afhankelijkheden</summary>
-      <summary xml:lang="es_419">Remover dependencias no requeridas</summary>
-      <summary xml:lang="en_GB">Remove unrequired dependencies</summary>
-      <summary xml:lang="pt">Remover depend&#xEA;ncias n&#xE3;o requeridas</summary>
-      <summary xml:lang="hi">&#x938;&#x902;&#x92F;&#x941;&#x915;&#x94D;&#x924; &#x930;&#x93E;&#x937;&#x94D;&#x91F;&#x94D;&#x930; &#x906;&#x935;&#x936;&#x94D;&#x92F;&#x915; &#x928;&#x93F;&#x930;&#x94D;&#x92D;&#x930;&#x924;&#x93E; &#x928;&#x93F;&#x915;&#x93E;&#x932;&#x947;&#x902;</summary>
-      <summary xml:lang="pl">Usuwanie niewymaganych zale&#x17C;no&#x15B;ci</summary>
-      <summary xml:lang="zh_CN">&#x79FB;&#x9664;&#x4E0D;&#x9700;&#x8981;&#x7684;&#x4F9D;&#x8D56;</summary>
-      <summary xml:lang="vi">G&#x1EE1; b&#x1ECF; ph&#x1EA7;n ph&#x1EE5; thu&#x1ED9;c kh&#xF4;ng c&#x1EA7;n thi&#x1EBF;t</summary>
-      <summary xml:lang="sv">Ta bort icke-n&#xF6;dv&#xE4;ndiga beroenden</summary>
-      <summary xml:lang="da">Fjern un&#xF8;dvendige afh&#xE6;ngigheder</summary>
-      <summary xml:lang="cs">Odebrat nepot&#x159;ebn&#xE9; z&#xE1;vislosti</summary>
-      <summary xml:lang="el_GR">&#x391;&#x3C6;&#x3B1;&#x3AF;&#x3C1;&#x3B5;&#x3C3;&#x3B7;  &#x3B1;&#x3C7;&#x3C1;&#x3B7;&#x3C3;&#x3B9;&#x3BC;&#x3BF;&#x3C0;&#x3BF;&#x3AF;&#x3B7;&#x3C4;&#x3C9;&#x3BD; &#x3B5;&#x3BE;&#x3B1;&#x3C1;&#x3C4;&#x3AE;&#x3C3;&#x3B5;&#x3C9;&#x3BD;</summary>
-      <summary xml:lang="ur_PK">&#x63A;&#x6CC;&#x631; &#x636;&#x631;&#x648;&#x631;&#x6CC; &#x627;&#x646;&#x62D;&#x635;&#x627;&#x631; &#x67E;&#x6CC;&#x6A9;&#x62C; &#x646;&#x6A9;&#x627;&#x644; &#x62F;&#x6CC;&#x6BA;</summary>
-      <summary xml:lang="eu">Kendu behar ez diren menpekotasunak</summary>
-      <summary xml:lang="el">&#x391;&#x3C6;&#x3B1;&#x3AF;&#x3C1;&#x3B5;&#x3C3;&#x3B7;  &#x3B1;&#x3C7;&#x3C1;&#x3B7;&#x3C3;&#x3B9;&#x3BC;&#x3BF;&#x3C0;&#x3BF;&#x3AF;&#x3B7;&#x3C4;&#x3C9;&#x3BD; &#x3B5;&#x3BE;&#x3B1;&#x3C1;&#x3C4;&#x3AE;&#x3C3;&#x3B5;&#x3C9;&#x3BD;</summary>
-      <summary xml:lang="sr">&#x423;&#x43A;&#x43B;&#x43E;&#x43D;&#x438; &#x43D;&#x435;&#x43F;&#x43E;&#x442;&#x440;&#x435;&#x431;&#x43D;&#x435; &#x437;&#x430;&#x432;&#x438;&#x441;&#x43D;&#x43E;&#x441;&#x442;&#x438;</summary>
-      <summary xml:lang="ro">Elimin&#x103; dependen&#x21B;e ce nu sunt necesare</summary>
-      <summary xml:lang="fr">D&#xE9;sinstaller les d&#xE9;pendances inutiles</summary>
-      <summary xml:lang="sr@latin">Ukloni nepotrebne zavisnosti</summary>
-      <summary xml:lang="es">Eliminar dependencias innecesarias </summary>
-      <summary xml:lang="sl">Odstrani nezahtevane odvisnosti</summary>
-      <summary xml:lang="fi">Poista ei-vaaditut riippuvuudet</summary>
-      <summary xml:lang="uz">Talab etilmagan qaramliklarni olib tashlash</summary>
-      <summary xml:lang="zh_TW">&#x79FB;&#x9664;&#x4E0D;&#x9700;&#x8981;&#x7684;&#x76F8;&#x4F9D;&#x6027;</summary>
-      <summary xml:lang="gl">Elimina dependencias sen contrapartida</summary>
-      <summary xml:lang="is">Fjarl&#xE6;gja &#xF3;nau&#xF0;synlegar kerfiskr&#xF6;fur</summary>
-      <summary xml:lang="ar">&#x62D;&#x630;&#x641; &#x627;&#x644;&#x627;&#x639;&#x62A;&#x645;&#x627;&#x62F;&#x64A;&#x627;&#x62A; &#x627;&#x644;&#x63A;&#x64A;&#x631; &#x645;&#x637;&#x644;&#x648;&#x628;&#x629;</summary>
-      <description>
+	<schema id="org.pamac.main" path="/org/pamac/main/" gettext-domain="pamac">
+		<key name="remove-unrequired-deps" type="b">
+			<default>false</default>
+			<summary>Remove unrequired dependencies</summary>
+			<description>
 				When removing a package, also remove those dependencies that are not required by other packages (recurse option)
 			</description>
-    </key>
-    <key name="refresh-period" type="t">
-      <default>6</default>
-      <summary>Refresh period</summary>
-      <description>
+		</key>
+		<key name="refresh-period" type="t">
+			<default>6</default>
+			<summary>Refresh period</summary>
+			<description>
 				How often to check for updates, value in hours (0 to disable)
 			</description>
-    </key>
-    <key name="no-update-hide-icon" type="b">
-      <default>true</default>
-      <summary>Hide icon if there are no updates</summary>
-      <description>
+		</key>
+		<key name="no-update-hide-icon" type="b">
+			<default>true</default>
+			<summary>Hide icon if there are no updates</summary>
+			<description>
 				When there are no updates available, hide the tray icon
 			</description>
-    </key>
-    <key name="keep-num-packages" type="t">
-      <default>3</default>
-      <summary>Numer of packages to keep</summary>
-      <description>
+		</key>
+		<key name="keep-num-packages" type="t">
+			<default>3</default>
+			<summary>Numer of packages to keep</summary>
+			<description>
 				Number of versions of each package to keep in the cache
 			</description>
-      <description xml:lang="nl_NL">Aantal in de cache te houden versies van elk pakket</description>
-      <description xml:lang="hr">Broj razli&#x10D;itih verzija paketa za spremiti u predmemoriju</description>
-      <description xml:lang="uk">&#x41A;&#x456;&#x43B;&#x44C;&#x43A;&#x456;&#x441;&#x442;&#x44C; &#x432;&#x435;&#x440;&#x441;&#x456;&#x439; &#x43A;&#x43E;&#x436;&#x43D;&#x43E;&#x433;&#x43E; &#x43F;&#x430;&#x43A;&#x443;&#x43D;&#x43A;&#x430; &#x437;&#x431;&#x435;&#x440;&#x456;&#x433;&#x430;&#x454;&#x442;&#x44C;&#x441;&#x44F; &#x432; &#x43A;&#x435;&#x448;-&#x43F;&#x430;&#x43C;'&#x44F;&#x442;&#x456;</description>
-      <description xml:lang="bg">&#x411;&#x440;&#x43E;&#x439; &#x432;&#x435;&#x440;&#x441;&#x438;&#x438; &#x43E;&#x442; &#x432;&#x441;&#x435;&#x43A;&#x438; &#x43F;&#x430;&#x43A;&#x435;&#x442; &#x437;&#x430;&#x43F;&#x430;&#x437;&#x435;&#x43D;&#x438; &#x432; &#x43A;&#x435;&#x448;&#x430;</description>
-      <description xml:lang="sk">Po&#x10D;et verzi&#xED; ka&#x17E;d&#xE9;ho bal&#xED;ka, ktor&#xE9; ponecha&#x165; vo vyrovn&#xE1;vacej pam&#xE4;ti</description>
-      <description xml:lang="ru">&#x421;&#x43E;&#x445;&#x440;&#x430;&#x43D;&#x44F;&#x442;&#x44C; &#x432; &#x43A;&#x44D;&#x448;&#x435; &#x43F;&#x440;&#x435;&#x434;&#x44B;&#x434;&#x443;&#x449;&#x438;&#x435; &#x432;&#x435;&#x440;&#x441;&#x438;&#x438; &#x43F;&#x430;&#x43A;&#x435;&#x442;&#x43E;&#x432; &#x432; &#x43A;&#x43E;&#x43B;&#x438;&#x447;&#x435;&#x441;&#x442;&#x432;&#x435;</description>
-      <description xml:lang="de">Anzahl der im Cache verbleibenden Paketversionen</description>
-      <description xml:lang="fa_IR">&#x62A;&#x639;&#x62F;&#x627;&#x62F;&#x6CC; &#x627;&#x632; &#x646;&#x633;&#x62E;&#x647; &#x647;&#x627;&#x6CC; &#x647;&#x631; &#x628;&#x633;&#x62A;&#x647; &#x631;&#x627; &#x62F;&#x631; &#x62D;&#x627;&#x641;&#x638;&#x647; &#x645;&#x648;&#x642;&#x62A; &#x646;&#x6AF;&#x647;&#x62F;&#x627;&#x631;&#x6CC; &#x6A9;&#x646;</description>
-      <description xml:lang="it">Numero di versioni di ogni pacchetto da conservare nella cache</description>
-      <description xml:lang="lt">Pod&#x117;lyje laikomas kiekvieno paketo versij&#x173; skai&#x10D;ius</description>
-      <description xml:lang="tr">&#xD6;nbellekte tutlacak her bir paketin s&#xFC;r&#xFC;m say&#x131;s&#x131;</description>
-      <description xml:lang="ca">Nombre de versions de cada paquet per mantenir a la mem&#xF2;ria cau</description>
-      <description xml:lang="pt_PT">N&#xFA;mero de vers&#xF5;es de cada pacote a manter na cache</description>
-      <description xml:lang="pt_BR">N&#xFA;mero de vers&#xF5;es de cada pacote a manter na cache</description>
-      <description xml:lang="ja">&#x5404;&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x306E;&#x30D0;&#x30FC;&#x30B8;&#x30E7;&#x30F3;&#x756A;&#x53F7;&#x3092;&#x30AD;&#x30E3;&#x30C3;&#x30B7;&#x30E5;&#x306B;&#x4FDD;&#x5B58;&#x3059;&#x308B;</description>
-      <description xml:lang="nb">Antall versjoner av hver pakke som skal beholdes i hurtiglageret</description>
-      <description xml:lang="hu">A cache- ben csomagonk&#xE9;nt megtartand&#xF3; p&#xE9;ld&#xE1;nyok sz&#xE1;ma:</description>
-      <description xml:lang="nl">Aantal in de cache te houden versies van elk pakket</description>
-      <description xml:lang="es_419">N&#xFA;mero de versiones de cada paquete a mantener en cach&#xE9;</description>
-      <description xml:lang="pt">N&#xFA;mero de vers&#xF5;es de cada pacote a manter na cache</description>
-      <description xml:lang="pl">Liczba wersji ka&#x17C;dego pakietu do przechowywania w pami&#x119;ci podr&#x119;cznej</description>
-      <description xml:lang="zh_CN">&#x6BCF;&#x4E2A;&#x8F6F;&#x4EF6;&#x5305;&#x4FDD;&#x7559;&#x5728;&#x7F13;&#x5B58;&#x4E2D;&#x7684;&#x7248;&#x672C;&#x6570;&#x76EE;</description>
-      <description xml:lang="sv">Antal versioner av varje paket att beh&#xE5;lla i cachen</description>
-      <description xml:lang="da">Antal versioner af hver pakke der skal gemmes i cache</description>
-      <description xml:lang="cs">Po&#x10D;et verz&#xED; od ka&#x17E;d&#xE9;ho bal&#xED;&#x10D;ku udr&#x17E;ovan&#xE9;ho v pam&#x11B;ti cache.</description>
-      <description xml:lang="eu">Katxean gorde beharreko pakete bakotzeko bertsio kopurua</description>
-      <description xml:lang="el">&#x391;&#x3C1;&#x3B9;&#x3B8;&#x3BC;&#x3CC;&#x3C2; &#x3C4;&#x3C9;&#x3BD; &#x3B5;&#x3BA;&#x3B4;&#x3CC;&#x3C3;&#x3B5;&#x3C9;&#x3BD; &#x3B3;&#x3B9;&#x3B1; &#x3BA;&#x3AC;&#x3B8;&#x3B5; &#x3C0;&#x3B1;&#x3BA;&#x3AD;&#x3C4;&#x3BF; &#x3C0;&#x3BF;&#x3C5; &#x3B8;&#x3B1; &#x3BA;&#x3C1;&#x3B1;&#x3C4;&#x3B7;&#x3B8;&#x3B5;&#x3AF; &#x3C3;&#x3C4;&#x3B7;&#x3BD; &#x3B1;&#x3C0;&#x3BF;&#x3B8;&#x3AE;&#x3BA;&#x3B7;</description>
-      <description xml:lang="fr">Nombre de versions de chaque paquet &#xE0; conserver dans le cache </description>
-      <description xml:lang="es">N&#xFA;mero de versiones de cada paquete a guardar en cache</description>
-      <description xml:lang="sl">&#x160;tevilo verzij za vsak paket shranjenih v predpomnilniku</description>
-      <description xml:lang="zh_TW">&#x6BCF;&#x500B;&#x8EDF;&#x9AD4;&#x5305;&#x8981;&#x4FDD;&#x7559;&#x5728;&#x5FEB;&#x53D6;&#x4E2D;&#x7684;&#x7248;&#x672C;&#x6578;&#x91CF;</description>
-      <description xml:lang="gl">N&#xFA;mero de versi&#xF3;ns de cada paquete para gardar na cach&#xE9;</description>
-      <description xml:lang="is">Fj&#xF6;ldi af &#xFA;tg&#xE1;fum af hverjum pakka til a&#xF0; halda &#xED; skyndiminni</description>
-    </key>
-    <key name="only-rm-uninstalled" type="b">
-      <default>false</default>
-      <summary>Remove only uninstalled packages when cleaning cache</summary>
-      <description>
+		</key>
+		<key name="only-rm-uninstalled" type="b">
+			<default>false</default>
+			<summary>Remove only uninstalled packages when cleaning cache</summary>
+			<description>
 				Remove only the versions of uninstalled packages when clean cache
 			</description>
-    </key>
-    <key name="background-color" type="s">
-      <default l10n="messages">"rgb(0,0,0)"</default>
-      <summary>Terminal background color</summary>
-      <description>
+		</key>
+		<key name="background-color" type="s">
+			<default l10n="messages">"rgb(0,0,0)"</default>
+			<summary>Terminal background color</summary>
+			<description>
 				Terminal background color
 			</description>
-    </key>
-    <key name="foreground-color" type="s">
-      <default l10n="messages">"rgb(255,255,255)"</default>
-      <summary>Terminal foreground color</summary>
-      <description>
+		</key>
+		<key name="foreground-color" type="s">
+			<default l10n="messages">"rgb(255,255,255)"</default>
+			<summary>Terminal foreground color</summary>
+			<description>
 				Terminal foreground color
 			</description>
-    </key>
-    <key name="terminal-font" type="s">
-      <default l10n="messages">"Monospace Regular 12"</default>
-      <summary>Terminal font</summary>
-      <description>
+		</key>
+		<key name="terminal-font" type="s">
+			<default l10n="messages">"Monospace Regular 12"</default>
+			<summary>Terminal font</summary>
+			<description>
 				The font used in the terminal
 			</description>
-    </key>
-  </schema>
+		</key>
+	</schema>
 </schemalist>
