@@ -137,7 +137,6 @@ namespace Pamac {
 			no_update_hide_icon_checkbutton.toggled.connect (on_no_update_hide_icon_checkbutton_toggled);
 			cache_keep_nb_spin_button.value_changed.connect (on_cache_keep_nb_spin_button_value_changed);
 			cache_only_uninstalled_checkbutton.toggled.connect (on_cache_only_uninstalled_checkbutton_toggled);
-			transaction.write_pamac_config_finished.connect (on_write_pamac_config_finished);
 			terminal_background.color_set.connect (on_select_background);
 			terminal_foreground.color_set.connect (on_select_foreground);
 			terminal_font.font_set.connect (on_select_font);
@@ -194,109 +193,117 @@ namespace Pamac {
 		}
 
 		bool on_remove_unrequired_deps_button_state_set (bool new_state) {
-			var new_pamac_conf = new HashTable<string,Variant> (str_hash, str_equal);
-			new_pamac_conf.insert ("RemoveUnrequiredDeps", new Variant.boolean (new_state));
-			transaction.start_write_pamac_config (new_pamac_conf);
+			var settings = new Settings ("org.pamac.main");
+			settings.set_boolean ("remove-unrequired-deps", new_state);
+			config_changed();
+			transaction.start_save_pamac_config ();
 			return true;
 		}
 
 		bool on_check_updates_button_state_set (bool new_state) {
-			var new_pamac_conf = new HashTable<string,Variant> (str_hash, str_equal);
+			var settings = new Settings ("org.pamac.main");
 			refresh_period_label.sensitive = new_state;
 			refresh_period_spin_button.sensitive = new_state;
 			no_update_hide_icon_checkbutton.sensitive = new_state;
 			ignorepkgs_box.sensitive = new_state;
 			if (new_state) {
-				new_pamac_conf.insert ("RefreshPeriod", new Variant.uint64 (previous_refresh_period));
+				settings.set_uint64 ("refresh-period", previous_refresh_period);
 			} else {
-				new_pamac_conf.insert ("RefreshPeriod", new Variant.uint64 (0));
+				settings.set_uint64 ("refresh-period", 0);
 			}
-			transaction.start_write_pamac_config (new_pamac_conf);
+			config_changed();
+			transaction.start_save_pamac_config ();
 			return true;
 		}
 
 		void on_refresh_period_spin_button_value_changed () {
-			var new_pamac_conf = new HashTable<string,Variant> (str_hash, str_equal);
-			new_pamac_conf.insert ("RefreshPeriod", new Variant.uint64 (refresh_period_spin_button.get_value_as_int ()));
-			transaction.start_write_pamac_config (new_pamac_conf);
+			var settings = new Settings ("org.pamac.main");
+			settings.set_uint64 ("refresh-period", refresh_period_spin_button.get_value_as_int ());
+			config_changed();
+			transaction.start_save_pamac_config ();
 		}
 
-
 		void on_cache_keep_nb_spin_button_value_changed () {
-			var new_pamac_conf = new HashTable<string,Variant> (str_hash, str_equal);
-			new_pamac_conf.insert ("KeepNumPackages", new Variant.uint64 (cache_keep_nb_spin_button.get_value_as_int ()));
-			transaction.start_write_pamac_config (new_pamac_conf);
+			var settings = new Settings ("org.pamac.main");
+			settings.set_uint64 ("keep-num-packages", cache_keep_nb_spin_button.get_value_as_int ());
+			config_changed();
+			transaction.start_save_pamac_config ();
 		}
 
 		void on_cache_only_uninstalled_checkbutton_toggled () {
-			var new_pamac_conf = new HashTable<string,Variant> (str_hash, str_equal);
-			new_pamac_conf.insert ("OnlyRmUninstalled", new Variant.boolean (cache_only_uninstalled_checkbutton.active));
-			transaction.start_write_pamac_config (new_pamac_conf);
-}
+			var settings = new Settings ("org.pamac.main");
+			settings.set_boolean ("only-rm-uninstalled", cache_only_uninstalled_checkbutton.active);
+			config_changed();
+			transaction.start_save_pamac_config ();
+		}
 
 		void on_no_update_hide_icon_checkbutton_toggled () {
-			var new_pamac_conf = new HashTable<string,Variant> (str_hash, str_equal);
-			new_pamac_conf.insert ("NoUpdateHideIcon", new Variant.boolean (no_update_hide_icon_checkbutton.active));
-			transaction.start_write_pamac_config (new_pamac_conf);
+			var settings = new Settings ("org.pamac.main");
+			settings.set_boolean ("no-update-hide-icon", no_update_hide_icon_checkbutton.active);
+			config_changed();
+			transaction.start_save_pamac_config ();
 		}
 
 		void on_select_background () {
-			var new_pamac_conf = new HashTable<string,Variant> (str_hash, str_equal);
-			new_pamac_conf.insert ("BackgroundColor", new Variant.string (terminal_background.rgba.to_string ()));
-			transaction.start_write_pamac_config (new_pamac_conf);
+			var settings = new Settings ("org.pamac.main");
+			settings.set_string ("background-color", terminal_background.rgba.to_string ());
+			config_changed();
+			transaction.start_save_pamac_config ();
 			transaction.update_terminal_background (terminal_background.rgba.to_string ());
 		}
 
 		void on_select_foreground () {
-			var new_pamac_conf = new HashTable<string,Variant> (str_hash, str_equal);
-			new_pamac_conf.insert ("ForegroundColor", new Variant.string (terminal_foreground.rgba.to_string ()));
-			transaction.start_write_pamac_config (new_pamac_conf);
+			var settings = new Settings ("org.pamac.main");
+			settings.set_string ("foreground-color", terminal_foreground.rgba.to_string ());
+			config_changed();
+			transaction.start_save_pamac_config ();
 			transaction.update_terminal_foreground (terminal_foreground.rgba.to_string ());
 		}
 
 		void on_select_font () {
-			var new_pamac_conf = new HashTable<string,Variant> (str_hash, str_equal);
-			new_pamac_conf.insert ("TerminalFont", new Variant.string (terminal_font.get_font_name ()));
-			transaction.start_write_pamac_config (new_pamac_conf);
+			var settings = new Settings ("org.pamac.main");
+			settings.set_string ("terminal-font", terminal_font.get_font_name ());
+			config_changed();
+			transaction.start_save_pamac_config ();
 			transaction.update_terminal_font (terminal_font.get_font_name ());
 		}
 
 #if DISABLE_AUR
 #else
 		bool on_enable_aur_button_state_set (bool new_state) {
-			var new_pamac_conf = new HashTable<string,Variant> (str_hash, str_equal);
-			new_pamac_conf.insert ("EnableAUR", new Variant.boolean (new_state));
-			transaction.start_write_pamac_config (new_pamac_conf);
+			var settings = new Settings ("org.pamac.aur");
+			settings.set_boolean ("enable-aur", new_state);
+			config_changed();
+			transaction.start_save_pamac_config ();
 			return true;
 		}
 
 		void on_search_aur_checkbutton_toggled () {
-			var new_pamac_conf = new HashTable<string,Variant> (str_hash, str_equal);
-			new_pamac_conf.insert ("SearchInAURByDefault", new Variant.boolean (search_aur_checkbutton.active));
-			transaction.start_write_pamac_config (new_pamac_conf);
+			var settings = new Settings ("org.pamac.aur");
+			settings.set_boolean ("search-in-aur", search_aur_checkbutton.active);
+			config_changed();
+			transaction.start_save_pamac_config ();
 		}
 
 		void on_aur_build_dir_set () {
-			var new_pamac_conf = new HashTable<string,Variant> (str_hash, str_equal);
-			new_pamac_conf.insert ("BuildDirectory", new Variant.string (aur_build_dir_file_chooser.get_filename ()));
-			transaction.start_write_pamac_config (new_pamac_conf);
+			var settings = new Settings ("org.pamac.aur");
+			settings.set_string ("build-directory", aur_build_dir_file_chooser.get_filename ());
+			config_changed();
+			transaction.start_save_pamac_config ();
 		}
 
 		void on_check_aur_updates_checkbutton_toggled () {
-			var new_pamac_conf = new HashTable<string,Variant> (str_hash, str_equal);
-			new_pamac_conf.insert ("CheckAURUpdates", new Variant.boolean (check_aur_updates_checkbutton.active));
-			transaction.start_write_pamac_config (new_pamac_conf);
+			var settings = new Settings ("org.pamac.aur");
+			settings.set_boolean ("check-aur-updates", check_aur_updates_checkbutton.active);
+			config_changed();
+			transaction.start_save_pamac_config ();
 		}
 #endif
 
-#if DISABLE_AUR
-		void on_write_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon) {
-#else
-		void on_write_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon,
-											bool enable_aur, bool search_aur, string aur_build_dir, bool check_aur_updates) {
-#endif
-			remove_unrequired_deps_button.state = recurse;
-			if (refresh_period == 0) {
+		void config_changed() {
+			transaction.config_changed();
+			remove_unrequired_deps_button.state = transaction.recurse;
+			if (transaction.refresh_period == 0) {
 				check_updates_button.state = false;
 				refresh_period_label.sensitive = false;
 				refresh_period_spin_button.sensitive = false;
@@ -305,28 +312,29 @@ namespace Pamac {
 			} else {
 				check_updates_button.state = true;
 				refresh_period_label.sensitive = true;
-				refresh_period_spin_button.value = refresh_period;
-				previous_refresh_period = refresh_period;
+				refresh_period_spin_button.value = transaction.refresh_period;
+				previous_refresh_period = transaction.refresh_period;
 				refresh_period_spin_button.sensitive = true;
 				no_update_hide_icon_checkbutton.sensitive = true;
 				ignorepkgs_box.sensitive = true;
 			}
-			no_update_hide_icon_checkbutton.active = no_update_hide_icon;
+			no_update_hide_icon_checkbutton.active = transaction.no_update_hide_icon;
 #if DISABLE_AUR
 #else
-			enable_aur_button.state = enable_aur;
-			search_aur_checkbutton.active = search_aur;
-			search_aur_checkbutton.sensitive = enable_aur;
-			aur_build_dir_label.sensitive = enable_aur;
-			aur_build_dir_file_chooser.sensitive = enable_aur;
-			check_aur_updates_checkbutton.active = check_aur_updates;
-			check_aur_updates_checkbutton.sensitive = enable_aur;
+			enable_aur_button.state = transaction.enable_aur;
+			search_aur_checkbutton.active = transaction.search_aur;
+			search_aur_checkbutton.sensitive = transaction.enable_aur;
+			aur_build_dir_label.sensitive = transaction.enable_aur;
+			aur_build_dir_file_chooser.sensitive = transaction.enable_aur;
+			check_aur_updates_checkbutton.active = transaction.check_aur_updates;
+			check_aur_updates_checkbutton.sensitive = transaction.enable_aur;
 #endif
 		}
 
 		bool on_check_space_button_state_set (bool new_state) {
 			var new_alpm_conf = new HashTable<string,Variant> (str_hash, str_equal);
 			new_alpm_conf.insert ("CheckSpace", new Variant.boolean (new_state));
+			check_space_button.state = new_state;
 			transaction.start_write_alpm_config (new_alpm_conf);
 			return true;
 		}

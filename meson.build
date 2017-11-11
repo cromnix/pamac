@@ -36,11 +36,10 @@ meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','
 
 meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','install_data.sh'),'/usr/lib/systemd/system',join_paths(meson.current_source_dir(),'data/systemd','pamac-mirrorlist.timer'))
 
-if DISABLE_AUR
-	meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','install_data.sh'),'/etc',join_paths(meson.current_source_dir(),'data/config/noaur','pamac.conf'))
+meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','install_data.sh'),'/usr/share/glib-2.0/schemas',join_paths(meson.current_source_dir(),'data/schemas','org.pamac.main.gschema.xml'))
 
-else
-	meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','install_data.sh'),'/etc',join_paths(meson.current_source_dir(),'data/config','pamac.conf'))
+if not DISABLE_AUR
+	meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','install_data.sh'),'/usr/share/glib-2.0/schemas',join_paths(meson.current_source_dir(),'data/schemas','org.pamac.aur.gschema.xml'))
 
 endif
 pamac_installer_gresource_xml_generator = generator(find_program('glib-compile-resources'), arguments: [ '--sourcedir=@SOURCE_DIR@/data' , '--generate-source', '--target=@BUILD_DIR@/pamac.installer.gresource.xml.c', '@INPUT@'], output: '@PLAINNAME@.c')

@@ -19,7 +19,7 @@
  */
 
 int main () {
-	var pamac_config = new Pamac.Config ("/etc/pamac.conf");
+	var pamac_config = new Pamac.Config ();
 	string rm_only_uninstalled_str = "";
 	if (pamac_config.rm_only_uninstalled) {
 		rm_only_uninstalled_str = "-u";

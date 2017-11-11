@@ -367,7 +367,7 @@ namespace Pamac {
 #endif
 			transaction.important_details_outpout.connect (on_important_details_outpout);
 			transaction.finished.connect (on_transaction_finished);
-			transaction.write_pamac_config_finished.connect (on_write_pamac_config_finished);
+			transaction.save_pamac_config_finished.connect (on_save_pamac_config_finished);
 			transaction.set_pkgreason_finished.connect (on_set_pkgreason_finished);
 			transaction.generate_mirrors_list.connect (on_generate_mirrors_list);
 			transaction.run_preferences_dialog_finished.connect (on_run_preferences_dialog_finished);
@@ -398,14 +398,14 @@ namespace Pamac {
 		}
 
 #if DISABLE_AUR
-		void on_write_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon) {
+		void on_save_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon) {
 		}
 #else
-		void on_write_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon,
+		void on_save_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon,
 											bool enable_aur, bool search_aur) {
 			support_aur (enable_aur);
-		}
 #endif
+		}
 
 		void on_set_pkgreason_finished () {
 			transaction.unlock ();

@@ -1,0 +1,37 @@
+<schemalist>
+	<schema id="org.pamac.aur" path="/org/pamac/aur/" gettext-domain="pamac">
+
+		<key name="enable-aur" type="b">
+			<default>false</default>
+			<summary>Enable AUR</summary>
+			<description>
+				Allow Pamac to search and install packages from AUR
+			</description>
+		</key>
+
+		<key name="search-in-aur" type="b">
+			<default>true</default>
+			<summary>Search in AUR by default</summary>
+			<description>
+				When AUR support is enabled search in AUR by default
+			</description>
+		</key>
+
+		<key name="check-aur-updates" type="b">
+			<default>false</default>
+			<summary>Check AUR for updates</summary>
+			<description>
+				When AUR support is enabled check for updates from AUR
+			</description>
+		</key>
+
+		<key name="build-directory" type="s">
+			<default l10n="messages">"/tmp"</default>
+			<summary>AUR build directory</summary>
+			<description>
+				Directory where to build packages that come from the AUR
+			</description>
+		</key>
+
+	</schema>
+</schemalist>
