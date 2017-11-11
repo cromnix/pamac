@@ -367,7 +367,10 @@ namespace Pamac {
 #endif
 			transaction.important_details_outpout.connect (on_important_details_outpout);
 			transaction.finished.connect (on_transaction_finished);
+#if DISABLE_AUR
+#else
 			transaction.save_pamac_config_finished.connect (on_save_pamac_config_finished);
+#endif
 			transaction.set_pkgreason_finished.connect (on_set_pkgreason_finished);
 			transaction.generate_mirrors_list.connect (on_generate_mirrors_list);
 			transaction.run_preferences_dialog_finished.connect (on_run_preferences_dialog_finished);
@@ -398,14 +401,12 @@ namespace Pamac {
 		}
 
 #if DISABLE_AUR
-		void on_save_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon) {
-		}
 #else
 		void on_save_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon,
-											bool enable_aur, bool search_aur) {
-			support_aur (enable_aur);
-#endif
+											bool enable_aur, bool search_aur, string aur_build_dir, bool check_aur_updates) {
+			support_aur (transaction.enable_aur);
 		}
+#endif
 
 		void on_set_pkgreason_finished () {
 			transaction.unlock ();
@@ -428,9 +429,7 @@ namespace Pamac {
 #else
 		void support_aur (bool enable_aur) {
 			if (enable_aur) {
-				if (filters_stack.visible_child_name == "search") {
-					packages_stackswitcher.visible = true;
-				}
+				packages_stackswitcher.visible = true;
 			} else {
 				packages_stackswitcher.visible = false;
 			}

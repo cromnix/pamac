@@ -1926,7 +1926,7 @@ namespace Pamac {
 		void on_save_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon) {
 #else
 		void on_save_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon,
-												bool enable_aur, bool search_aur, string aur_build_dir, bool check_aur_updates) {
+											bool enable_aur, bool search_aur, string aur_build_dir, bool check_aur_updates) {
 #endif
 			system_daemon.save_pamac_config_finished.disconnect (on_save_pamac_config_finished);
 			pamac_config.reload ();
