@@ -4,7 +4,7 @@ cfg_pamac_classic.set('PKGDATADIR', join_paths(get_option('prefix'),get_option('
 cfg_pamac_classic.set('GETTEXT_PACKAGE', 'pamac-classic')
 cfg_pamac_classic.set('RELEASE_NAME', 'pamac-classic')
 cfg_pamac_classic.set('PREFIX', get_option('prefix'))
-cfg_pamac_classic.set('VERSION', '6.5.2')
+cfg_pamac_classic.set('VERSION', '6.6.0')
 cfg_pamac_classic.set('TESTSRCDIR', meson.source_root())
 
 cfgfile_1 = configure_file(input: 'Config.vala.base',output: 'Config.vala',configuration: cfg_pamac_classic)
@@ -39,10 +39,6 @@ pamac_classic_vala_args = ['--pkg','posix']
 pamac_classic_vala_args += ['--vapidir='+join_paths(meson.source_root(),'src/vapis')]
 pamac_classic_vala_args += ['--gresources='+join_paths(meson.source_root(),'data/pamac.transaction.gresource.xml')]
 pamac_classic_c_args = []
-if DISABLE_AUR
-  pamac_classic_vala_args += ['-D', 'DISABLE_AUR']
-  pamac_classic_c_args += ['-DDISABLE_AUR']
-endif
 if ENABLE_UPDATE_ICON
   pamac_classic_vala_args += ['-D', 'ENABLE_UPDATE_ICON']
   pamac_classic_c_args += ['-DENABLE_UPDATE_ICON']
@@ -55,11 +51,15 @@ if KDE_TRAY
   pamac_classic_vala_args += ['-D', 'KDE_TRAY']
   pamac_classic_c_args += ['-DKDE_TRAY']
 endif
+if DISABLE_AUR
+  pamac_classic_vala_args += ['-D', 'DISABLE_AUR']
+  pamac_classic_c_args += ['-DDISABLE_AUR']
+endif
 pamac_classic_deps += [meson.get_compiler('c').find_library('m', required : false)]
 pamac_classic_vala_args += ['--gir=pamacclassic-6.0.gir']
 
 
-pamacclassic_library = shared_library('pamacclassic',pamac_classic_sources,dependencies: pamac_classic_deps,vala_args: pamac_classic_vala_args,c_args: pamac_classic_c_args,version: '6.5.2',soversion: '6',install: true)
+pamacclassic_library = shared_library('pamacclassic',pamac_classic_sources,dependencies: pamac_classic_deps,vala_args: pamac_classic_vala_args,c_args: pamac_classic_c_args,version: '6.6.0',soversion: '6',install: true)
 
 pamac_classic_requires = []
 pamac_classic_requires += ['gdk-3.0']
@@ -74,7 +74,7 @@ pamac_classic_requires += ['glib-2.0']
 pamac_classic_requires += ['gobject-2.0']
 pkg_mod = import('pkgconfig')
 pkg_mod.generate(libraries : pamacclassic_library,
-	version : '6.5.2',
+	version : '6.6.0',
 	name : 'pamacclassic',
 	filebase : 'pamacclassic',
 	description : 'pamacclassic',

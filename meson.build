@@ -1,9 +1,9 @@
 project('pamac-classic',['c','vala'])
 
-DISABLE_AUR = (get_option('DISABLE_AUR') != '')
 ENABLE_UPDATE_ICON = (get_option('ENABLE_UPDATE_ICON') != '')
 ENABLE_HAMBURGER = (get_option('ENABLE_HAMBURGER') != '')
 KDE_TRAY = (get_option('KDE_TRAY') != '')
+DISABLE_AUR = (get_option('DISABLE_AUR') != '')
 
 add_global_arguments('-DGETTEXT_PACKAGE="pamac-classic"',language: 'c')
 
@@ -36,13 +36,6 @@ meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','
 
 meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','install_data.sh'),'/usr/lib/systemd/system',join_paths(meson.current_source_dir(),'data/systemd','pamac-mirrorlist.timer'))
 
-if DISABLE_AUR
-	meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','install_data.sh'),'/etc',join_paths(meson.current_source_dir(),'data/config/noaur','pamac.conf'))
-
-else
-	meson.add_install_script(join_paths(meson.current_source_dir(),'meson_scripts','install_data.sh'),'/etc',join_paths(meson.current_source_dir(),'data/config','pamac.conf'))
-
-endif
 pamac_installer_gresource_xml_generator = generator(find_program('glib-compile-resources'), arguments: [ '--sourcedir=@SOURCE_DIR@/data' , '--generate-source', '--target=@BUILD_DIR@/pamac.installer.gresource.xml.c', '@INPUT@'], output: '@PLAINNAME@.c')
 
 pamac_installer_gresource_xml_file_c = pamac_installer_gresource_xml_generator.process(['data/pamac.installer.gresource.xml'])
@@ -78,6 +71,12 @@ install_data(dbus_cfg_org_pamac_system_service,install_dir: join_paths(get_optio
 dbus_cfg_org_pamac_user_service = configure_file(input: 'data/dbus/org.pamac.user.service',output: 'org.pamac.user.service', configuration: cfg_dbus_data)
 install_data(dbus_cfg_org_pamac_user_service,install_dir: join_paths(get_option('prefix'),get_option('datadir'),'dbus-1','services'))
 install_data( 'data/dbus/org.pamac.system.conf',install_dir: join_paths(get_option('prefix'),get_option('datadir'),'dbus-1','system.d'))
+install_data('data/org.pamac.main.gschema.xml', install_dir: join_paths(get_option('prefix'),get_option('datadir'), 'glib-2.0', 'schemas'))
+meson.add_install_script('meson_scripts/install_schemas.py')
+if not DISABLE_AUR
+	install_data('data/org.pamac.aur.gschema.xml', install_dir: join_paths(get_option('prefix'),get_option('datadir'), 'glib-2.0', 'schemas'))
+	meson.add_install_script('meson_scripts/install_schemas.py')
+endif
 install_data('data/icons/16x16/apps/system-software-install.png',install_dir: join_paths(get_option('prefix'),get_option('datadir'),'icons','hicolor/16x16/apps'))
 install_data('data/icons/24x24/status/pamac-tray-no-update.png',install_dir: join_paths(get_option('prefix'),get_option('datadir'),'icons','hicolor/24x24/apps'))
 install_data('data/icons/24x24/status/pamac-tray-update.png',install_dir: join_paths(get_option('prefix'),get_option('datadir'),'icons','hicolor/24x24/apps'))

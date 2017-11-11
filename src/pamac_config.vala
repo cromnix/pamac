@@ -20,7 +20,6 @@
 
 namespace Pamac {
 	class Config {
-		string conf_path;
 		HashTable<string,string> _environment_variables;
 
 		public bool recurse { get; private set; }
@@ -44,8 +43,7 @@ namespace Pamac {
 			}
 		}
 
-		public Config (string path) {
-			conf_path = path;
+		public Config () {
 			//get environment variables
 			_environment_variables = new HashTable<string,string> (str_hash, str_equal);
 			var utsname = Posix.utsname();
@@ -91,291 +89,29 @@ namespace Pamac {
 			terminal_background = "rgb(0,0,0)";
 			terminal_foreground = "rgb(255,255,255)";
 			terminal_font = "Sans Regular 12";
-			parse_file (conf_path);
+			//parse_file (conf_path);
+			load_settings ();
 		}
 
-		void parse_file (string path) {
-			var file = GLib.File.new_for_path (path);
-			if (file.query_exists ()) {
-				try {
-					// Open file for reading and wrap returned FileInputStream into a
-					// DataInputStream, so we can read line by line
-					var dis = new DataInputStream (file.read ());
-					string? line;
-					// Read lines until end of file (null) is reached
-					while ((line = dis.read_line ()) != null) {
-						if (line.length == 0) {
-							continue;
-						}
-						// ignore whole line and end of line comments
-						string[] splitted = line.split ("#", 2);
-						line = splitted[0].strip ();
-						if (line.length == 0) {
-							continue;
-						}
-						splitted = line.split ("=", 2);
-						unowned string key = splitted[0]._strip ();
-						if (key == "RemoveUnrequiredDeps") {
-							recurse = true;
-						} else if (key == "RefreshPeriod") {
-							if (splitted.length == 2) {
-								unowned string val = splitted[1]._strip ();
-								refresh_period = uint64.parse (val);
-							}
-						} else if (key == "NoUpdateHideIcon") {
-							no_update_hide_icon = true;
+		void load_settings () {
+			var settings = new Settings ("org.pamac.main");
+			recurse = settings.get_boolean ("remove-unrequired-deps");
+			refresh_period = settings.get_uint64 ("refresh-period");
+			no_update_hide_icon = settings.get_boolean ("no-update-hide-icon");
+			keep_num_pkgs = settings.get_uint64 ("keep-num-packages");
+			rm_only_uninstalled = settings.get_boolean ("only-rm-uninstalled");
+			terminal_background = settings.get_string ("background-color");
+			terminal_foreground = settings.get_string ("foreground-color");
+			terminal_font = settings.get_string ("terminal-font");
+
 #if DISABLE_AUR
 #else
-						} else if (key == "EnableAUR") {
-							enable_aur = true;
-						} else if (key == "SearchInAURByDefault") {
-							search_aur = true;
-						} else if (key == "BuildDirectory") {
-							if (splitted.length == 2) {
-								aur_build_dir = splitted[1]._strip ();
-							}
-						} else if (key == "CheckAURUpdates") {
-							check_aur_updates = true;
+			settings = new Settings ("org.pamac.aur");
+			enable_aur = settings.get_boolean ("enable-aur");
+			search_aur = settings.get_boolean ("search-in-aur");
+			check_aur_updates = settings.get_boolean ("check-aur-updates");
+			aur_build_dir = settings.get_string ("build-directory");
 #endif
-						} else if (key == "KeepNumPackages") {
-							if (splitted.length == 2) {
-								unowned string val = splitted[1]._strip ();
-								keep_num_pkgs = uint64.parse (val);
-							}
-						} else if (key == "OnlyRmUninstalled") {
-							rm_only_uninstalled = true;
-						} else if (key == "BackgroundColor") {
-							if (splitted.length == 2) {
-								terminal_background = splitted[1]._strip ();
-							}
-						} else if (key == "ForegroundColor") {
-							if (splitted.length == 2) {
-								terminal_foreground = splitted[1]._strip ();
-							}
-						} else if (key == "TerminalFont") {
-							if (splitted.length == 2) {
-								terminal_font = splitted[1]._strip ();
-							}
-						}
-					}
-				} catch (GLib.Error e) {
-					GLib.stderr.printf("%s\n", e.message);
-				}
-			} else {
-				GLib.stderr.printf ("File '%s' doesn't exist.\n", path);
-			}
-		}
-		public void write (HashTable<string,Variant> new_conf) {
-			var file = GLib.File.new_for_path (conf_path);
-			var data = new GLib.List<string> ();
-			if (file.query_exists ()) {
-				try {
-					// Open file for reading and wrap returned FileInputStream into a
-					// DataInputStream, so we can read line by line
-					var dis = new DataInputStream (file.read ());
-					string? line;
-					// Read lines until end of file (null) is reached
-					while ((line = dis.read_line ()) != null) {
-						if (line.length == 0) {
-							data.append ("\n");
-							continue;
-						}
-						unowned Variant variant;
-						if (line.contains ("RemoveUnrequiredDeps")) {
-							if (new_conf.lookup_extended ("RemoveUnrequiredDeps", null, out variant)) {
-								if (variant.get_boolean ()) {
-									data.append ("RemoveUnrequiredDeps\n");
-								} else {
-									data.append ("#RemoveUnrequiredDeps\n");
-								}
-								new_conf.remove ("RemoveUnrequiredDeps");
-							} else {
-								data.append (line + "\n");
-							}
-						} else if (line.contains ("RefreshPeriod")) {
-							if (new_conf.lookup_extended ("RefreshPeriod", null, out variant)) {
-								data.append ("RefreshPeriod = %llu\n".printf (variant.get_uint64 ()));
-								new_conf.remove ("RefreshPeriod");
-							} else {
-								data.append (line + "\n");
-							}
-						} else if (line.contains ("NoUpdateHideIcon")) {
-							if (new_conf.lookup_extended ("NoUpdateHideIcon", null, out variant)) {
-								if (variant.get_boolean ()) {
-									data.append ("NoUpdateHideIcon\n");
-								} else {
-									data.append ("#NoUpdateHideIcon\n");
-								}
-								new_conf.remove ("NoUpdateHideIcon");
-							} else {
-								data.append (line + "\n");
-							}
-#if DISABLE_AUR
-#else
-						} else if (line.contains ("EnableAUR")) {
-							if (new_conf.lookup_extended ("EnableAUR", null, out variant)) {
-								if (variant.get_boolean ()) {
-									data.append ("EnableAUR\n");
-								} else {
-									data.append ("#EnableAUR\n");
-								}
-								new_conf.remove ("EnableAUR");
-							} else {
-								data.append (line + "\n");
-							}
-						} else if (line.contains ("SearchInAURByDefault")) {
-							if (new_conf.lookup_extended ("SearchInAURByDefault", null, out variant)) {
-								if (variant.get_boolean ()) {
-									data.append ("SearchInAURByDefault\n");
-								} else {
-									data.append ("#SearchInAURByDefault\n");
-								}
-								new_conf.remove ("SearchInAURByDefault");
-							} else {
-								data.append (line + "\n");
-							}
-						} else if (line.contains ("BuildDirectory")) {
-							if (new_conf.lookup_extended ("BuildDirectory", null, out variant)) {
-								data.append ("BuildDirectory = %s\n".printf (variant.get_string ()));
-								new_conf.remove ("BuildDirectory");
-							} else {
-								data.append (line + "\n");
-							}
-						} else if (line.contains ("CheckAURUpdates")) {
-							if (new_conf.lookup_extended ("CheckAURUpdates", null, out variant)) {
-								if (variant.get_boolean ()) {
-									data.append ("CheckAURUpdates\n");
-								} else {
-									data.append ("#CheckAURUpdates\n");
-								}
-								new_conf.remove ("CheckAURUpdates");
-							} else {
-								data.append (line + "\n");
-							}
-#endif
-						} else if (line.contains ("KeepNumPackages")) {
-							if (new_conf.lookup_extended ("KeepNumPackages", null, out variant)) {
-								data.append ("KeepNumPackages = %llu\n".printf (variant.get_uint64 ()));
-								new_conf.remove ("KeepNumPackages");
-							} else {
-								data.append (line + "\n");
-							}
-						} else if (line.contains ("OnlyRmUninstalled")) {
-							if (new_conf.lookup_extended ("OnlyRmUninstalled", null, out variant)) {
-								if (variant.get_boolean ()) {
-									data.append ("OnlyRmUninstalled\n");
-								} else {
-									data.append ("#OnlyRmUninstalled\n");
-								}
-								new_conf.remove ("OnlyRmUninstalled");
-							} else {
-								data.append (line + "\n");
-							}
-						} else if (line.contains ("BackgroundColor")) {
-							if (new_conf.lookup_extended ("BackgroundColor", null, out variant)) {
-								data.append ("BackgroundColor = %s\n".printf (variant.get_string ()));
-								new_conf.remove ("BackgroundColor");
-							} else {
-								data.append (line + "\n");
-							}
-						} else if (line.contains ("ForegroundColor")) {
-							if (new_conf.lookup_extended ("ForegroundColor", null, out variant)) {
-								data.append ("ForegroundColor = %s\n".printf (variant.get_string ()));
-								new_conf.remove ("ForegroundColor");
-							} else {
-								data.append (line + "\n");
-							}
-						} else if (line.contains ("TerminalFont")) {
-							if (new_conf.lookup_extended ("TerminalFont", null, out variant)) {
-								data.append ("TerminalFont = %s\n".printf (variant.get_string ()));
-								new_conf.remove ("TerminalFont");
-							} else {
-								data.append (line + "\n");
-							}
-						} else {
-							data.append (line + "\n");
-						}
-					}
-					// delete the file before rewrite it
-					file.delete ();
-				} catch (GLib.Error e) {
-					GLib.stderr.printf("%s\n", e.message);
-				}
-			} else {
-				GLib.stderr.printf ("File '%s' doesn't exist.\n", conf_path);
-			}
-			// create lines for unexisted options
-			if (new_conf.size () != 0) {
-				data.append ("\n");
-				var iter = HashTableIter<string,Variant> (new_conf);
-				unowned string key;
-				unowned Variant val;
-				while (iter.next (out key, out val)) {
-					if (key == "RemoveUnrequiredDeps") {
-						if (val.get_boolean ()) {
-							data.append ("RemoveUnrequiredDeps\n");
-						} else {
-							data.append ("#RemoveUnrequiredDeps\n");
-						}
-					} else if (key == "RefreshPeriod") {
-						data.append ("RefreshPeriod = %llu\n".printf (val.get_uint64 ()));
-					} else if (key =="NoUpdateHideIcon") {
-						if (val.get_boolean ()) {
-							data.append ("NoUpdateHideIcon\n");
-						} else {
-							data.append ("#NoUpdateHideIcon\n");
-						}
-#if DISABLE_AUR
-#else
-					} else if (key == "EnableAUR") {
-						if (val.get_boolean ()) {
-							data.append ("EnableAUR\n");
-						} else {
-							data.append ("#EnableAUR\n");
-						}
-					} else if (key == "SearchInAURByDefault") {
-						if (val.get_boolean ()) {
-							data.append ("SearchInAURByDefault\n");
-						} else {
-							data.append ("#SearchInAURByDefault\n");
-						}
-					} else if (key == "BuildDirectory") {
-						data.append ("BuildDirectory = %s\n".printf (val.get_string ()));
-					} else if (key == "CheckAURUpdates") {
-						if (val.get_boolean ()) {
-							data.append ("CheckAURUpdates\n");
-						} else {
-							data.append ("#CheckAURUpdates\n");
-						}
-#endif
-					} else if (key == "KeepNumPackages") {
-						data.append ("KeepNumPackages = %llu\n".printf (val.get_uint64 ()));
-					} else if (key == "OnlyRmUninstalled") {
-						if (val.get_boolean ()) {
-							data.append ("OnlyRmUninstalled\n");
-						} else {
-							data.append ("#OnlyRmUninstalled\n");
-						}
-					} else if (key == "BackgroundColor") {
-						data.append ("BackgroundColor = %s\n".printf (val.get_string ()));
-					} else if (key == "ForegroundColor") {
-						data.append ("ForegroundCOlor = %s\n".printf (val.get_string ()));
-					} else if (key == "TerminalFont") {
-						data.append ("TerminalFont = %s\n".printf (val.get_string ()));
-					}
-				}
-			}
-			// write the file
-			try {
-				// creating a DataOutputStream to the file
-				var dos = new DataOutputStream (file.create (FileCreateFlags.REPLACE_DESTINATION));
-				foreach (unowned string new_line in data) {
-					// writing a short string to the stream
-					dos.put_string (new_line);
-				}
-			} catch (GLib.Error e) {
-				GLib.stderr.printf("%s\n", e.message);
-			}
 		}
 	}
 }

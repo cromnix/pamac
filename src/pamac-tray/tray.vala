@@ -47,6 +47,7 @@ namespace Pamac {
 		uint refresh_timeout_id;
 		public Gtk.Menu menu;
 		GLib.File lockfile;
+		bool updates_available;
 
 		public TrayIcon () {
 			application_id = "org.pamac.tray";
@@ -116,10 +117,12 @@ namespace Pamac {
 
 		public abstract string get_icon ();
 
+		public abstract bool get_icon_visible ();
+
 		public abstract void set_icon_visible (bool visible);
 
 		bool check_updates () {
-			var pamac_config = new Pamac.Config ("/etc/pamac.conf");
+			var pamac_config = new Pamac.Config ();
 			if (pamac_config.refresh_period != 0) {
 				try {
 #if DISABLE_AUR
@@ -141,12 +144,14 @@ namespace Pamac {
 			uint updates_nb = updates.repos_updates.length + updates.aur_updates.length;
 #endif
 			if (updates_nb == 0) {
+				updates_available = false;
 				set_icon (noupdate_icon_name);
 				set_tooltip (noupdate_info);
-				var pamac_config = new Pamac.Config ("/etc/pamac.conf");
+				var pamac_config = new Pamac.Config ();
 				set_icon_visible (!pamac_config.no_update_hide_icon);
 				close_notification ();
 			} else {
+				updates_available = true;
 				string info = ngettext ("%u available update", "%u available updates", updates_nb).printf (updates_nb);
 				set_icon (update_icon_name);
 				set_tooltip (info);
@@ -241,6 +246,22 @@ namespace Pamac {
 			return true;
 		}
 
+		bool check_icon_hide_setting () {
+			var pamac_config = new Pamac.Config ();
+			if (!updates_available) {
+				if (get_icon_visible () && pamac_config.no_update_hide_icon) {
+					set_icon_visible (false);
+				} else if (!get_icon_visible () && !pamac_config.no_update_hide_icon) {
+					set_icon_visible (true);
+				}
+			}
+			return true;
+		}
+
+		void launch_icon_check_timeout () {
+			Timeout.add_seconds ((uint) 1, check_icon_hide_setting);
+		}
+
 		void launch_refresh_timeout (uint64 refresh_period_in_hours) {
 			if (refresh_timeout_id != 0) {
 				Source.remove (refresh_timeout_id);
@@ -256,7 +277,7 @@ namespace Pamac {
 			Intl.textdomain ("pamac");
 			Intl.setlocale (LocaleCategory.ALL, "");
 
-			var pamac_config = new Pamac.Config ("/etc/pamac.conf");
+			var pamac_config = new Pamac.Config ();
 			// if refresh period is 0, just return so tray will exit
 			if (pamac_config.refresh_period == 0) {
 				return;
@@ -289,6 +310,7 @@ namespace Pamac {
 				check_updates ();
 				return false;
 			});
+			launch_icon_check_timeout ();
 			launch_refresh_timeout (pamac_config.refresh_period);
 
 			this.hold ();

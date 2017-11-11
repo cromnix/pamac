@@ -103,9 +103,9 @@ namespace Pamac {
 		public signal void trans_commit_finished (bool success);
 		public signal void get_authorization_finished (bool authorized);
 #if DISABLE_AUR
-		public signal void write_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon);
+		public signal void save_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon);
 #else
-		public signal void write_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon,
+		public signal void save_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon,
 														bool enable_aur, bool search_aur, string aur_build_dir, bool check_aur_updates);
 #endif
 		public signal void write_alpm_config_finished (bool checkspace);
@@ -193,7 +193,7 @@ namespace Pamac {
 				alpm_handle.totaldlcb = (Alpm.TotalDownloadCallBack) cb_totaldownload;
 				alpm_handle.logcb = (Alpm.LogCallBack) cb_log;
 				lockfile = GLib.File.new_for_path (alpm_handle.lockfile);
-				files_handle = alpm_config.get_handle (true);
+				files_handle = alpm_config.get_handle (false, true);
 				files_handle.eventcb = (Alpm.EventCallBack) cb_event;
 				files_handle.progresscb = (Alpm.ProgressCallBack) cb_progress;
 				files_handle.questioncb = (Alpm.QuestionCallBack) cb_question;
@@ -356,21 +356,15 @@ namespace Pamac {
 			});
 		}
 
-		public void start_write_pamac_config (HashTable<string,Variant> new_pamac_conf, GLib.BusName sender) {
-			check_authorization.begin (sender, (obj, res) => {
-				var pamac_config = new Pamac.Config ("/etc/pamac.conf");
-				bool authorized = check_authorization.end (res);
-				if (authorized ) {
-					pamac_config.write (new_pamac_conf);
-					pamac_config.reload ();
-				}
+		public void start_save_pamac_config () {
+				var pamac_config = new Pamac.Config ();
+				pamac_config.reload ();
 #if DISABLE_AUR
-				write_pamac_config_finished (pamac_config.recurse, pamac_config.refresh_period, pamac_config.no_update_hide_icon);
+				save_pamac_config_finished (pamac_config.recurse, pamac_config.refresh_period, pamac_config.no_update_hide_icon);
 #else
-				write_pamac_config_finished (pamac_config.recurse, pamac_config.refresh_period, pamac_config.no_update_hide_icon,
+				save_pamac_config_finished (pamac_config.recurse, pamac_config.refresh_period, pamac_config.no_update_hide_icon,
 											pamac_config.enable_aur, pamac_config.search_aur, pamac_config.aur_build_dir, pamac_config.check_aur_updates);
 #endif
-			});
 		}
 
 		private void write_alpm_config () {

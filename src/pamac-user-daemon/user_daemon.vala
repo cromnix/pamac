@@ -58,7 +58,7 @@ namespace Pamac {
 			if (alpm_handle == null) {
 				return;
 			} else {
-				files_handle = alpm_config.get_handle (true);
+				files_handle = alpm_config.get_handle (false, true);
 			}
 		}
 
@@ -611,6 +611,8 @@ namespace Pamac {
 			string packager = "";
 			string builddate = "";
 			string installdate = "";
+			string downloadsize = "";
+			string installsize = "";
 			string[] groups = {};
 			string[] backups = {};
 			string[] licenses = {};
@@ -648,6 +650,10 @@ namespace Pamac {
 					groups += ((Alpm.List<unowned string>) list).data;
 					list.next ();
 				}
+				// download size
+				downloadsize = alpm_pkg.download_size.to_string ();
+				// installed size
+				installsize = alpm_pkg.isize.to_string ();
 				// licenses
 				list = alpm_pkg.licenses;
 				while (list != null) {
@@ -744,6 +750,8 @@ namespace Pamac {
 			details.builddate = (owned) builddate;
 			details.installdate = (owned) installdate;
 			details.reason = (owned) reason;
+			details.downloadsize = (owned) downloadsize;
+			details.installsize = (owned) installsize;
 			details.has_signature = (owned) has_signature;
 			details.licenses = (owned) licenses;
 			details.depends = (owned) depends;
@@ -804,7 +812,7 @@ namespace Pamac {
 				syncdbs.next ();
 			}
 			// refresh file dbs
-			var tmp_files_handle = alpm_config.get_handle (true, true);
+			var tmp_files_handle = alpm_config.get_handle (false, true);
 			syncdbs = tmp_files_handle.syncdbs;
 			while (syncdbs != null) {
 				unowned Alpm.DB db = syncdbs.data;

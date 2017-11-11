@@ -70,7 +70,7 @@ namespace Pamac {
 		public abstract bool get_lock () throws IOError;
 		public abstract bool unlock () throws IOError;
 		public abstract void start_get_authorization () throws IOError;
-		public abstract void start_write_pamac_config (HashTable<string,Variant> new_pamac_conf) throws IOError;
+		public abstract void start_save_pamac_config () throws IOError;
 		public abstract void start_write_alpm_config (HashTable<string,Variant> new_alpm_conf) throws IOError;
 		public abstract void start_write_mirrors_config (HashTable<string,Variant> new_mirrors_conf) throws IOError;
 		public abstract void start_generate_mirrors_list () throws IOError;
@@ -108,9 +108,9 @@ namespace Pamac {
 		public signal void trans_commit_finished (bool success);
 		public signal void get_authorization_finished (bool authorized);
 #if DISABLE_AUR
-		public signal void write_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon);
+		public signal void save_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon);
 #else
-		public signal void write_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon,
+		public signal void save_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon,
 														bool enable_aur, bool search_aur, string aur_build_dir, bool check_aur_updates);
 #endif
 		public signal void write_alpm_config_finished (bool checkspace);
@@ -149,7 +149,7 @@ namespace Pamac {
 		public string terminal_background { get { return pamac_config.terminal_background; } }
 		public string terminal_foreground { get { return pamac_config.terminal_foreground; } }
 		public string terminal_font { get { return pamac_config.terminal_font; } }
-		public unowned GLib.HashTable<string,string> environment_variables { get {return pamac_config.environment_variables; } }
+		public unowned GLib.HashTable<string,string> environment_variables { get { return pamac_config.environment_variables; } }
 		public bool no_update_hide_icon { get { return pamac_config.no_update_hide_icon; } }
 		public bool recurse { get { return pamac_config.recurse; } }
 		public uint64 refresh_period { get { return pamac_config.refresh_period; } }
@@ -221,9 +221,9 @@ namespace Pamac {
 		public signal void finished (bool success);
 		public signal void set_pkgreason_finished ();
 #if DISABLE_AUR
-		public signal void write_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon);
+		public signal void save_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon);
 #else
-		public signal void write_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon,
+		public signal void save_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon,
 														bool enable_aur, bool search_aur, string aur_build_dir, bool check_aur_updates);
 #endif
 		public signal void write_alpm_config_finished (bool checkspace);
@@ -234,7 +234,7 @@ namespace Pamac {
 
 		public Transaction (Gtk.ApplicationWindow? application_window) {
 			mode = Mode.MANAGER;
-			pamac_config = new Pamac.Config ("/etc/pamac.conf");
+			pamac_config = new Pamac.Config ();
 			flags = (1 << 4); //Alpm.TransFlag.CASCADE
 			if (pamac_config.recurse) {
 				flags |= (1 << 5); //Alpm.TransFlag.RECURSE
@@ -306,6 +306,10 @@ namespace Pamac {
 			warning_textbuffer = new StringBuilder ();
 		}
 
+		public void config_changed() {
+			pamac_config.reload();
+		}
+
 		public void update_terminal_background (string background) {
 			var tmp = Gdk.RGBA ();
 			tmp.parse (background);
@@ -324,18 +328,13 @@ namespace Pamac {
 		}
 
 		public void run_preferences_dialog () {
-			check_authorization.begin ((obj, res) => {
-				bool authorized = check_authorization.end (res);
-				if (authorized) {
-					var preferences_dialog = new PreferencesDialog (this);
-					preferences_dialog.run ();
-					preferences_dialog.destroy ();
-					while (Gtk.events_pending ()) {
-						Gtk.main_iteration ();
-					}
-				}
-				run_preferences_dialog_finished ();
-			});
+			var preferences_dialog = new PreferencesDialog (this);
+			preferences_dialog.run ();
+			preferences_dialog.destroy ();
+			while (Gtk.events_pending ()) {
+				Gtk.main_iteration ();
+			}
+			run_preferences_dialog_finished ();
 		}
 
 		public ErrorInfos get_current_error () {
@@ -396,13 +395,13 @@ namespace Pamac {
 			return authorized;
 		}
 
-		public void start_write_pamac_config (HashTable<string,Variant> new_pamac_conf) {
+		public void start_save_pamac_config () {
 			try {
-				system_daemon.write_pamac_config_finished.connect (on_write_pamac_config_finished);
-				system_daemon.start_write_pamac_config (new_pamac_conf);
+				system_daemon.save_pamac_config_finished.connect (on_save_pamac_config_finished);
+				system_daemon.start_save_pamac_config ();
 			} catch (IOError e) {
 				stderr.printf ("IOError: %s\n", e.message);
-				system_daemon.write_pamac_config_finished.disconnect (on_write_pamac_config_finished);
+				system_daemon.save_pamac_config_finished.disconnect (on_save_pamac_config_finished);
 			}
 		}
 
@@ -816,7 +815,9 @@ namespace Pamac {
 					builddate = "",
 					installdate = "",
 					reason = "",
-					has_signature = ""
+					has_signature = "",
+					downloadsize = "",
+					installsize = ""
 				};
 			}
 		}
@@ -1924,21 +1925,21 @@ namespace Pamac {
 		}
 
 #if DISABLE_AUR
-		void on_write_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon) {
+		void on_save_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon) {
 #else
-		void on_write_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon,
-												bool enable_aur, bool search_aur, string aur_build_dir, bool check_aur_updates) {
+		void on_save_pamac_config_finished (bool recurse, uint64 refresh_period, bool no_update_hide_icon,
+											bool enable_aur, bool search_aur, string aur_build_dir, bool check_aur_updates) {
 #endif
-			system_daemon.write_pamac_config_finished.disconnect (on_write_pamac_config_finished);
+			system_daemon.save_pamac_config_finished.disconnect (on_save_pamac_config_finished);
 			pamac_config.reload ();
 			flags = (1 << 4); //Alpm.TransFlag.CASCADE
 			if (pamac_config.recurse) {
 				flags |= (1 << 5); //Alpm.TransFlag.RECURSE
 			}
 #if DISABLE_AUR
-			write_pamac_config_finished (recurse, refresh_period, no_update_hide_icon);
+			save_pamac_config_finished (recurse, refresh_period, no_update_hide_icon);
 #else
-			write_pamac_config_finished (recurse, refresh_period, no_update_hide_icon,
+			save_pamac_config_finished (recurse, refresh_period, no_update_hide_icon,
 											enable_aur, search_aur, aur_build_dir, check_aur_updates);
 #endif
 		}

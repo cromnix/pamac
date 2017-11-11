@@ -4,7 +4,7 @@ cfg_pamac_tray.set('PKGDATADIR', join_paths(get_option('prefix'),get_option('dat
 cfg_pamac_tray.set('GETTEXT_PACKAGE', 'pamac-classic')
 cfg_pamac_tray.set('RELEASE_NAME', 'pamac-classic')
 cfg_pamac_tray.set('PREFIX', get_option('prefix'))
-cfg_pamac_tray.set('VERSION', '6.5.2')
+cfg_pamac_tray.set('VERSION', '6.6.0')
 cfg_pamac_tray.set('TESTSRCDIR', meson.source_root())
 
 cfgfile_3 = configure_file(input: 'Config.vala.base',output: 'Config.vala',configuration: cfg_pamac_tray)
@@ -33,10 +33,6 @@ pamac_tray_vala_args = ['--pkg','posix']
 pamac_tray_vala_args += ['--vapidir='+join_paths(meson.source_root(),'src/vapis')]
 pamac_tray_dependencies = [pamacclassic_library]
 pamac_tray_c_args = []
-if DISABLE_AUR
-  pamac_tray_vala_args += ['-D', 'DISABLE_AUR']
-  pamac_tray_c_args += ['-DDISABLE_AUR']
-endif
 if ENABLE_UPDATE_ICON
   pamac_tray_vala_args += ['-D', 'ENABLE_UPDATE_ICON']
   pamac_tray_c_args += ['-DENABLE_UPDATE_ICON']
@@ -48,6 +44,10 @@ endif
 if KDE_TRAY
   pamac_tray_vala_args += ['-D', 'KDE_TRAY']
   pamac_tray_c_args += ['-DKDE_TRAY']
+endif
+if DISABLE_AUR
+  pamac_tray_vala_args += ['-D', 'DISABLE_AUR']
+  pamac_tray_c_args += ['-DDISABLE_AUR']
 endif
 pamac_tray_hfolders = ['../../src']
 

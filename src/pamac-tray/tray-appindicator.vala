@@ -48,6 +48,14 @@ namespace Pamac {
 			return indicator_status_icon.get_icon ();
 		}
 
+		public override bool get_icon_visible () {
+			if (indicator_status_icon.get_status () == AppIndicator.IndicatorStatus.ACTIVE) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
 		public override void set_icon_visible (bool visible) {
 			if (visible) {
 				indicator_status_icon.set_status (AppIndicator.IndicatorStatus.ACTIVE);

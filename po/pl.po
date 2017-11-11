@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-06 22:24-0300\n"
+"POT-Creation-Date: 2017-11-11 20:26-0300\n"
 "PO-Revision-Date: 2017-08-02 11:35+0000\n"
 "Last-Translator: Piotr Strębski <strebski@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/manjarolinux/manjaro-pamac/"
@@ -479,6 +479,14 @@ msgstr "Licencje"
 #: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
 msgid "Repository"
 msgstr "Repozytorium"
+
+#: ../src/pamac-manager/manager_window.vala
+msgid "Download size"
+msgstr ""
+
+#: ../src/pamac-manager/manager_window.vala
+msgid "Installed size"
+msgstr ""
 
 #: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
 msgid "Groups"

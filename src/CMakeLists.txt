@@ -7,7 +7,7 @@ set (GETTEXT_PACKAGE "pamac-classic")
 set (RELEASE_NAME "pamac-classic")
 set (CMAKE_C_FLAGS "")
 set (PREFIX ${CMAKE_INSTALL_PREFIX})
-set (VERSION "6.5.2")
+set (VERSION "6.6.0")
 set (TESTSRCDIR "${CMAKE_SOURCE_DIR}")
 set (DOLLAR "$")
 
@@ -15,7 +15,7 @@ configure_file (${CMAKE_SOURCE_DIR}/src/Config.vala.base ${CMAKE_BINARY_DIR}/src
 add_definitions(-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/pamacclassic.pc ${CMAKE_CURRENT_BINARY_DIR}/pamacclassic.pc)
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/pamacclassic.deps ${CMAKE_CURRENT_BINARY_DIR}/pamacclassic.deps)
-set (VERSION "6.5.2")
+set (VERSION "6.6.0")
 add_definitions (${DEPS_CFLAGS})
 link_libraries ( ${DEPS_LIBRARIES} )
 link_directories ( ${DEPS_LIBRARY_DIRS} )
@@ -52,11 +52,6 @@ set (APP_SOURCES ${APP_SOURCES} progress_box.vala)
 set (APP_SOURCES ${APP_SOURCES} transaction.vala)
 set (APP_SOURCES ${APP_SOURCES} transaction_sum_dialog.vala)
 
-if (DISABLE_AUR)
-	set (COMPILE_OPTIONS ${COMPILE_OPTIONS} -D DISABLE_AUR)
-	set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DDISABLE_AUR " )
-	set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DDISABLE_AUR " )
-endif ()
 if (ENABLE_UPDATE_ICON)
 	set (COMPILE_OPTIONS ${COMPILE_OPTIONS} -D ENABLE_UPDATE_ICON)
 	set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DENABLE_UPDATE_ICON " )
@@ -71,6 +66,11 @@ if (KDE_TRAY)
 	set (COMPILE_OPTIONS ${COMPILE_OPTIONS} -D KDE_TRAY)
 	set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DKDE_TRAY " )
 	set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DKDE_TRAY " )
+endif ()
+if (DISABLE_AUR)
+	set (COMPILE_OPTIONS ${COMPILE_OPTIONS} -D DISABLE_AUR)
+	set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DDISABLE_AUR " )
+	set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DDISABLE_AUR " )
 endif ()
 set (COMPILE_OPTIONS ${COMPILE_OPTIONS} --vapidir=${CMAKE_SOURCE_DIR}/src/vapis )
 
@@ -101,7 +101,7 @@ add_dependencies( pamacclassic ${pamacclassic_DEPENDENCIES} )
 target_link_libraries( pamacclassic m )
 set_target_properties( pamacclassic PROPERTIES
 VERSION
-	6.5.2
+	6.6.0
 SOVERSION
 	6 )
 
