@@ -27,10 +27,6 @@ pamac_system_daemon_vala_args = ['--pkg','posix']
 pamac_system_daemon_vala_args += ['--vapidir='+join_paths(meson.source_root(),'src/vapis')]
 pamac_system_daemon_dependencies = [pamacclassic_library]
 pamac_system_daemon_c_args = []
-if DISABLE_AUR
-  pamac_system_daemon_vala_args += ['-D', 'DISABLE_AUR']
-  pamac_system_daemon_c_args += ['-DDISABLE_AUR']
-endif
 if ENABLE_UPDATE_ICON
   pamac_system_daemon_vala_args += ['-D', 'ENABLE_UPDATE_ICON']
   pamac_system_daemon_c_args += ['-DENABLE_UPDATE_ICON']
@@ -42,6 +38,10 @@ endif
 if KDE_TRAY
   pamac_system_daemon_vala_args += ['-D', 'KDE_TRAY']
   pamac_system_daemon_c_args += ['-DKDE_TRAY']
+endif
+if DISABLE_AUR
+  pamac_system_daemon_vala_args += ['-D', 'DISABLE_AUR']
+  pamac_system_daemon_c_args += ['-DDISABLE_AUR']
 endif
 pamac_system_daemon_hfolders = ['../../src']
 

@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-06 22:24-0300\n"
+"POT-Creation-Date: 2017-11-11 11:28-0300\n"
 "PO-Revision-Date: 2017-08-01 11:22+0000\n"
 "Last-Translator: Galin Iskrenov <loot270@abv.bg>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/manjarolinux/manjaro-"
@@ -579,7 +579,8 @@ msgstr "GTK3 интерфейс за libalpm"
 msgid "How often to check for updates, value in hours"
 msgstr "Колко често да се проверява за актуализации, стойност в часове"
 
-#: ../src/preferences_dialog.vala ../data/interface/preferences_dialog.ui
+#: ../src/preferences_dialog.vala ../data/org.pamac.main.gschema.xml.in
+#: ../data/interface/preferences_dialog.ui
 msgid "Number of versions of each package to keep in the cache"
 msgstr "Брой версии от всеки пакет запазени в кеша"
 
@@ -598,6 +599,109 @@ msgstr "Скорост"
 #: ../src/preferences_dialog.vala
 msgid "Random"
 msgstr "Разбъркано "
+
+#: ../data/org.pamac.aur.gschema.xml.in
+msgid "Enable AUR"
+msgstr ""
+
+#: ../data/org.pamac.aur.gschema.xml.in ../data/interface/preferences_dialog.ui
+msgid "Allow Pamac to search and install packages from AUR"
+msgstr "Позволи на Pamac да търси и инсталира пакети от AUR"
+
+#: ../data/org.pamac.aur.gschema.xml.in ../data/interface/preferences_dialog.ui
+msgid "Search in AUR by default"
+msgstr "Търсене в AUR по подразбиране "
+
+#: ../data/org.pamac.aur.gschema.xml.in
+msgid "When AUR support is enabled search in AUR by default"
+msgstr ""
+
+#: ../data/org.pamac.aur.gschema.xml.in
+msgid "Check AUR for updates"
+msgstr ""
+
+#: ../data/org.pamac.aur.gschema.xml.in
+msgid "When AUR support is enabled check for updates from AUR"
+msgstr ""
+
+#: ../data/org.pamac.aur.gschema.xml.in
+msgid "\"/tmp\""
+msgstr ""
+
+#: ../data/org.pamac.aur.gschema.xml.in
+msgid "AUR build directory"
+msgstr ""
+
+#: ../data/org.pamac.aur.gschema.xml.in
+msgid "Directory where to build packages that come from the AUR"
+msgstr ""
+
+#: ../data/org.pamac.main.gschema.xml.in
+#: ../data/interface/preferences_dialog.ui
+msgid "Remove unrequired dependencies"
+msgstr "Премахни ненужни зависимости"
+
+#: ../data/org.pamac.main.gschema.xml.in
+msgid ""
+"When removing a package, also remove those dependencies that are not "
+"required by other packages (recurse option)"
+msgstr ""
+
+#: ../data/org.pamac.main.gschema.xml.in
+msgid "Refresh period"
+msgstr ""
+
+#: ../data/org.pamac.main.gschema.xml.in
+msgid "How often to check for updates, value in hours (0 to disable)"
+msgstr ""
+
+#: ../data/org.pamac.main.gschema.xml.in
+msgid "Hide icon if there are no updates"
+msgstr ""
+
+#: ../data/org.pamac.main.gschema.xml.in
+msgid "When there are no updates available, hide the tray icon"
+msgstr ""
+
+#: ../data/org.pamac.main.gschema.xml.in
+msgid "Numer of packages to keep"
+msgstr ""
+
+#: ../data/org.pamac.main.gschema.xml.in
+msgid "Remove only uninstalled packages when cleaning cache"
+msgstr ""
+
+#: ../data/org.pamac.main.gschema.xml.in
+msgid "Remove only the versions of uninstalled packages when clean cache"
+msgstr ""
+
+#: ../data/org.pamac.main.gschema.xml.in
+msgid "\"rgb(0,0,0)\""
+msgstr ""
+
+#: ../data/org.pamac.main.gschema.xml.in
+msgid "Terminal background color"
+msgstr ""
+
+#: ../data/org.pamac.main.gschema.xml.in
+msgid "\"rgb(255,255,255)\""
+msgstr ""
+
+#: ../data/org.pamac.main.gschema.xml.in
+msgid "Terminal foreground color"
+msgstr ""
+
+#: ../data/org.pamac.main.gschema.xml.in
+msgid "\"Monospace Regular 12\""
+msgstr ""
+
+#: ../data/org.pamac.main.gschema.xml.in
+msgid "Terminal font"
+msgstr ""
+
+#: ../data/org.pamac.main.gschema.xml.in
+msgid "The font used in the terminal"
+msgstr ""
 
 #: ../data/polkit/org.pamac.policy.in
 msgid "Authentication is required"
@@ -685,10 +789,6 @@ msgid "_Apply"
 msgstr "_Приложи"
 
 #: ../data/interface/preferences_dialog.ui
-msgid "Remove unrequired dependencies"
-msgstr "Премахни ненужни зависимости"
-
-#: ../data/interface/preferences_dialog.ui
 msgid ""
 "When removing a package, also remove its dependencies that are not required "
 "by other packages"
@@ -760,14 +860,6 @@ msgstr ""
 #: ../data/interface/preferences_dialog.ui
 msgid "Enable AUR support"
 msgstr "Позволи AUR поддръжка"
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Allow Pamac to search and install packages from AUR"
-msgstr "Позволи на Pamac да търси и инсталира пакети от AUR"
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Search in AUR by default"
-msgstr "Търсене в AUR по подразбиране "
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Check for updates from AUR"

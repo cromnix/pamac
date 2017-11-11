@@ -39,10 +39,6 @@ pamac_classic_vala_args = ['--pkg','posix']
 pamac_classic_vala_args += ['--vapidir='+join_paths(meson.source_root(),'src/vapis')]
 pamac_classic_vala_args += ['--gresources='+join_paths(meson.source_root(),'data/pamac.transaction.gresource.xml')]
 pamac_classic_c_args = []
-if DISABLE_AUR
-  pamac_classic_vala_args += ['-D', 'DISABLE_AUR']
-  pamac_classic_c_args += ['-DDISABLE_AUR']
-endif
 if ENABLE_UPDATE_ICON
   pamac_classic_vala_args += ['-D', 'ENABLE_UPDATE_ICON']
   pamac_classic_c_args += ['-DENABLE_UPDATE_ICON']
@@ -54,6 +50,10 @@ endif
 if KDE_TRAY
   pamac_classic_vala_args += ['-D', 'KDE_TRAY']
   pamac_classic_c_args += ['-DKDE_TRAY']
+endif
+if DISABLE_AUR
+  pamac_classic_vala_args += ['-D', 'DISABLE_AUR']
+  pamac_classic_c_args += ['-DDISABLE_AUR']
 endif
 pamac_classic_deps += [meson.get_compiler('c').find_library('m', required : false)]
 pamac_classic_vala_args += ['--gir=pamacclassic-6.0.gir']

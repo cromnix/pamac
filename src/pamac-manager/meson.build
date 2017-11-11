@@ -23,10 +23,6 @@ pamac_manager_vala_args = ['--vapidir='+join_paths(meson.source_root(),'src/vapi
 pamac_manager_vala_args += ['--gresources='+join_paths(meson.source_root(),'data/pamac.manager.gresource.xml')]
 pamac_manager_dependencies = [pamacclassic_library]
 pamac_manager_c_args = []
-if DISABLE_AUR
-  pamac_manager_vala_args += ['-D', 'DISABLE_AUR']
-  pamac_manager_c_args += ['-DDISABLE_AUR']
-endif
 if ENABLE_UPDATE_ICON
   pamac_manager_vala_args += ['-D', 'ENABLE_UPDATE_ICON']
   pamac_manager_c_args += ['-DENABLE_UPDATE_ICON']
@@ -38,6 +34,10 @@ endif
 if KDE_TRAY
   pamac_manager_vala_args += ['-D', 'KDE_TRAY']
   pamac_manager_c_args += ['-DKDE_TRAY']
+endif
+if DISABLE_AUR
+  pamac_manager_vala_args += ['-D', 'DISABLE_AUR']
+  pamac_manager_c_args += ['-DDISABLE_AUR']
 endif
 pamac_manager_hfolders = ['../../src']
 

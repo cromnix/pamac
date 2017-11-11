@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<schemalist>
+  <schema id="org.pamac.aur" path="/org/pamac/aur/" gettext-domain="pamac">
+    <key name="enable-aur" type="b">
+      <default>false</default>
+      <summary>Enable AUR</summary>
+      <description>
+				Allow Pamac to search and install packages from AUR
+			</description>
+      <description xml:lang="id">Biarkan Pamac untuk mencari dan memasang paket dari AUR</description>
+      <description xml:lang="nl_NL">Pamac toestaan om pakketten van AUR te zoeken en installeren</description>
+      <description xml:lang="hr">Dozvoli Pamac-u da tra&#x17E;i i instalira pakete iz AUR-a</description>
+      <description xml:lang="uk">&#x414;&#x43E;&#x437;&#x432;&#x43E;&#x43B;&#x438;&#x442;&#x438; Pamac &#x448;&#x443;&#x43A;&#x430;&#x442;&#x438; &#x442;&#x430; &#x432;&#x441;&#x442;&#x430;&#x43D;&#x43E;&#x432;&#x43B;&#x44E;&#x432;&#x430;&#x442;&#x438; &#x43F;&#x430;&#x43A;&#x443;&#x43D;&#x43A;&#x438; &#x437; AUR</description>
+      <description xml:lang="ast">Permitir que Pacman guete ya instale paquetes dende AUR</description>
+      <description xml:lang="bg">&#x41F;&#x43E;&#x437;&#x432;&#x43E;&#x43B;&#x438; &#x43D;&#x430; Pamac &#x434;&#x430; &#x442;&#x44A;&#x440;&#x441;&#x438; &#x438; &#x438;&#x43D;&#x441;&#x442;&#x430;&#x43B;&#x438;&#x440;&#x430; &#x43F;&#x430;&#x43A;&#x435;&#x442;&#x438; &#x43E;&#x442; AUR</description>
+      <description xml:lang="sk">Umo&#x17E;n&#xED; programu Pamac vyh&#x13E;ada&#x165; a in&#x161;talova&#x165; bal&#xED;ky z repozit&#xE1;ra AUR</description>
+      <description xml:lang="ru">&#x420;&#x430;&#x437;&#x440;&#x435;&#x448;&#x438;&#x442;&#x44C; Pamac &#x438;&#x441;&#x43A;&#x430;&#x442;&#x44C; &#x438; &#x443;&#x441;&#x442;&#x430;&#x43D;&#x430;&#x432;&#x43B;&#x438;&#x432;&#x430;&#x442;&#x44C; &#x43F;&#x430;&#x43A;&#x435;&#x442;&#x44B; &#x438;&#x437; AUR</description>
+      <description xml:lang="de">Erlaube Pamac nach Paketen im AUR zu suchen und zu installieren</description>
+      <description xml:lang="fa_IR">&#x627;&#x62C;&#x627;&#x632;&#x647; &#x62F;&#x627;&#x62F;&#x646; pamac &#x628;&#x631;&#x627;&#x6CC; &#x62C;&#x633;&#x62A;&#x62C;&#x648; &#x648; &#x646;&#x635;&#x628; &#x628;&#x633;&#x62A;&#x647; &#x647;&#x627; &#x627;&#x632; AUR</description>
+      <description xml:lang="it">Permette a Pamac cercare e installare pacchetti dal AUR</description>
+      <description xml:lang="lt">Leisti Pamac ie&#x161;koti ir diegti paketus i&#x161; AUR</description>
+      <description xml:lang="et">Luba Pamacil otsida ning paigaldada pakette AURist</description>
+      <description xml:lang="he">&#x5D0;&#x5E4;&#x5E9;&#x5E8; &#x5DC;Pamac &#x5DC;&#x5D7;&#x5E4;&#x5E9; &#x5D5;&#x5DC;&#x5D4;&#x5EA;&#x5E7;&#x5D9;&#x5DF; &#x5D7;&#x5D1;&#x5D9;&#x5DC;&#x5D5;&#x5EA; &#x5DE;&#x5EA;&#x5D5;&#x5DA; AUR</description>
+      <description xml:lang="tr">AUR paketleri aramak ve kurmak i&#xE7;in izin ver</description>
+      <description xml:lang="ca">Permetre a Pamac buscar e instal&#xB7;lar paquets des d'AUR</description>
+      <description xml:lang="nl_BE">Pamac toestaan om pakketten van het AUR op te zoeken en te installeren</description>
+      <description xml:lang="pt_PT">Permitir que o Pamac procure e instale pacotes do AUR</description>
+      <description xml:lang="pt_BR">Permitir a Pamac que procure e instale os pacotes a partir de AUR</description>
+      <description xml:lang="ja">Pamac&#x304C;AUR&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x3092;&#x63A2;&#x7D22;&#x3057;&#x3001;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3059;&#x308B;&#x3053;&#x3068;&#x3092;&#x8A31;&#x53EF;&#x3059;&#x308B;</description>
+      <description xml:lang="nb">Tillat Pamac &#xE5; s&#xF8;ke etter og installere pakker fra AUR</description>
+      <description xml:lang="hu">Pamac kereshet &#xE9;s telep&#xED;thet csomagokat az AUR -b&#xF3;l</description>
+      <description xml:lang="nl">Pamac toestaan om AUR pakketten te zoeken en te installeren</description>
+      <description xml:lang="es_419">Permitir a Pamac buscar e instalar paquetes de AUR</description>
+      <description xml:lang="en_GB">Allow Pamac to search and install packages from AUR</description>
+      <description xml:lang="pt">Permitir que o Pamac procure e instale pacotes do AUR</description>
+      <description xml:lang="hi">Pamac AUR &#x938;&#x947; &#x938;&#x902;&#x915;&#x941;&#x932; &#x915;&#x94B; &#x916;&#x94B;&#x91C;&#x928;&#x947; &#x914;&#x930; &#x938;&#x94D;&#x925;&#x93E;&#x92A;&#x93F;&#x924; &#x915;&#x930;&#x928;&#x947; &#x915;&#x940; &#x905;&#x928;&#x941;&#x92E;&#x924;&#x93F;</description>
+      <description xml:lang="pl">Pozw&#xF3;l Pamacowi wyszukiwa&#x107; i instalowa&#x107; pakiety z AUR</description>
+      <description xml:lang="zh_CN">&#x5141;&#x8BB8; Pamac &#x4ECE; AUR &#x4E2D;&#x641C;&#x7D22;&#x5E76;&#x5B89;&#x88C5;&#x8F6F;&#x4EF6;&#x5305;</description>
+      <description xml:lang="vi">Cho ph&#xE9;p Pamac t&#xEC;m ki&#x1EBF;m v&#xE0; c&#xE0;i &#x111;&#x1EB7;t g&#xF3;i t&#x1EEB; AUR</description>
+      <description xml:lang="sv">Till&#xE5;t Pamac att s&#xF6;ka och installera paket fr&#xE5;n AUR</description>
+      <description xml:lang="da">G&#xF8;r det muligt for Pamac at s&#xF8;ge i og installere pakker fra AUR</description>
+      <description xml:lang="cs">Povolit aplikaci Pamac vyhled&#xE1;vat a instalovat bal&#xED;&#x10D;ky z AUR</description>
+      <description xml:lang="el_GR">&#x395;&#x3C0;&#x3AD;&#x3C4;&#x3C1;&#x3B5;&#x3C8;&#x3B5; &#x3C3;&#x3C4;&#x3BF;&#x3BD; pamac &#x3BD;&#x3B1; &#x3C8;&#x3AC;&#x3BE;&#x3B5;&#x3B9; &#x3BA;&#x3B1;&#x3B9; &#x3BD;&#x3B1; &#x3B5;&#x3B3;&#x3BA;&#x3B1;&#x3C4;&#x3B1;&#x3C3;&#x3C4;&#x3AE;&#x3C3;&#x3B5;&#x3B9; &#x3C0;&#x3B1;&#x3BA;&#x3AD;&#x3C4;&#x3B1; &#x3B1;&#x3C0;&#x3BF; &#x3C4;&#x3BF; AUR</description>
+      <description xml:lang="ur_PK">Pamac &#x6A9;&#x648;  AUR &#x67E;&#x6CC;&#x6A9;&#x62C;&#x632;   &#x627;&#x646;&#x633;&#x679;&#x627;&#x644; &#x6A9;&#x631;&#x646;&#x6D2; &#x6A9;&#x6CC; &#x627;&#x62C;&#x627;&#x632;&#x62A; &#x6C1;&#x6D2;</description>
+      <description xml:lang="eu">Pamac AURtik paketeak bilatzeko eta instalatzeko baimendu</description>
+      <description xml:lang="el">&#x395;&#x3C0;&#x3AD;&#x3C4;&#x3C1;&#x3B5;&#x3C8;&#x3B5; &#x3C3;&#x3C4;&#x3BF;&#x3BD; pamac &#x3BD;&#x3B1; &#x3C8;&#x3AC;&#x3BE;&#x3B5;&#x3B9; &#x3BA;&#x3B1;&#x3B9; &#x3BD;&#x3B1; &#x3B5;&#x3B3;&#x3BA;&#x3B1;&#x3C4;&#x3B1;&#x3C3;&#x3C4;&#x3AE;&#x3C3;&#x3B5;&#x3B9; &#x3C0;&#x3B1;&#x3BA;&#x3AD;&#x3C4;&#x3B1; &#x3B1;&#x3C0;&#x3BF; &#x3C4;&#x3BF; AUR</description>
+      <description xml:lang="sr">&#x41E;&#x43C;&#x43E;&#x433;&#x443;&#x45B;&#x438; &#x41F;&#x430;&#x43C;&#x430;&#x43A;&#x443; &#x434;&#x430; &#x43F;&#x440;&#x435;&#x442;&#x440;&#x430;&#x436;&#x443;&#x458;&#x435; &#x438; &#x438;&#x43D;&#x441;&#x442;&#x430;&#x43B;&#x438;&#x440;&#x430; &#x43F;&#x430;&#x43A;&#x435;&#x442;&#x435; &#x438;&#x437; AUR-a</description>
+      <description xml:lang="ro">Permite Pamac s&#x103; caute &#x219;i s&#x103; instaleze pachete din AUR</description>
+      <description xml:lang="fr">Permettre &#xE0; Pamac de chercher et installer des paquets depuis AUR</description>
+      <description xml:lang="sr@latin">Dozvoli Pamac-u da pretra&#x17E;uje i instalira pakete sa AUR</description>
+      <description xml:lang="es">Permitir a Pamac buscar e instalar paquetes desde AUR</description>
+      <description xml:lang="sl">Dovoli Pamacu da i&#x161;&#x10D;e in name&#x161;&#x10D;a pakete iz AUR</description>
+      <description xml:lang="fi">Anna Pamacin etsi&#xE4; ja asentaa paketteja AUR:sta</description>
+      <description xml:lang="uz">Pamac uchun AURdan paketlarni qidirish va o'rnatishga ruxsat etish</description>
+      <description xml:lang="zh_TW">&#x5141;&#x8A31; Pamac &#x641C;&#x5C0B;&#x53CA;&#x5B89;&#x88DD; AUR &#x4E0A;&#x7684;&#x8EDF;&#x9AD4;&#x5305;</description>
+      <description xml:lang="gl">Permitir Pamac para buscar e instalar paquetes desde AUR</description>
+      <description xml:lang="is">Leyfa Pamac a&#xF0; leita a&#xF0; og setja inn pakka fr&#xE1; AUR</description>
+      <description xml:lang="ar">&#x627;&#x644;&#x633;&#x645;&#x627;&#x62D; &#x644;&#x640;Pamac &#x628;&#x627;&#x644;&#x628;&#x62D;&#x62B; &#x648; &#x62A;&#x62B;&#x628;&#x64A;&#x62A; &#x62D;&#x632;&#x645; &#x645;&#x646; &#x645;&#x633;&#x62A;&#x648;&#x62F;&#x639;&#x627;&#x62A; AUR</description>
+    </key>
+    <key name="search-in-aur" type="b">
+      <default>true</default>
+      <summary>Search in AUR by default</summary>
+      <summary xml:lang="az_AZ">AUR-da axtarmaq</summary>
+      <summary xml:lang="id">Cari di AUR sebagai baku</summary>
+      <summary xml:lang="nl_NL">Standaard in AUR zoeken</summary>
+      <summary xml:lang="hr">Uvijek tra&#x17E;i u AUR-u</summary>
+      <summary xml:lang="uk">&#x428;&#x443;&#x43A;&#x430;&#x442;&#x438; &#x432; AUR &#x442;&#x438;&#x43F;&#x43E;&#x432;&#x43E;</summary>
+      <summary xml:lang="ast">Guetar n'AUR por defeutu</summary>
+      <summary xml:lang="bg">&#x422;&#x44A;&#x440;&#x441;&#x435;&#x43D;&#x435; &#x432; AUR &#x43F;&#x43E; &#x43F;&#x43E;&#x434;&#x440;&#x430;&#x437;&#x431;&#x438;&#x440;&#x430;&#x43D;&#x435; </summary>
+      <summary xml:lang="sk">Predvolene vyh&#x13E;ad&#xE1;va&#x165; v repozit&#xE1;ri AUR</summary>
+      <summary xml:lang="ru">&#x41F;&#x43E;&#x438;&#x441;&#x43A; &#x432; AUR &#x43F;&#x43E; &#x443;&#x43C;&#x43E;&#x43B;&#x447;&#x430;&#x43D;&#x438;&#x44E;</summary>
+      <summary xml:lang="de">Suche standardm&#xE4;&#xDF;ig im AUR</summary>
+      <summary xml:lang="fa_IR">&#x62C;&#x633;&#x62A;&#x62C;&#x648;&#x6CC;  &#x62F;&#x631; AUR &#x628;&#x647; &#x635;&#x648;&#x631;&#x62A; &#x67E;&#x6CC;&#x634; &#x641;&#x631;&#x636;</summary>
+      <summary xml:lang="it">Cerca in AUR come impostazione predefinita.</summary>
+      <summary xml:lang="lt">Pagal numatym&#x105; ie&#x161;koti AUR saugykloje</summary>
+      <summary xml:lang="et">Vaikimisi otsi AURist</summary>
+      <summary xml:lang="he">&#x5D7;&#x5E4;&#x5E9; &#x5D1;&#x5EA;&#x5D5;&#x5DA; AUR &#x5D1;&#x5D0;&#x5D5;&#x5E4;&#x5DF; &#x5E9;&#x5D2;&#x5E8;&#x5EA;&#x5D9;</summary>
+      <summary xml:lang="tr">Varsay&#x131;lan olarak AUR depolar&#x131;nda da ara</summary>
+      <summary xml:lang="ca">Cerca a l'AUR per defecte</summary>
+      <summary xml:lang="nl_BE">Zoek automatisch in AUR</summary>
+      <summary xml:lang="pt_PT">Pesquisar no AUR por padr&#xE3;o</summary>
+      <summary xml:lang="pt_BR">Pesquisar no AUR por padr&#xE3;o</summary>
+      <summary xml:lang="ja">&#x30C7;&#x30D5;&#x30A9;&#x30EB;&#x30C8;&#x3067;AUR&#x3092;&#x691C;&#x7D22;&#x3059;&#x308B;</summary>
+      <summary xml:lang="nb">S&#xF8;k i AUR som standard</summary>
+      <summary xml:lang="hu">Keres&#xE9;s AUR -ban alap&#xE9;rtelmezetten</summary>
+      <summary xml:lang="nl">Stel zoeken in AUR als standaard in</summary>
+      <summary xml:lang="es_419">Buscar en AUR por defecto</summary>
+      <summary xml:lang="en_GB">Search in AUR by default</summary>
+      <summary xml:lang="pt">Pesquisar no AUR por pr&#xE9;-defini&#xE7;&#xE3;o</summary>
+      <summary xml:lang="hi">&#x921;&#x93F;&#x92B;&#x93C;&#x949;&#x932;&#x94D;&#x91F; &#x930;&#x942;&#x92A; &#x938;&#x947; AUR &#x92E;&#x947;&#x902; &#x916;&#x94B;&#x91C;&#x947;&#x902;</summary>
+      <summary xml:lang="pl">Wyszukuj domy&#x15B;lnie w AUR</summary>
+      <summary xml:lang="zh_CN">&#x9ED8;&#x8BA4;&#x5728; AUR &#x4E2D;&#x641C;&#x7D22;</summary>
+      <summary xml:lang="sv">S&#xF6;k i AUR som standard</summary>
+      <summary xml:lang="da">S&#xF8;g i AUR som standard</summary>
+      <summary xml:lang="cs">Hledat v AUR defaultn&#x11B;</summary>
+      <summary xml:lang="el_GR">&#x391;&#x3BD;&#x3B1;&#x3B6;&#x3AE;&#x3C4;&#x3B7;&#x3C3;&#x3B7; &#x3C3;&#x3C4;&#x3BF; AUR &#x3B1;&#x3C0;&#x3CC; &#x3C0;&#x3C1;&#x3BF;&#x3B5;&#x3C0;&#x3B9;&#x3BB;&#x3BF;&#x3B3;&#x3AE;</summary>
+      <summary xml:lang="eu">Bilatu AURen lehenetsita</summary>
+      <summary xml:lang="el">&#x391;&#x3BD;&#x3B1;&#x3B6;&#x3AE;&#x3C4;&#x3B7;&#x3C3;&#x3B7; &#x3C3;&#x3C4;&#x3BF; AUR &#x3B1;&#x3C0;&#x3CC; &#x3C0;&#x3C1;&#x3BF;&#x3B5;&#x3C0;&#x3B9;&#x3BB;&#x3BF;&#x3B3;&#x3AE;</summary>
+      <summary xml:lang="ro">Caut&#x103; &#xEE;n AUR implicit</summary>
+      <summary xml:lang="fr">Rechercher depuis AUR par d&#xE9;faut</summary>
+      <summary xml:lang="es">Buscar en AUR por defecto</summary>
+      <summary xml:lang="sl">Privzeto iskanje v AUR</summary>
+      <summary xml:lang="zh_TW">&#x9810;&#x8A2D;&#x5728; AUR &#x4E2D;&#x641C;&#x5C0B;</summary>
+      <summary xml:lang="gl">Buscar en AUR por defecto</summary>
+      <summary xml:lang="is">Leita sj&#xE1;lfgefi&#xF0; &#xED; AUR</summary>
+      <summary xml:lang="ar">&#x628;&#x62D;&#x62B; &#x641;&#x64A;  AUR &#x628;&#x634;&#x643;&#x644; &#x627;&#x641;&#x62A;&#x631;&#x627;&#x636;&#x64A;</summary>
+      <description>
+				When AUR support is enabled search in AUR by default
+			</description>
+    </key>
+    <key name="check-aur-updates" type="b">
+      <default>false</default>
+      <summary>Check AUR for updates</summary>
+      <description>
+				When AUR support is enabled check for updates from AUR
+			</description>
+    </key>
+    <key name="build-directory" type="s">
+      <default l10n="messages">"/tmp"</default>
+      <summary>AUR build directory</summary>
+      <description>
+				Directory where to build packages that come from the AUR
+			</description>
+    </key>
+  </schema>
+</schemalist>

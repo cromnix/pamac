@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-06 22:24-0300\n"
+"POT-Creation-Date: 2017-11-11 11:28-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
 "Language-Team: Persian (Iran) (http://www.transifex.com/manjarolinux/manjaro-"
@@ -579,7 +579,8 @@ msgstr ""
 msgid "How often to check for updates, value in hours"
 msgstr "اغلب چگونگی به روز رسانی بسته را چک کنید ،ارزش زمانی "
 
-#: ../src/preferences_dialog.vala ../data/interface/preferences_dialog.ui
+#: ../src/preferences_dialog.vala ../data/org.pamac.main.gschema.xml.in
+#: ../data/interface/preferences_dialog.ui
 msgid "Number of versions of each package to keep in the cache"
 msgstr "تعدادی از نسخه های هر بسته را در حافظه موقت نگهداری کن"
 
@@ -598,6 +599,109 @@ msgstr "سرعت"
 #: ../src/preferences_dialog.vala
 msgid "Random"
 msgstr "تصادفی"
+
+#: ../data/org.pamac.aur.gschema.xml.in
+msgid "Enable AUR"
+msgstr ""
+
+#: ../data/org.pamac.aur.gschema.xml.in ../data/interface/preferences_dialog.ui
+msgid "Allow Pamac to search and install packages from AUR"
+msgstr "اجازه دادن pamac برای جستجو و نصب بسته ها از AUR"
+
+#: ../data/org.pamac.aur.gschema.xml.in ../data/interface/preferences_dialog.ui
+msgid "Search in AUR by default"
+msgstr "جستجوی  در AUR به صورت پیش فرض"
+
+#: ../data/org.pamac.aur.gschema.xml.in
+msgid "When AUR support is enabled search in AUR by default"
+msgstr ""
+
+#: ../data/org.pamac.aur.gschema.xml.in
+msgid "Check AUR for updates"
+msgstr ""
+
+#: ../data/org.pamac.aur.gschema.xml.in
+msgid "When AUR support is enabled check for updates from AUR"
+msgstr ""
+
+#: ../data/org.pamac.aur.gschema.xml.in
+msgid "\"/tmp\""
+msgstr ""
+
+#: ../data/org.pamac.aur.gschema.xml.in
+msgid "AUR build directory"
+msgstr ""
+
+#: ../data/org.pamac.aur.gschema.xml.in
+msgid "Directory where to build packages that come from the AUR"
+msgstr ""
+
+#: ../data/org.pamac.main.gschema.xml.in
+#: ../data/interface/preferences_dialog.ui
+msgid "Remove unrequired dependencies"
+msgstr "حذف وابستگی های غیرضروری"
+
+#: ../data/org.pamac.main.gschema.xml.in
+msgid ""
+"When removing a package, also remove those dependencies that are not "
+"required by other packages (recurse option)"
+msgstr ""
+
+#: ../data/org.pamac.main.gschema.xml.in
+msgid "Refresh period"
+msgstr ""
+
+#: ../data/org.pamac.main.gschema.xml.in
+msgid "How often to check for updates, value in hours (0 to disable)"
+msgstr ""
+
+#: ../data/org.pamac.main.gschema.xml.in
+msgid "Hide icon if there are no updates"
+msgstr ""
+
+#: ../data/org.pamac.main.gschema.xml.in
+msgid "When there are no updates available, hide the tray icon"
+msgstr ""
+
+#: ../data/org.pamac.main.gschema.xml.in
+msgid "Numer of packages to keep"
+msgstr ""
+
+#: ../data/org.pamac.main.gschema.xml.in
+msgid "Remove only uninstalled packages when cleaning cache"
+msgstr ""
+
+#: ../data/org.pamac.main.gschema.xml.in
+msgid "Remove only the versions of uninstalled packages when clean cache"
+msgstr ""
+
+#: ../data/org.pamac.main.gschema.xml.in
+msgid "\"rgb(0,0,0)\""
+msgstr ""
+
+#: ../data/org.pamac.main.gschema.xml.in
+msgid "Terminal background color"
+msgstr ""
+
+#: ../data/org.pamac.main.gschema.xml.in
+msgid "\"rgb(255,255,255)\""
+msgstr ""
+
+#: ../data/org.pamac.main.gschema.xml.in
+msgid "Terminal foreground color"
+msgstr ""
+
+#: ../data/org.pamac.main.gschema.xml.in
+msgid "\"Monospace Regular 12\""
+msgstr ""
+
+#: ../data/org.pamac.main.gschema.xml.in
+msgid "Terminal font"
+msgstr ""
+
+#: ../data/org.pamac.main.gschema.xml.in
+msgid "The font used in the terminal"
+msgstr ""
 
 #: ../data/polkit/org.pamac.policy.in
 msgid "Authentication is required"
@@ -685,10 +789,6 @@ msgid "_Apply"
 msgstr "_اعمال"
 
 #: ../data/interface/preferences_dialog.ui
-msgid "Remove unrequired dependencies"
-msgstr "حذف وابستگی های غیرضروری"
-
-#: ../data/interface/preferences_dialog.ui
 msgid ""
 "When removing a package, also remove its dependencies that are not required "
 "by other packages"
@@ -758,14 +858,6 @@ msgstr ""
 #: ../data/interface/preferences_dialog.ui
 msgid "Enable AUR support"
 msgstr "فعال کردن پشتیبانی از AUR"
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Allow Pamac to search and install packages from AUR"
-msgstr "اجازه دادن pamac برای جستجو و نصب بسته ها از AUR"
-
-#: ../data/interface/preferences_dialog.ui
-msgid "Search in AUR by default"
-msgstr "جستجوی  در AUR به صورت پیش فرض"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Check for updates from AUR"

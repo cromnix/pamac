@@ -9,10 +9,6 @@ custom: data/systemd/pamac-cleancache.service /usr/lib/systemd/system
 custom: data/systemd/pamac-cleancache.timer /usr/lib/systemd/system
 custom: data/systemd/pamac-mirrorlist.service /usr/lib/systemd/system
 custom: data/systemd/pamac-mirrorlist.timer /usr/lib/systemd/system
-custom: data/schemas/org.pamac.main.gschema.xml /usr/share/glib-2.0/schemas
-if NOT DISABLE_AUR
-custom: data/schemas/org.pamac.aur.gschema.xml /usr/share/glib-2.0/schemas
-end
 
 define: ENABLE_UPDATE_ICON
 define: ENABLE_HAMBURGER
@@ -212,6 +208,11 @@ end
 *dbus_service: data/dbus/org.pamac.user.service
 
 *dbus_config: data/dbus/org.pamac.system.conf
+
+*scheme: data/org.pamac.main.gschema.xml
+if NOT DISABLE_AUR
+scheme: data/org.pamac.aur.gschema.xml
+end
 
 *full_icon: Hicolor Applications data/icons/16x16/apps/system-software-install.png
 *full_icon: Hicolor Applications data/icons/24x24/status/pamac-tray-no-update.png
