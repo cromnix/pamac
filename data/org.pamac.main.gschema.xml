@@ -56,5 +56,12 @@
 				The font used in the terminal
 			</description>
 		</key>
+		<key name="update-files-db" type="b">
+			<default>false</default>
+			<summary>Update files databases</summary>
+			<description>
+				Update the files databases when updating pamac, this gives more details for packages, but is slower
+			</description>
+		</key>
 	</schema>
 </schemalist>

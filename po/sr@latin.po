@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-11 20:26-0300\n"
+"POT-Creation-Date: 2017-11-11 21:00-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
 "Language-Team: Serbian (Latin) (http://www.transifex.com/manjarolinux/"
@@ -712,6 +712,10 @@ msgstr "Provera slobodnog prostora na disku"
 #: ../data/interface/preferences_dialog.ui
 msgid "Check for updates"
 msgstr "Proveri ažuriranja"
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Update files databases (more details but slower)"
+msgstr ""
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Hide tray icon when no update available"

@@ -193,7 +193,12 @@ namespace Pamac {
 				alpm_handle.totaldlcb = (Alpm.TotalDownloadCallBack) cb_totaldownload;
 				alpm_handle.logcb = (Alpm.LogCallBack) cb_log;
 				lockfile = GLib.File.new_for_path (alpm_handle.lockfile);
-				files_handle = alpm_config.get_handle (false, true);
+				var pamac_config = new Pamac.Config ();
+				if (pamac_config.update_files_db) {
+					files_handle = alpm_config.get_handle (true);
+				} else {
+					files_handle = alpm_config.get_handle (false);
+				}
 				files_handle.eventcb = (Alpm.EventCallBack) cb_event;
 				files_handle.progresscb = (Alpm.ProgressCallBack) cb_progress;
 				files_handle.questioncb = (Alpm.QuestionCallBack) cb_question;

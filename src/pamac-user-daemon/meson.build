@@ -4,7 +4,7 @@ cfg_pamac_user_daemon.set('PKGDATADIR', join_paths(get_option('prefix'),get_opti
 cfg_pamac_user_daemon.set('GETTEXT_PACKAGE', 'pamac-classic')
 cfg_pamac_user_daemon.set('RELEASE_NAME', 'pamac-classic')
 cfg_pamac_user_daemon.set('PREFIX', get_option('prefix'))
-cfg_pamac_user_daemon.set('VERSION', '6.6.0')
+cfg_pamac_user_daemon.set('VERSION', '6.6.1')
 cfg_pamac_user_daemon.set('TESTSRCDIR', meson.source_root())
 
 cfgfile_2 = configure_file(input: 'Config.vala.base',output: 'Config.vala',configuration: cfg_pamac_user_daemon)
@@ -18,6 +18,7 @@ pamac_user_daemon_deps += [glib_2_0_dep]
 pamac_user_daemon_deps += [gobject_2_0_dep]
 pamac_user_daemon_sources = [cfgfile_2]
 pamac_user_daemon_sources += ['alpm_config.vala']
+pamac_user_daemon_sources += ['pamac_config.vala']
 pamac_user_daemon_sources += ['user_daemon.vala']
 pamac_user_daemon_vala_args = ['--pkg','posix']
 pamac_user_daemon_vala_args += ['--vapidir='+join_paths(meson.source_root(),'src/vapis')]

@@ -58,7 +58,12 @@ namespace Pamac {
 			if (alpm_handle == null) {
 				return;
 			} else {
-				files_handle = alpm_config.get_handle (false, true);
+				var pamac_config = new Pamac.Config ();
+				if (pamac_config.update_files_db) {
+					files_handle = alpm_config.get_handle (true);
+				} else {
+					files_handle = alpm_config.get_handle (false);
+				}
 			}
 		}
 
@@ -812,12 +817,23 @@ namespace Pamac {
 				syncdbs.next ();
 			}
 			// refresh file dbs
-			var tmp_files_handle = alpm_config.get_handle (false, true);
-			syncdbs = tmp_files_handle.syncdbs;
-			while (syncdbs != null) {
-				unowned Alpm.DB db = syncdbs.data;
-				db.update (0);
-				syncdbs.next ();
+			var pamac_config = new Pamac.Config ();
+			if (pamac_config.update_files_db) {
+				var tmp_files_handle = alpm_config.get_handle (true, true);
+				syncdbs = tmp_files_handle.syncdbs;
+				while (syncdbs != null) {
+					unowned Alpm.DB db = syncdbs.data;
+					db.update (0);
+					syncdbs.next ();
+				}
+			} else {
+				var tmp_files_handle = alpm_config.get_handle (false, true);
+				syncdbs = tmp_files_handle.syncdbs;
+				while (syncdbs != null) {
+					unowned Alpm.DB db = syncdbs.data;
+					db.update (0);
+					syncdbs.next ();
+				}
 			}
 			string[] local_pkgs = {};
 			unowned Alpm.List<unowned Alpm.Package> pkgcache = tmp_handle.localdb.pkgcache;

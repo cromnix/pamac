@@ -26,6 +26,8 @@ namespace Pamac {
 		[GtkChild]
 		Gtk.Switch remove_unrequired_deps_button;
 		[GtkChild]
+		Gtk.Switch update_files_db_button;
+		[GtkChild]
 		Gtk.Switch check_space_button;
 		[GtkChild]
 		Gtk.Switch check_updates_button;
@@ -94,6 +96,7 @@ namespace Pamac {
 			aur_build_dir_label.set_markup (dgettext (null, "Build directory") +":");
 #endif
 			remove_unrequired_deps_button.active = transaction.recurse;
+			update_files_db_button.active = transaction.update_files_db;
 			check_space_button.active = transaction.get_checkspace ();
 			if (transaction.refresh_period == 0) {
 				check_updates_button.active = false;
@@ -130,6 +133,7 @@ namespace Pamac {
 				ignorepkgs_liststore.insert_with_values (null, -1, 0, ignorepkg);
 			}
 			remove_unrequired_deps_button.state_set.connect (on_remove_unrequired_deps_button_state_set);
+			update_files_db_button.state_set.connect (on_update_files_db_button_state_set);
 			check_space_button.state_set.connect (on_check_space_button_state_set);
 			transaction.write_alpm_config_finished.connect (on_write_alpm_config_finished);
 			check_updates_button.state_set.connect (on_check_updates_button_state_set);
@@ -195,6 +199,14 @@ namespace Pamac {
 		bool on_remove_unrequired_deps_button_state_set (bool new_state) {
 			var settings = new Settings ("org.pamac.main");
 			settings.set_boolean ("remove-unrequired-deps", new_state);
+			config_changed();
+			transaction.start_save_pamac_config ();
+			return true;
+		}
+
+		bool on_update_files_db_button_state_set (bool new_state) {
+			var settings = new Settings ("org.pamac.main");
+			settings.set_boolean ("update-files-db", new_state);
 			config_changed();
 			transaction.start_save_pamac_config ();
 			return true;
@@ -303,6 +315,7 @@ namespace Pamac {
 		void config_changed() {
 			transaction.config_changed();
 			remove_unrequired_deps_button.state = transaction.recurse;
+			update_files_db_button.state = transaction.update_files_db;
 			if (transaction.refresh_period == 0) {
 				check_updates_button.state = false;
 				refresh_period_label.sensitive = false;

@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-11 20:26-0300\n"
+"POT-Creation-Date: 2017-11-11 21:00-0300\n"
 "PO-Revision-Date: 2017-07-30 09:19+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/manjarolinux/"
@@ -710,6 +710,10 @@ msgstr "Beschikbare schijfruimte controleren"
 #: ../data/interface/preferences_dialog.ui
 msgid "Check for updates"
 msgstr "Controleren op updates"
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Update files databases (more details but slower)"
+msgstr ""
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Hide tray icon when no update available"

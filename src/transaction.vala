@@ -152,6 +152,7 @@ namespace Pamac {
 		public unowned GLib.HashTable<string,string> environment_variables { get { return pamac_config.environment_variables; } }
 		public bool no_update_hide_icon { get { return pamac_config.no_update_hide_icon; } }
 		public bool recurse { get { return pamac_config.recurse; } }
+		public bool update_files_db { get { return pamac_config.update_files_db; } }
 		public uint64 refresh_period { get { return pamac_config.refresh_period; } }
 
 		//Alpm.TransFlag

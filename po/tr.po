@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-11 20:26-0300\n"
+"POT-Creation-Date: 2017-11-11 21:00-0300\n"
 "PO-Revision-Date: 2017-08-04 06:07+0000\n"
 "Last-Translator: Demiray Muhterem <mdemiray@msn.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/manjarolinux/manjaro-pamac/"
@@ -711,6 +711,10 @@ msgstr "Kullanılabilir disk alanını kontrol et"
 #: ../data/interface/preferences_dialog.ui
 msgid "Check for updates"
 msgstr "Güncellemeleri kontrol et"
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Update files databases (more details but slower)"
+msgstr ""
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Hide tray icon when no update available"

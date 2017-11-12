@@ -37,6 +37,7 @@ namespace Pamac {
 		public string terminal_background { get; private set; }
 		public string terminal_foreground { get; private set; }
 		public string terminal_font { get; private set; }
+		public bool update_files_db { get; private set; }
 		public unowned HashTable<string,string> environment_variables {
 			get {
 				return _environment_variables;
@@ -74,26 +75,6 @@ namespace Pamac {
 		}
 
 		public void reload () {
-			// set default options
-			recurse = false;
-			no_update_hide_icon = false;
-#if DISABLE_AUR
-#else
-			enable_aur = false;
-			search_aur = false;
-			aur_build_dir = "/tmp";
-			check_aur_updates = false;
-#endif
-			keep_num_pkgs = 3;
-			rm_only_uninstalled = false;
-			terminal_background = "rgb(0,0,0)";
-			terminal_foreground = "rgb(255,255,255)";
-			terminal_font = "Sans Regular 12";
-			//parse_file (conf_path);
-			load_settings ();
-		}
-
-		void load_settings () {
 			var settings = new Settings ("org.pamac.main");
 			recurse = settings.get_boolean ("remove-unrequired-deps");
 			refresh_period = settings.get_uint64 ("refresh-period");
@@ -103,7 +84,7 @@ namespace Pamac {
 			terminal_background = settings.get_string ("background-color");
 			terminal_foreground = settings.get_string ("foreground-color");
 			terminal_font = settings.get_string ("terminal-font");
-
+			update_files_db = settings.get_boolean ("update-files-db");
 #if DISABLE_AUR
 #else
 			settings = new Settings ("org.pamac.aur");

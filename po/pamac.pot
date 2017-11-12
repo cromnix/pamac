@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-11 20:26-0300\n"
+"POT-Creation-Date: 2017-11-11 21:03-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -700,6 +700,10 @@ msgstr ""
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Check for updates"
+msgstr ""
+
+#: ../data/interface/preferences_dialog.ui
+msgid "Update files databases (more details but slower)"
 msgstr ""
 
 #: ../data/interface/preferences_dialog.ui
