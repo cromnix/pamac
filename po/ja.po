@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-11 21:00-0300\n"
+"POT-Creation-Date: 2017-11-11 23:01-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/manjarolinux/manjaro-pamac/"
@@ -352,13 +352,9 @@ msgstr "何もすることがありません"
 msgid "Transaction successfully finished"
 msgstr "処理が正常に終了しました。"
 
-#: ../src/pamac-install/installer.vala ../src/pamac-manager/manager.vala
-msgid "Pamac is already running"
-msgstr "pamacは既に起動しています"
-
-#: ../src/pamac-install/installer.vala ../src/pamac-manager/manager_window.vala
-msgid "Waiting for another package manager to quit"
-msgstr "他のパッケージマネージャーが終了するのを待機しています"
+#: ../src/pamac-install/installer.vala
+msgid "Unable to lock database!"
+msgstr ""
 
 #: ../src/pamac-tray/tray.vala ../src/pamac-manager/manager_window.vala
 msgid "Your system is up-to-date"
@@ -382,6 +378,10 @@ msgstr[0] "%u 種類の利用可能なアップデート"
 #: ../data/interface/progress_dialog.ui ../data/interface/manager_window.ui
 msgid "Details"
 msgstr "詳細"
+
+#: ../src/pamac-manager/manager.vala
+msgid "Pamac is already running"
+msgstr "pamacは既に起動しています"
 
 #: ../src/pamac-manager/manager.vala
 msgid "Refresh Databases"
@@ -423,6 +423,10 @@ msgstr "インストール"
 #: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
 msgid "Remove"
 msgstr "削除"
+
+#: ../src/pamac-manager/manager_window.vala
+msgid "Waiting for another package manager to quit"
+msgstr "他のパッケージマネージャーが終了するのを待機しています"
 
 #: ../src/pamac-manager/manager_window.vala
 #, c-format

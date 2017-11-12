@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-11 21:00-0300\n"
+"POT-Creation-Date: 2017-11-11 23:01-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
 "Language-Team: Asturian (http://www.transifex.com/manjarolinux/manjaro-pamac/"
@@ -355,13 +355,9 @@ msgstr "Un res pa faer"
 msgid "Transaction successfully finished"
 msgstr "Tresaición finada con ésitu"
 
-#: ../src/pamac-install/installer.vala ../src/pamac-manager/manager.vala
-msgid "Pamac is already running"
-msgstr "Pamac yá ta executándose"
-
-#: ../src/pamac-install/installer.vala ../src/pamac-manager/manager_window.vala
-msgid "Waiting for another package manager to quit"
-msgstr "Esperando que colen otros xestores de paquetes"
+#: ../src/pamac-install/installer.vala
+msgid "Unable to lock database!"
+msgstr ""
 
 #: ../src/pamac-tray/tray.vala ../src/pamac-manager/manager_window.vala
 msgid "Your system is up-to-date"
@@ -386,6 +382,10 @@ msgstr[1] "%u anovamientos disponible"
 #: ../data/interface/progress_dialog.ui ../data/interface/manager_window.ui
 msgid "Details"
 msgstr "Detalles"
+
+#: ../src/pamac-manager/manager.vala
+msgid "Pamac is already running"
+msgstr "Pamac yá ta executándose"
 
 #: ../src/pamac-manager/manager.vala
 msgid "Refresh Databases"
@@ -427,6 +427,10 @@ msgstr "Instalar"
 #: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
 msgid "Remove"
 msgstr "Desaniciar"
+
+#: ../src/pamac-manager/manager_window.vala
+msgid "Waiting for another package manager to quit"
+msgstr "Esperando que colen otros xestores de paquetes"
 
 #: ../src/pamac-manager/manager_window.vala
 #, c-format

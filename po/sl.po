@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pamac\n"
 "Report-Msgid-Bugs-To: cromer@cromnix.org\n"
-"POT-Creation-Date: 2017-11-11 21:00-0300\n"
+"POT-Creation-Date: 2017-11-11 23:01-0300\n"
 "PO-Revision-Date: 2017-07-30 02:40+0000\n"
 "Last-Translator: philm <philm@manjaro.org>\n"
 "Language-Team: Slovenian (http://www.transifex.com/manjarolinux/manjaro-"
@@ -359,13 +359,9 @@ msgstr "Ni nobenih opravil"
 msgid "Transaction successfully finished"
 msgstr "Transakcija uspešno zaključena"
 
-#: ../src/pamac-install/installer.vala ../src/pamac-manager/manager.vala
-msgid "Pamac is already running"
-msgstr "Pamac je že v teku"
-
-#: ../src/pamac-install/installer.vala ../src/pamac-manager/manager_window.vala
-msgid "Waiting for another package manager to quit"
-msgstr "Čakanje na izhod drugega paketnega upravljalnika"
+#: ../src/pamac-install/installer.vala
+msgid "Unable to lock database!"
+msgstr ""
 
 #: ../src/pamac-tray/tray.vala ../src/pamac-manager/manager_window.vala
 msgid "Your system is up-to-date"
@@ -392,6 +388,10 @@ msgstr[3] "Na voljo je %u posodobitev"
 #: ../data/interface/progress_dialog.ui ../data/interface/manager_window.ui
 msgid "Details"
 msgstr "Podrobnosti"
+
+#: ../src/pamac-manager/manager.vala
+msgid "Pamac is already running"
+msgstr "Pamac je že v teku"
 
 #: ../src/pamac-manager/manager.vala
 msgid "Refresh Databases"
@@ -433,6 +433,10 @@ msgstr "Namesti"
 #: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
 msgid "Remove"
 msgstr "Odstrani"
+
+#: ../src/pamac-manager/manager_window.vala
+msgid "Waiting for another package manager to quit"
+msgstr "Čakanje na izhod drugega paketnega upravljalnika"
 
 #: ../src/pamac-manager/manager_window.vala
 #, c-format
