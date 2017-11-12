@@ -633,6 +633,10 @@ namespace Pamac {
 			if (alpm_pkg == null) {
 				alpm_pkg = get_syncpkg (pkgname);
 			}
+			unowned Alpm.Package? alpm_pkg_sync = get_syncpkg (alpm_pkg.name);
+			if (alpm_pkg_sync == null) {
+				alpm_pkg_sync = get_syncpkg (pkgname);
+			}
 			if (alpm_pkg != null) {
 				// name
 				name = alpm_pkg.name;
@@ -656,7 +660,11 @@ namespace Pamac {
 					list.next ();
 				}
 				// download size
-				downloadsize = alpm_pkg.download_size.to_string ();
+				if (alpm_pkg_sync != null) {
+					downloadsize = alpm_pkg_sync.download_size.to_string ();
+				} else {
+					downloadsize = alpm_pkg.download_size.to_string ();
+				}
 				// installed size
 				installsize = alpm_pkg.isize.to_string ();
 				// licenses
