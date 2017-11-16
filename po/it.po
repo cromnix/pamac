@@ -1,4 +1,3 @@
-
 # Translation of Pamac.
 # Copyright (C) 2013-2016 Manjaro Developers <manjaro-dev@manjaro.org>
 # This file is distributed under the same license as the Pamac package.
