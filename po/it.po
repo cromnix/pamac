@@ -88,17 +88,17 @@ msgstr "il pacchetto %s non ha un'architettura valida"
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
 msgid "unable to satisfy dependency '%s' required by %s"
-msgstr ""
+msgstr "impossibile soddisfare la dipendenza '%s' richiesto da %s"
 
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
 msgid "installing %s (%s) breaks dependency '%s' required by %s"
-msgstr ""
+msgstr "installazione %s (%s) interrompe la dipendeza '%s' richiesto da %s"
 
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
 msgid "removing %s breaks dependency '%s' required by %s"
-msgstr ""
+msgstr "rimozione %s interrompe la dipendeza '%s' richiesto da %s"
 
 #: ../src/pamac-system-daemon/system_daemon.vala
 #, c-format
@@ -186,7 +186,7 @@ msgstr "Da reinstallare"
 
 #: ../src/transaction.vala
 msgid "To upgrade"
-msgstr ""
+msgstr "Da aggiornare"
 
 #: ../src/transaction.vala ../src/pamac-manager/manager_window.vala
 msgid "Total download size"
@@ -244,7 +244,7 @@ msgstr "Rimozione %s"
 
 #: ../src/transaction.vala
 msgid "Checking integrity"
-msgstr "Verifico l'integrità dei pacchetti"
+msgstr "Verifica dell'integrità dei pacchetti"
 
 #: ../src/transaction.vala
 msgid "Loading packages files"
@@ -256,7 +256,7 @@ msgstr "Controllo dell'integrità dei delta"
 
 #: ../src/transaction.vala
 msgid "Applying deltas"
-msgstr "Applicando deltas"
+msgstr "Applicazione dei delta"
 
 #: ../src/transaction.vala
 #, c-format
@@ -269,7 +269,7 @@ msgstr "Generazione riuscita"
 
 #: ../src/transaction.vala
 msgid "Generation failed"
-msgstr "Generazione non riuscita"
+msgstr "Generazione fallita"
 
 #: ../src/transaction.vala
 #, c-format
@@ -365,7 +365,7 @@ msgstr "Transazione completata con successo"
 
 #: ../src/pamac-install/installer.vala
 msgid "Unable to lock database!"
-msgstr ""
+msgstr "Impossibile bloccare il database!"
 
 #: ../src/pamac-tray/tray.vala ../src/pamac-manager/manager_window.vala
 msgid "Your system is up-to-date"
@@ -397,7 +397,7 @@ msgstr "Pamac è già in esecuzione"
 
 #: ../src/pamac-manager/manager.vala
 msgid "Refresh Databases"
-msgstr ""
+msgstr "Aggiorna i database"
 
 #: ../src/pamac-manager/manager.vala ../data/interface/manager_window.ui
 msgid "View History"
@@ -418,7 +418,7 @@ msgstr "Informazioni"
 
 #: ../src/pamac-manager/manager.vala
 msgid "Quit"
-msgstr ""
+msgstr "Esci"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Deselect"
@@ -426,7 +426,7 @@ msgstr "Deseleziona"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Upgrade"
-msgstr ""
+msgstr "Aggiorna"
 
 #: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
 msgid "Install"
@@ -438,7 +438,7 @@ msgstr "Rimuovi"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Waiting for another package manager to quit"
-msgstr "Aspettando l'uscita da un altro gestore di pacchetti"
+msgstr "In attesa che un altro gestore di pacchetti si chiuda"
 
 #: ../src/pamac-manager/manager_window.vala
 #, c-format
@@ -465,7 +465,7 @@ msgstr "In attesa"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Install Reason"
-msgstr "Motivo della installazione"
+msgstr "Motivo dell' installazione"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Mark as explicitly installed"
@@ -481,11 +481,11 @@ msgstr "Repository"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Download size"
-msgstr ""
+msgstr "Dimensioni di scaricamento"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "Installed size"
-msgstr ""
+msgstr "Dimensioni di installazione"
 
 #: ../src/pamac-manager/manager_window.vala ../data/interface/manager_window.ui
 msgid "Groups"
@@ -592,7 +592,7 @@ msgstr "Pacchetto Alpm"
 
 #: ../src/pamac-manager/manager_window.vala
 msgid "A Gtk3 frontend for libalpm"
-msgstr "Frontend gtk3 per libalpm"
+msgstr "Un frontend gtk3 per libalpm"
 
 #: ../src/preferences_dialog.vala ../data/interface/preferences_dialog.ui
 msgid "How often to check for updates, value in hours"
@@ -604,7 +604,7 @@ msgstr "Numero di versioni di ogni pacchetto da conservare nella cache"
 
 #: ../src/preferences_dialog.vala
 msgid "Build directory"
-msgstr ""
+msgstr "Cartella di costruzione"
 
 #: ../src/preferences_dialog.vala
 msgid "Worldwide"
@@ -665,7 +665,7 @@ msgstr "Repository"
 
 #: ../data/interface/manager_window.ui
 msgid "Updates"
-msgstr ""
+msgstr "Aggiornamenti"
 
 #: ../data/interface/manager_window.ui
 msgid "Version"
@@ -725,7 +725,7 @@ msgstr "Cerca aggiornamenti"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Update files databases (more details but slower)"
-msgstr ""
+msgstr "Aggiorna i database dei file (maggiori dettagli ma più lento)"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Hide tray icon when no update available"
@@ -741,19 +741,19 @@ msgstr "Generale"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Background color:"
-msgstr ""
+msgstr "Colore di sfondo"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Text color:"
-msgstr ""
+msgstr "Colore del testo"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Font:"
-msgstr ""
+msgstr "Carattere"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Terminal"
-msgstr ""
+msgstr "Terminale"
 
 #: ../data/interface/preferences_dialog.ui
 msgid "Use mirrors from:"
