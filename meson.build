@@ -1,11 +1,11 @@
-project('pamac-classic',['c','vala'])
+project('pamac',['c','vala'])
 
 ENABLE_UPDATE_ICON = (get_option('ENABLE_UPDATE_ICON') != '')
 ENABLE_HAMBURGER = (get_option('ENABLE_HAMBURGER') != '')
 KDE_TRAY = (get_option('KDE_TRAY') != '')
 DISABLE_AUR = (get_option('DISABLE_AUR') != '')
 
-add_global_arguments('-DGETTEXT_PACKAGE="pamac-classic"',language: 'c')
+add_global_arguments('-DGETTEXT_PACKAGE="pamac"',language: 'c')
 
 gdk_3_0_dep = dependency('gdk-3.0')
 gtk_3_0_dep = dependency('gtk+-3.0')
@@ -81,7 +81,7 @@ install_data('data/icons/16x16/apps/system-software-install.png',install_dir: jo
 install_data('data/icons/24x24/status/pamac-tray-no-update.png',install_dir: join_paths(get_option('prefix'),get_option('datadir'),'icons','hicolor/24x24/apps'))
 install_data('data/icons/24x24/status/pamac-tray-update.png',install_dir: join_paths(get_option('prefix'),get_option('datadir'),'icons','hicolor/24x24/apps'))
 install_data('data/icons/32x32/apps/system-software-install.png',install_dir: join_paths(get_option('prefix'),get_option('datadir'),'icons','hicolor/32x32/apps'))
-install_data('data/pixmaps/package-generic.png',install_dir: join_paths(get_option('prefix'),get_option('datadir'),'pamac-classic'))
+install_data('data/pixmaps/package-generic.png',install_dir: join_paths(get_option('prefix'),get_option('datadir'),'pamac'))
 install_data( 'data/polkit/org.pamac.policy',install_dir: join_paths(get_option('prefix'),get_option('datadir'),'polkit-1','actions'))
 install_data( 'data/mime/x-alpm-package.xml',install_dir: join_paths(get_option('prefix'),get_option('datadir'),'mime','packages'))
 subdir('src')

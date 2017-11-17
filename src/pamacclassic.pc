@@ -4,7 +4,7 @@ includedir=@DOLLAR@{prefix}/${CMAKE_INSTALL_INCLUDEDIR}
 
 Name: pamacclassic
 Description: pamacclassic
-Version: 6.6.2
+Version: 6.6.3
 Libs: -L@DOLLAR@{libdir} -lpamacclassic
 Cflags: -I@DOLLAR@{includedir}
 Requires: gdk-3.0 gtk+-3.0 json-glib-1.0 libalpm libnotify libsoup-2.4 vte-2.91 gio-2.0 glib-2.0 gobject-2.0

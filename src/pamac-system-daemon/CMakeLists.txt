@@ -2,18 +2,18 @@
 ### Do not edit
 
 set (DATADIR "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATAROOTDIR}")
-set (PKGDATADIR "${DATADIR}/pamac-classic")
-set (GETTEXT_PACKAGE "pamac-classic")
-set (RELEASE_NAME "pamac-classic")
+set (PKGDATADIR "${DATADIR}/pamac")
+set (GETTEXT_PACKAGE "pamac")
+set (RELEASE_NAME "pamac")
 set (CMAKE_C_FLAGS "")
 set (PREFIX ${CMAKE_INSTALL_PREFIX})
-set (VERSION "6.6.2")
+set (VERSION "6.6.3")
 set (TESTSRCDIR "${CMAKE_SOURCE_DIR}")
 set (DOLLAR "$")
 
 configure_file (${CMAKE_SOURCE_DIR}/src/pamac-system-daemon/Config.vala.base ${CMAKE_BINARY_DIR}/src/pamac-system-daemon/Config.vala)
 add_definitions(-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
-set (VERSION "6.6.2")
+set (VERSION "6.6.3")
 add_definitions (${DEPS_CFLAGS})
 include_directories ( ${CMAKE_BINARY_DIR}/src )
 link_libraries ( ${DEPS_LIBRARIES} -lpamacclassic )
@@ -101,6 +101,6 @@ if(HAVE_VALADOC)
 	install(DIRECTORY
 		${CMAKE_BINARY_DIR}/valadoc
 	DESTINATION
-		${CMAKE_INSTALL_DATAROOTDIR}/doc/pamac-classic
+		${CMAKE_INSTALL_DATAROOTDIR}/doc/pamac
 	)
 endif()

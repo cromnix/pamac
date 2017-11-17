@@ -2,12 +2,12 @@
 ### Do not edit
 
 set (DATADIR "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATAROOTDIR}")
-set (PKGDATADIR "${DATADIR}/pamac-classic")
-set (GETTEXT_PACKAGE "pamac-classic")
-set (RELEASE_NAME "pamac-classic")
+set (PKGDATADIR "${DATADIR}/pamac")
+set (GETTEXT_PACKAGE "pamac")
+set (RELEASE_NAME "pamac")
 set (CMAKE_C_FLAGS "")
 set (PREFIX ${CMAKE_INSTALL_PREFIX})
-set (VERSION "6.6.2")
+set (VERSION "6.6.3")
 set (TESTSRCDIR "${CMAKE_SOURCE_DIR}")
 set (DOLLAR "$")
 
@@ -15,7 +15,7 @@ configure_file (${CMAKE_SOURCE_DIR}/src/Config.vala.base ${CMAKE_BINARY_DIR}/src
 add_definitions(-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/pamacclassic.pc ${CMAKE_CURRENT_BINARY_DIR}/pamacclassic.pc)
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/pamacclassic.deps ${CMAKE_CURRENT_BINARY_DIR}/pamacclassic.deps)
-set (VERSION "6.6.2")
+set (VERSION "6.6.3")
 add_definitions (${DEPS_CFLAGS})
 link_libraries ( ${DEPS_LIBRARIES} )
 link_directories ( ${DEPS_LIBRARY_DIRS} )
@@ -101,7 +101,7 @@ add_dependencies( pamacclassic ${pamacclassic_DEPENDENCIES} )
 target_link_libraries( pamacclassic m )
 set_target_properties( pamacclassic PROPERTIES
 VERSION
-	6.6.2
+	6.6.3
 SOVERSION
 	6 )
 
@@ -148,7 +148,7 @@ if(HAVE_VALADOC)
 	install(DIRECTORY
 		${CMAKE_BINARY_DIR}/valadoc
 	DESTINATION
-		${CMAKE_INSTALL_DATAROOTDIR}/doc/pamac-classic
+		${CMAKE_INSTALL_DATAROOTDIR}/doc/pamac
 	)
 endif()
 
