@@ -6,6 +6,7 @@
   <icon_name>package-x-generic</icon_name>
   <action id="org.pamac.commit">
     <message>Authentication is required</message>
+    <message xml:lang="es">Se necesita autenticación</message>
     <message xml:lang="az_AZ">Kimlik tələb olunur</message>
     <message xml:lang="id">Membutuhkan Otentifikasi</message>
     <message xml:lang="nl_NL">Authenticatie vereist</message>
@@ -44,7 +45,6 @@
     <message xml:lang="el">Απαιτείται πιστοποίηση</message>
     <message xml:lang="fr">Authentification nécessaire</message>
     <message xml:lang="sr@latin">Autentifikacija je neophodna</message>
-    <message xml:lang="es">Se necesita autenticación</message>
     <message xml:lang="sl">Zahtevana je overitev</message>
     <message xml:lang="zh_TW">需要授權</message>
     <message xml:lang="gl">A autenticación é necesaria</message>

@@ -1580,13 +1580,19 @@ namespace Pamac {
 						if (pkg.name != "") {
 							selected_pkgs.append (pkgname);
 							// there is for sure a pkg to remove
-							remove_item.sensitive = true;
+							if (filters_stack.visible_child_name == "search"
+								&& !transaction.to_remove.contains (pkgname)
+								&& !transaction.to_build.contains (pkgname)
+								&& !transaction.to_update.contains (pkgname)) {
+								remove_item.sensitive = true;
+							}
 						} else {
 							selected_aur.append (pkgname);
 						}
 					}
 					foreach (unowned string pkgname in selected_aur) {
-						if (transaction.to_build.contains (pkgname)) {
+						if (transaction.to_remove.contains (pkgname)
+							|| transaction.to_build.contains (pkgname)) {
 							deselect_item.sensitive = true;
 						} else {
 							install_item.sensitive = true;
