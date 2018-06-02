@@ -4,7 +4,7 @@ cfg_pamac_tray.set('PKGDATADIR', join_paths(get_option('prefix'),get_option('dat
 cfg_pamac_tray.set('GETTEXT_PACKAGE', 'pamac')
 cfg_pamac_tray.set('RELEASE_NAME', 'pamac')
 cfg_pamac_tray.set('PREFIX', get_option('prefix'))
-cfg_pamac_tray.set('VERSION', '6.6.4')
+cfg_pamac_tray.set('VERSION', '6.7.0')
 cfg_pamac_tray.set('TESTSRCDIR', meson.source_root())
 
 cfgfile_3 = configure_file(input: 'Config.vala.base',output: 'Config.vala',configuration: cfg_pamac_tray)
@@ -49,7 +49,8 @@ if DISABLE_AUR
   pamac_tray_vala_args += ['-D', 'DISABLE_AUR']
   pamac_tray_c_args += ['-DDISABLE_AUR']
 endif
+pamac_tray_link_args = ['-rdynamic']
 pamac_tray_hfolders = ['../../src']
 
-executable('pamac-tray',pamac_tray_sources,dependencies: pamac_tray_deps,vala_args: pamac_tray_vala_args,c_args: pamac_tray_c_args,link_with: pamac_tray_dependencies,include_directories: include_directories(pamac_tray_hfolders),install: true)
+executable('pamac-tray',pamac_tray_sources,dependencies: pamac_tray_deps,vala_args: pamac_tray_vala_args,c_args: pamac_tray_c_args,link_args: pamac_tray_link_args,link_with: pamac_tray_dependencies,include_directories: include_directories(pamac_tray_hfolders),install: true)
 

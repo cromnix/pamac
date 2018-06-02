@@ -4,7 +4,7 @@ cfg_pamac_install.set('PKGDATADIR', join_paths(get_option('prefix'),get_option('
 cfg_pamac_install.set('GETTEXT_PACKAGE', 'pamac')
 cfg_pamac_install.set('RELEASE_NAME', 'pamac')
 cfg_pamac_install.set('PREFIX', get_option('prefix'))
-cfg_pamac_install.set('VERSION', '6.6.4')
+cfg_pamac_install.set('VERSION', '6.7.0')
 cfg_pamac_install.set('TESTSRCDIR', meson.source_root())
 
 cfgfile_5 = configure_file(input: 'Config.vala.base',output: 'Config.vala',configuration: cfg_pamac_install)
@@ -38,7 +38,8 @@ if DISABLE_AUR
   pamac_install_vala_args += ['-D', 'DISABLE_AUR']
   pamac_install_c_args += ['-DDISABLE_AUR']
 endif
+pamac_install_link_args = ['-rdynamic']
 pamac_install_hfolders = ['../../src']
 
-executable('pamac-install',pamac_install_sources,dependencies: pamac_install_deps,vala_args: pamac_install_vala_args,c_args: pamac_install_c_args,link_with: pamac_install_dependencies,include_directories: include_directories(pamac_install_hfolders),install: true)
+executable('pamac-install',pamac_install_sources,dependencies: pamac_install_deps,vala_args: pamac_install_vala_args,c_args: pamac_install_c_args,link_args: pamac_install_link_args,link_with: pamac_install_dependencies,include_directories: include_directories(pamac_install_hfolders),install: true)
 

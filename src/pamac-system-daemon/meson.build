@@ -4,7 +4,7 @@ cfg_pamac_system_daemon.set('PKGDATADIR', join_paths(get_option('prefix'),get_op
 cfg_pamac_system_daemon.set('GETTEXT_PACKAGE', 'pamac')
 cfg_pamac_system_daemon.set('RELEASE_NAME', 'pamac')
 cfg_pamac_system_daemon.set('PREFIX', get_option('prefix'))
-cfg_pamac_system_daemon.set('VERSION', '6.6.4')
+cfg_pamac_system_daemon.set('VERSION', '6.7.0')
 cfg_pamac_system_daemon.set('TESTSRCDIR', meson.source_root())
 
 cfgfile_7 = configure_file(input: 'Config.vala.base',output: 'Config.vala',configuration: cfg_pamac_system_daemon)
@@ -43,7 +43,8 @@ if DISABLE_AUR
   pamac_system_daemon_vala_args += ['-D', 'DISABLE_AUR']
   pamac_system_daemon_c_args += ['-DDISABLE_AUR']
 endif
+pamac_system_daemon_link_args = ['-rdynamic']
 pamac_system_daemon_hfolders = ['../../src']
 
-executable('pamac-system-daemon',pamac_system_daemon_sources,dependencies: pamac_system_daemon_deps,vala_args: pamac_system_daemon_vala_args,c_args: pamac_system_daemon_c_args,link_with: pamac_system_daemon_dependencies,include_directories: include_directories(pamac_system_daemon_hfolders),install: true)
+executable('pamac-system-daemon',pamac_system_daemon_sources,dependencies: pamac_system_daemon_deps,vala_args: pamac_system_daemon_vala_args,c_args: pamac_system_daemon_c_args,link_args: pamac_system_daemon_link_args,link_with: pamac_system_daemon_dependencies,include_directories: include_directories(pamac_system_daemon_hfolders),install: true)
 
